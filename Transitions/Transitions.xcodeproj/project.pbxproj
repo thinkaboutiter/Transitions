@@ -11,7 +11,6 @@
 		4FB363951C498F570052C617 /* TransitionCoordinators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB363941C498F570052C617 /* TransitionCoordinators.swift */; };
 		4FB363981C4A46CC0052C617 /* PresentationControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB363971C4A46CC0052C617 /* PresentationControllers.swift */; };
 		7D323B531C46309900938F08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D323B521C46309900938F08 /* AppDelegate.swift */; };
-		7D323B551C46309900938F08 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D323B541C46309900938F08 /* ViewController.swift */; };
 		7D323B581C46309900938F08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D323B561C46309900938F08 /* Main.storyboard */; };
 		7D323B5A1C46309900938F08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D323B591C46309900938F08 /* Assets.xcassets */; };
 		7D323B5D1C46309900938F08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D323B5B1C46309900938F08 /* LaunchScreen.storyboard */; };
@@ -30,7 +29,6 @@
 		4FB363971C4A46CC0052C617 /* PresentationControllers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PresentationControllers.swift; path = _source/presentationControllers/PresentationControllers.swift; sourceTree = "<group>"; };
 		7D323B4F1C46309900938F08 /* Transitions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Transitions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D323B521C46309900938F08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7D323B541C46309900938F08 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7D323B571C46309900938F08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7D323B591C46309900938F08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7D323B5C1C46309900938F08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -116,11 +114,10 @@
 			children = (
 				7D323B641C46469900938F08 /* _source */,
 				7D323B521C46309900938F08 /* AppDelegate.swift */,
-				7D323B541C46309900938F08 /* ViewController.swift */,
-				7D323B561C46309900938F08 /* Main.storyboard */,
 				7D323B591C46309900938F08 /* Assets.xcassets */,
-				7D323B5B1C46309900938F08 /* LaunchScreen.storyboard */,
 				7D323B5E1C46309900938F08 /* Info.plist */,
+				7D323B5B1C46309900938F08 /* LaunchScreen.storyboard */,
+				7D323B561C46309900938F08 /* Main.storyboard */,
 			);
 			path = Transitions;
 			sourceTree = "<group>";
@@ -331,7 +328,6 @@
 				7D323B661C46471200938F08 /* TransitioningDelegates.swift in Sources */,
 				4FB363981C4A46CC0052C617 /* PresentationControllers.swift in Sources */,
 				7D328CEA1C4E0BBA00A6335F /* BaseTableViewController.swift in Sources */,
-				7D323B551C46309900938F08 /* ViewController.swift in Sources */,
 				7D328CEB1C4E0BBA00A6335F /* BaseViewController.swift in Sources */,
 				7D323B6A1C46786D00938F08 /* TransitioningAnimators.swift in Sources */,
 				7D323B531C46309900938F08 /* AppDelegate.swift in Sources */,
