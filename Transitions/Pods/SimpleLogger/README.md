@@ -1,0 +1,2 @@
+# SimpleLogger
+Simple logging tool

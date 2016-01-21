@@ -1,0 +1,6 @@
+platform :ios, "9.1"
+
+use_frameworks!
+
+pod 'SimpleLogger', :git => 'https://github.com/thinkaboutiter/SimpleLogger', :tag => '0.1.0'
+pod 'Masonry', '~> 0.6.0'
