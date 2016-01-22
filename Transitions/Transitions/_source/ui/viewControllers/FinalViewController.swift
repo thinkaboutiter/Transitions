@@ -8,8 +8,9 @@
 
 import Foundation
 import UIKit
+import SimpleLogger
 
-class FinalViewController: BaseViewController {
+class FinalViewController: BaseViewController, TransitioningResignable {
     
     @IBOutlet weak var transitionBackwardsButton: UIButton!
     // MARK: - Life cycle
@@ -28,13 +29,24 @@ class FinalViewController: BaseViewController {
     // MARK: - Actions
     
     @IBAction func transitionBackwardsPressed(sender: AnyObject) {               
+        self.resignTransitionAnimated(true, sender: sender, completion: nil)
+    }
+    
+    // MARK: - TransitioningResignable
+    
+    var customTransitioningDelegate: UIViewControllerTransitioningDelegate?
+
+    func resignTransitionAnimated(animated: Bool, sender: AnyObject, completion: (() -> Void)?) {
         if let _ = self.customTransitioningDelegate {
             self.transitioningDelegate = self.customTransitioningDelegate
             self.modalPresentationStyle = .Custom
         }
+        else {
+            Logger.logInfo("\(self) \(__FUNCTION__) » Tansition will use default `transitioningDelegate`:", item: self.transitioningDelegate)
+        }
         
         if let validPresentingVC = self.presentingViewController {
-            validPresentingVC.dismissViewControllerAnimated(true, completion: nil)
+            validPresentingVC.dismissViewControllerAnimated(animated, completion: completion)
         }
     }
     
