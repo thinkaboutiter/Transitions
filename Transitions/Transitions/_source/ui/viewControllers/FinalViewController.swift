@@ -35,6 +35,12 @@ class FinalViewController: BaseViewController, TransitioningResignable {
     // MARK: - TransitioningResignable
     
     var customTransitioningDelegate: UIViewControllerTransitioningDelegate?
+    lazy var resignTransitioningGestureRecognizer: UIGestureRecognizer? = {
+        // TODO: implement `resignTransitioningGestureRecognizer`
+        // 1. its configuration should depend on `customTransitioningDelegate` configuration
+        
+       return nil
+    }()
 
     func resignTransitionAnimated(animated: Bool, sender: AnyObject, completion: (() -> Void)?) {
         if let _ = self.customTransitioningDelegate {
