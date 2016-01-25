@@ -13,10 +13,10 @@ import SimpleLogger
 class InitialTableViewController: BaseTableViewController {
     
     private let cellTitles: [String] = [
-        "Horizontal left",
-        "Horizontal right",
-        "Vertical top",
-        "Vertical bottom"
+        "Transitioning Left",
+        "Transitioning Right",
+        "Transitioning Up",
+        "Transitioning Down"
     ]
     
     // MARK: - Life cycle
@@ -85,43 +85,43 @@ class InitialTableViewController: BaseTableViewController {
         // `transitioningDelegate`
         let transitioningDelegate: UIViewControllerTransitioningDelegate
         
-        // do presentations here
+        // do presentations with their directions here
         switch indexPath.row {
         case 0:
-            // Horizontal Left
+            // Left
             Logger.logInfo("\(self) \(__FUNCTION__) » Transition `Horizontal.Left`", item: nil)
             
             // create `transitioningDelegate` object
             transitioningDelegate = BaseTransitioningDelegate(
-                withPresentationalAnimator: HorizontalTransitioningAnimator(withHorizontalTransitioningDirection: .Left).shouldPresentViewController(true),
-                andDismissalAnimator: HorizontalTransitioningAnimator(withHorizontalTransitioningDirection: .Left))
+                withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .Left).shouldPresentViewController(true),
+                andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .Left))
             
         case 1:
-            // Horizontal Right
+            // Right
             Logger.logInfo("\(self) \(__FUNCTION__) » Transition `Horizontal.Right`", item: nil)
             
             // create `transitioningDelegate` object
             transitioningDelegate = BaseTransitioningDelegate(
-                withPresentationalAnimator: HorizontalTransitioningAnimator(withHorizontalTransitioningDirection: .Right).shouldPresentViewController(true),
-                andDismissalAnimator: HorizontalTransitioningAnimator(withHorizontalTransitioningDirection: .Right))
+                withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .Right).shouldPresentViewController(true),
+                andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .Right))
             
         case 2:
-            // Vertical Top
+            // Up
             Logger.logInfo("\(self) \(__FUNCTION__) » Transition `Vertical.Top`", item: nil)
             
             // create `transitioningDelegate` object
             transitioningDelegate = BaseTransitioningDelegate(
-                withPresentationalAnimator: VerticalTransitioningAnimator(withVerticalTransitioningDirection: .Top).shouldPresentViewController(true),
-                andDismissalAnimator: VerticalTransitioningAnimator(withVerticalTransitioningDirection: .Top))
+                withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .Up).shouldPresentViewController(true),
+                andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .Up))
             
         case 3:
-            // Vertical Bottom
+            // Down
             Logger.logInfo("\(self) \(__FUNCTION__) » Transition `Vertical.Bottom`", item: nil)
             
             // create `transitioningDelegate` object
             transitioningDelegate = BaseTransitioningDelegate(
-                withPresentationalAnimator: VerticalTransitioningAnimator(withVerticalTransitioningDirection: .Bottom).shouldPresentViewController(true),
-                andDismissalAnimator: VerticalTransitioningAnimator(withVerticalTransitioningDirection: .Bottom))
+                withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .Down).shouldPresentViewController(true),
+                andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .Down))
             
         default:
             Logger.logError("\(self) \(__FUNCTION__) » Unsupported Transition", item: nil)
