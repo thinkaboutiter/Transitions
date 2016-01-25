@@ -72,22 +72,6 @@ class BaseTransitioningAnimator: NSObject, UIViewControllerAnimatedTransitioning
         }
     }
     
-//    let horizontalAnimation: (UIViewControllerContextTransitioning) throws -> (CGRect) = { (transitionContext: UIViewControllerContextTransitioning) in
-//        let containerView: UIView = try self.containerViewForContext(transitionContext)
-//        let toVC: UIViewController = try self.toViewControllerForContext(transitionContext)
-//        let toView: UIView = try self.toViewForContext(transitionContext)
-//        
-//        // Set up some variables for the animation.
-//        var toView_StartFrame: CGRect = transitionContext.initialFrameForViewController(toVC)
-//        let toView_FinalFrame: CGRect = transitionContext.finalFrameForViewController(toVC)
-//        
-//        // Set up the animation parameters.
-//        toView_StartFrame.origin.x = CGRectGetWidth(containerView.frame)
-//        toView_StartFrame.origin.y = CGRectGetHeight(containerView.frame)
-//        
-//        return toView_StartFrame
-//    }
-    
     // MARK: Presentation
     
     private func animatePresentationalTransition(transitionContext: UIViewControllerContextTransitioning) throws {
@@ -285,7 +269,6 @@ class AxialTransitioningAnimator: BaseTransitioningAnimator {
             
 //            Logger.logDebug("\(self) \(__FUNCTION__) » Presentation.Right Transition `toView_InitialFrame`:", item: toView_InitialFrame)
 //            Logger.logDebug("\(self) \(__FUNCTION__) » Presentation.Right Transition `toView_FinalFrame`:", item: toView_FinalFrame)
-
             
         case .Up:
             // Set up some variables for the animation.
@@ -354,8 +337,8 @@ class AxialTransitioningAnimator: BaseTransitioningAnimator {
                 CGRectGetWidth(toView.frame),
                 CGRectGetHeight(toView.frame))
             
-            //            Logger.logDebug("\(self) \(__FUNCTION__) » Dismission.Left Transition `fromView_InitialFrame`:", item: fromView_InitialFrame)
-            //            Logger.logDebug("\(self) \(__FUNCTION__) » Dismission.Left Transition `fromView_FinalFrame`:", item: fromView_FinalFrame)
+//            Logger.logDebug("\(self) \(__FUNCTION__) » Dismission.Left Transition `fromView_InitialFrame`:", item: fromView_InitialFrame)
+//            Logger.logDebug("\(self) \(__FUNCTION__) » Dismission.Left Transition `fromView_FinalFrame`:", item: fromView_FinalFrame)
             
         case .Right:
             // Set up some variables for the animation.
@@ -376,8 +359,8 @@ class AxialTransitioningAnimator: BaseTransitioningAnimator {
                 CGRectGetWidth(toView.frame),
                 CGRectGetHeight(toView.frame))
             
-            //            Logger.logDebug("\(self) \(__FUNCTION__) » Dismissal.Up Transition `fromView_InitialFrame`:", item: fromView_InitialFrame)
-            //            Logger.logDebug("\(self) \(__FUNCTION__) » Dismissal.Up Transition `fromView_FinalFrame`:", item: fromView_FinalFrame)
+//            Logger.logDebug("\(self) \(__FUNCTION__) » Dismissal.Up Transition `fromView_InitialFrame`:", item: fromView_InitialFrame)
+//            Logger.logDebug("\(self) \(__FUNCTION__) » Dismissal.Up Transition `fromView_FinalFrame`:", item: fromView_FinalFrame)
         
         case .Down:
             // Set up some variables for the animation.
