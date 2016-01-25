@@ -11,8 +11,6 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
-    var customTransitioningDelegate: UIViewControllerTransitioningDelegate?
-    
     // MARK: - Life cycle
     
     override func viewDidLoad() {

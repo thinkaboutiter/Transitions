@@ -14,19 +14,11 @@ enum TransitioningAnimatorError: ErrorType {
     case GeneralError (errorReason: String)
 }
 
-//enum TransitioningDirection {
-//    case Horizontal (horizontalTransitioningDirection: HorizontalTransitioningDirection)
-//    case Vertical (verticalTransitioningDirection: VerticalTransitioningDirection)
-//}
-
-enum HorizontalTransitioningDirection: UInt {
-    case Left = 0
-    case Right = 1
-}
-
-enum VerticalTransitioningDirection: UInt {
-    case Top = 0
-    case Bottom = 1
+enum TransitioningDirection: UInt {
+    case Left
+    case Right
+    case Up
+    case Down
 }
 
 // MARK: - BaseTransitioningAnimator
@@ -35,6 +27,7 @@ class BaseTransitioningAnimator: NSObject, UIViewControllerAnimatedTransitioning
     
     private(set) var isPresenting: Bool = false
     
+    /** Chainable */
     func shouldPresentViewController(isPresenting: Bool) -> BaseTransitioningAnimator {
         self.isPresenting = isPresenting
         return self
@@ -78,22 +71,6 @@ class BaseTransitioningAnimator: NSObject, UIViewControllerAnimatedTransitioning
             try  self.animateDismissalTransition(transitionContext)
         }
     }
-    
-//    let horizontalAnimation: (UIViewControllerContextTransitioning) throws -> (CGRect) = { (transitionContext: UIViewControllerContextTransitioning) in
-//        let containerView: UIView = try self.containerViewForContext(transitionContext)
-//        let toVC: UIViewController = try self.toViewControllerForContext(transitionContext)
-//        let toView: UIView = try self.toViewForContext(transitionContext)
-//        
-//        // Set up some variables for the animation.
-//        var toView_StartFrame: CGRect = transitionContext.initialFrameForViewController(toVC)
-//        let toView_FinalFrame: CGRect = transitionContext.finalFrameForViewController(toVC)
-//        
-//        // Set up the animation parameters.
-//        toView_StartFrame.origin.x = CGRectGetWidth(containerView.frame)
-//        toView_StartFrame.origin.y = CGRectGetHeight(containerView.frame)
-//        
-//        return toView_StartFrame
-//    }
     
     // MARK: Presentation
     
@@ -244,16 +221,15 @@ class BaseTransitioningAnimator: NSObject, UIViewControllerAnimatedTransitioning
     }
 }
 
-// MARK: - HorizontalTransitioningAnimator
+// MARK: - AxialTransitioningAnimator
 
-class HorizontalTransitioningAnimator: BaseTransitioningAnimator {
-    
-    private let horizontalTransitioningDirection: HorizontalTransitioningDirection
+class AxialTransitioningAnimator: BaseTransitioningAnimator {
+    let transitioningDirection: TransitioningDirection
     
     // MARK: Initializers
     
-    init(withHorizontalTransitioningDirection horizontalTransitioningDirection: HorizontalTransitioningDirection) {
-        self.horizontalTransitioningDirection = horizontalTransitioningDirection
+    init(withTransitioningDirection transitioningDirection: TransitioningDirection) {
+        self.transitioningDirection = transitioningDirection
         super.init()
     }
     
@@ -269,20 +245,8 @@ class HorizontalTransitioningAnimator: BaseTransitioningAnimator {
         var toView_InitialFrame: CGRect
         let toView_FinalFrame: CGRect = transitionContext.finalFrameForViewController(toVC)
         
-        switch self.horizontalTransitioningDirection {
+        switch self.transitioningDirection {
         case .Left:
-            // Set up some variables for the animation.
-            toView_InitialFrame = transitionContext.initialFrameForViewController(toVC)
-            
-            // Set up the animation parameters.
-            toView_InitialFrame.origin.x = -CGRectGetWidth(containerView.frame)
-            toView_InitialFrame.size.width = CGRectGetWidth(toVC.view.frame)
-            toView_InitialFrame.size.height = CGRectGetHeight(toVC.view.frame)
-            
-//            Logger.logDebug("\(self) \(__FUNCTION__) » Presentation.Horizontal.Left Transition `toView_InitialFrame`:", item: toView_InitialFrame)
-//            Logger.logDebug("\(self) \(__FUNCTION__) » Presentation.Horizontal.Left Transition `toView_FinalFrame`:", item: toView_FinalFrame)
-            
-        case .Right:
             // Set up some variables for the animation.
             toView_InitialFrame = transitionContext.initialFrameForViewController(toVC)
             
@@ -291,112 +255,22 @@ class HorizontalTransitioningAnimator: BaseTransitioningAnimator {
             toView_InitialFrame.size.width = CGRectGetWidth(toVC.view.frame)
             toView_InitialFrame.size.height = CGRectGetHeight(toVC.view.frame)
             
-//            Logger.logDebug("\(self) \(__FUNCTION__) » Presentation.Horizontal.Right Transition `toView_InitialFrame`:", item: toView_InitialFrame)
-//            Logger.logDebug("\(self) \(__FUNCTION__) » Presentation.Horizontal.Right Transition `toView_FinalFrame`:", item: toView_FinalFrame)
-        }
-        
-        return (toView_InitialFrame, toView_FinalFrame)
-    }
-    
-    // MARK: Dismissal
-    
-    private override func toView_DismissalAnimationFrames(transitionContext: UIViewControllerContextTransitioning) throws -> (CGRect, CGRect) {
-        // Get the set of relevant objects.
-        let toVC: UIViewController = try self.toViewControllerForContext(transitionContext)
-        let toView_InitialFrame: CGRect = transitionContext.initialFrameForViewController(toVC)
-        let toView_FinalFrame: CGRect = transitionContext.finalFrameForViewController(toVC)
-        
-//        Logger.logDebug("\(self) \(__FUNCTION__) » Dismission.Horizontal Transition `toView_InitialFrame`:", item: toView_InitialFrame)
-//        Logger.logDebug("\(self) \(__FUNCTION__) » Dismission.Horizontal Transition `toView_FinalFrame`:", item: toView_FinalFrame)
-        
-        return (toView_InitialFrame, toView_FinalFrame)
-    }
-    
-    private override func fromView_DismissalAnimationFrames(transitionContext: UIViewControllerContextTransitioning) throws -> (CGRect, CGRect) {
-        let containerView: UIView = try self.containerViewForContext(transitionContext)
-        let toVC: UIViewController = try self.toViewControllerForContext(transitionContext)
-        let fromVC: UIViewController = try self.fromViewControllerForContext(transitionContext)
-        
-        // try to obtain the `toView` either from `toVC`, or via `transitionContext` `viewForKey(UITransitionContextToViewKey)`
-        let toView: UIView = {
-            if let validToView = try? self.toViewForContext(transitionContext) {
-                return validToView
-            }
-            else {
-                return toVC.view
-            }
-        }()
-        
-        let fromView_InitialFrame: CGRect = transitionContext.initialFrameForViewController(fromVC)
-        let fromView_FinalFrame: CGRect
-        
-        switch self.horizontalTransitioningDirection {
-        case .Left:
-            // Set up some variables for the animation.
-            fromView_FinalFrame = CGRectMake(
-                -CGRectGetWidth(containerView.frame),
-                CGRectGetMinY(containerView.frame),
-                CGRectGetWidth(toView.frame),
-                CGRectGetHeight(toView.frame))
-            
-//            Logger.logDebug("\(self) \(__FUNCTION__) » Dismission.Horizontal.Left Transition `fromView_InitialFrame`:", item: fromView_InitialFrame)
-//            Logger.logDebug("\(self) \(__FUNCTION__) » Dismission.Horizontal.Left Transition `fromView_FinalFrame`:", item: fromView_FinalFrame)
+            //            Logger.logDebug("\(self) \(__FUNCTION__) » Presentation.Left Transition `toView_InitialFrame`:", item: toView_InitialFrame)
+            //            Logger.logDebug("\(self) \(__FUNCTION__) » Presentation.Left Transition `toView_FinalFrame`:", item: toView_FinalFrame)
             
         case .Right:
-            // Set up some variables for the animation.
-            fromView_FinalFrame = CGRectMake(
-                CGRectGetWidth(containerView.frame),
-                CGRectGetMinY(containerView.frame),
-                CGRectGetWidth(toView.frame),
-                CGRectGetHeight(toView.frame))
-            
-//            Logger.logDebug("\(self) \(__FUNCTION__) » Dismission.Horizontal.Right Transition `fromView_InitialFrame`:", item: fromView_InitialFrame)
-//            Logger.logDebug("\(self) \(__FUNCTION__) » Dismission.Horizontal.Right Transition `fromView_FinalFrame`:", item: fromView_FinalFrame)
-        }
-        
-        return (fromView_InitialFrame, fromView_FinalFrame)
-    }
-}
-
-// MARK: - VerticalTransitioningAnimator
-
-class VerticalTransitioningAnimator: BaseTransitioningAnimator {
-    
-    private let verticalTransitioningDirection: VerticalTransitioningDirection
-    
-    // MARK: Initializers
-    
-    init(withVerticalTransitioningDirection verticalTransitioningDirection: VerticalTransitioningDirection) {
-        self.verticalTransitioningDirection = verticalTransitioningDirection
-        super.init()
-    }
-    
-    // MARK: - Animation objects (helpers)
-    // MARK: Presentation
-    
-    private override func toView_PresentationalAnimationFrames(transitionContext: UIViewControllerContextTransitioning) throws -> (CGRect, CGRect) {
-        
-        // Get the set of relevant objects.
-        let containerView: UIView = try self.containerViewForContext(transitionContext)
-        let toVC: UIViewController = try self.toViewControllerForContext(transitionContext)
-        
-        var toView_InitialFrame: CGRect
-        let toView_FinalFrame: CGRect = transitionContext.finalFrameForViewController(toVC)
-        
-        switch self.verticalTransitioningDirection {
-        case .Top:
             // Set up some variables for the animation.
             toView_InitialFrame = transitionContext.initialFrameForViewController(toVC)
             
             // Set up the animation parameters.
-            toView_InitialFrame.origin.y = -CGRectGetHeight(containerView.frame)
+            toView_InitialFrame.origin.x = -CGRectGetWidth(containerView.frame)
             toView_InitialFrame.size.width = CGRectGetWidth(toVC.view.frame)
             toView_InitialFrame.size.height = CGRectGetHeight(toVC.view.frame)
             
-//            Logger.logDebug("\(self) \(__FUNCTION__) » Presentation.Vertical.Top Transition `toView_InitialFrame`:", item: toView_InitialFrame)
-//            Logger.logDebug("\(self) \(__FUNCTION__) » Presentation.Vertical.Top Transition `toView_FinalFrame`:", item: toView_FinalFrame)
+//            Logger.logDebug("\(self) \(__FUNCTION__) » Presentation.Right Transition `toView_InitialFrame`:", item: toView_InitialFrame)
+//            Logger.logDebug("\(self) \(__FUNCTION__) » Presentation.Right Transition `toView_FinalFrame`:", item: toView_FinalFrame)
             
-        case .Bottom:
+        case .Up:
             // Set up some variables for the animation.
             toView_InitialFrame = transitionContext.initialFrameForViewController(toVC)
             
@@ -405,14 +279,24 @@ class VerticalTransitioningAnimator: BaseTransitioningAnimator {
             toView_InitialFrame.size.width = CGRectGetWidth(toVC.view.frame)
             toView_InitialFrame.size.height = CGRectGetHeight(toVC.view.frame)
             
-//            Logger.logDebug("\(self) \(__FUNCTION__) » Presentation.Vertical.Bottom Transition `toView_InitialFrame`:", item: toView_InitialFrame)
-//            Logger.logDebug("\(self) \(__FUNCTION__) » Presentation.Vertical.Bottom Transition `toView_FinalFrame`:", item: toView_FinalFrame)
+            //            Logger.logDebug("\(self) \(__FUNCTION__) » Presentation.Up Transition `toView_InitialFrame`:", item: toView_InitialFrame)
+            //            Logger.logDebug("\(self) \(__FUNCTION__) » Presentation.Up Transition `toView_FinalFrame`:", item: toView_FinalFrame)
+            
+        case .Down:
+            // Set up some variables for the animation.
+            toView_InitialFrame = transitionContext.initialFrameForViewController(toVC)
+            
+            // Set up the animation parameters.
+            toView_InitialFrame.origin.y = -CGRectGetHeight(containerView.frame)
+            toView_InitialFrame.size.width = CGRectGetWidth(toVC.view.frame)
+            toView_InitialFrame.size.height = CGRectGetHeight(toVC.view.frame)
+            
+//            Logger.logDebug("\(self) \(__FUNCTION__) » Presentation.Down Transition `toView_InitialFrame`:", item: toView_InitialFrame)
+//            Logger.logDebug("\(self) \(__FUNCTION__) » Presentation.Down Transition `toView_FinalFrame`:", item: toView_FinalFrame)
         }
         
         return (toView_InitialFrame, toView_FinalFrame)
     }
-    
-    // MARK: Dismissal
     
     private override func toView_DismissalAnimationFrames(transitionContext: UIViewControllerContextTransitioning) throws -> (CGRect, CGRect) {
         // Get the set of relevant objects.
@@ -420,8 +304,8 @@ class VerticalTransitioningAnimator: BaseTransitioningAnimator {
         let toView_InitialFrame: CGRect = transitionContext.initialFrameForViewController(toVC)
         let toView_FinalFrame: CGRect = transitionContext.finalFrameForViewController(toVC)
         
-//        Logger.logDebug("\(self) \(__FUNCTION__) » Dismission.Vertical Transition `toView_InitialFrame`:", item: toView_InitialFrame)
-//        Logger.logDebug("\(self) \(__FUNCTION__) » Dismission.Vertical Transition `toView_FinalFrame`:", item: toView_FinalFrame)
+//        Logger.logDebug("\(self) \(__FUNCTION__) » Dismissal Transition `toView_InitialFrame`:", item: toView_InitialFrame)
+//        Logger.logDebug("\(self) \(__FUNCTION__) » Dismissal Transition `toView_FinalFrame`:", item: toView_FinalFrame)
         
         return (toView_InitialFrame, toView_FinalFrame)
     }
@@ -444,19 +328,30 @@ class VerticalTransitioningAnimator: BaseTransitioningAnimator {
         let fromView_InitialFrame: CGRect = transitionContext.initialFrameForViewController(fromVC)
         let fromView_FinalFrame: CGRect
         
-        switch self.verticalTransitioningDirection {
-        case .Top:
+        switch self.transitioningDirection {
+        case .Left:
             // Set up some variables for the animation.
             fromView_FinalFrame = CGRectMake(
-                CGRectGetMinX(containerView.frame),
-                -CGRectGetHeight(containerView.frame),
+                CGRectGetWidth(containerView.frame),
+                CGRectGetMinY(containerView.frame),
                 CGRectGetWidth(toView.frame),
                 CGRectGetHeight(toView.frame))
             
-//            Logger.logDebug("\(self) \(__FUNCTION__) » Dismissal.Vertical.Top Transition `fromView_InitialFrame`:", item: fromView_InitialFrame)
-//            Logger.logDebug("\(self) \(__FUNCTION__) » Dismissal.Vertical.Top Transition `fromView_FinalFrame`:", item: fromView_FinalFrame)
+//            Logger.logDebug("\(self) \(__FUNCTION__) » Dismission.Left Transition `fromView_InitialFrame`:", item: fromView_InitialFrame)
+//            Logger.logDebug("\(self) \(__FUNCTION__) » Dismission.Left Transition `fromView_FinalFrame`:", item: fromView_FinalFrame)
             
-        case .Bottom:
+        case .Right:
+            // Set up some variables for the animation.
+            fromView_FinalFrame = CGRectMake(
+                -CGRectGetWidth(containerView.frame),
+                CGRectGetMinY(containerView.frame),
+                CGRectGetWidth(toView.frame),
+                CGRectGetHeight(toView.frame))
+            
+//            Logger.logDebug("\(self) \(__FUNCTION__) » Dismission.Right Transition `fromView_InitialFrame`:", item: fromView_InitialFrame)
+//            Logger.logDebug("\(self) \(__FUNCTION__) » Dismission.Right Transition `fromView_FinalFrame`:", item: fromView_FinalFrame)
+            
+        case .Up:
             // Set up some variables for the animation.
             fromView_FinalFrame = CGRectMake(
                 CGRectGetMinX(containerView.frame),
@@ -464,8 +359,19 @@ class VerticalTransitioningAnimator: BaseTransitioningAnimator {
                 CGRectGetWidth(toView.frame),
                 CGRectGetHeight(toView.frame))
             
-//            Logger.logDebug("\(self) \(__FUNCTION__) » Dismissal.Vertical.Bottom Transition `fromView_InitialFrame`:", item: fromView_InitialFrame)
-//            Logger.logDebug("\(self) \(__FUNCTION__) » Dismissal.Vertical.Bottom Transition `fromView_FinalFrame`:", item: fromView_FinalFrame)
+//            Logger.logDebug("\(self) \(__FUNCTION__) » Dismissal.Up Transition `fromView_InitialFrame`:", item: fromView_InitialFrame)
+//            Logger.logDebug("\(self) \(__FUNCTION__) » Dismissal.Up Transition `fromView_FinalFrame`:", item: fromView_FinalFrame)
+        
+        case .Down:
+            // Set up some variables for the animation.
+            fromView_FinalFrame = CGRectMake(
+                CGRectGetMinX(containerView.frame),
+                -CGRectGetHeight(containerView.frame),
+                CGRectGetWidth(toView.frame),
+                CGRectGetHeight(toView.frame))
+            
+//            Logger.logDebug("\(self) \(__FUNCTION__) » Dismissal.Down Transition `fromView_InitialFrame`:", item: fromView_InitialFrame)
+//            Logger.logDebug("\(self) \(__FUNCTION__) » Dismissal.Down Transition `fromView_FinalFrame`:", item: fromView_FinalFrame)
         }
         
         return (fromView_InitialFrame, fromView_FinalFrame)
