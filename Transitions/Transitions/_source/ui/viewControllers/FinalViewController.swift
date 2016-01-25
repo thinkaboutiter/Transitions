@@ -20,6 +20,12 @@ class FinalViewController: BaseViewController, TransitioningResignable {
         
         self.view.backgroundColor = UIColor.redColor().colorWithAlphaComponent(1)
         self.configureButton(self.transitionBackwardsButton)
+        
+        // attach `resignTransitioningSwipeGestureRecognizer`
+        if let _ = self.resignTransitioningSwipeGestureRecognizer {
+            self.view.addGestureRecognizer(self.resignTransitioningSwipeGestureRecognizer!)
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -37,9 +43,48 @@ class FinalViewController: BaseViewController, TransitioningResignable {
     var customTransitioningDelegate: UIViewControllerTransitioningDelegate?
     lazy var resignTransitioningGestureRecognizer: UIGestureRecognizer? = {
         // TODO: implement `resignTransitioningGestureRecognizer`
-        // 1. its configuration should depend on `customTransitioningDelegate` configuration
         
-       return nil
+        return nil
+    }()
+    
+    lazy var resignTransitioningSwipeGestureRecognizer: UISwipeGestureRecognizer? = {
+        // configure `resignTransitioningSwipeGestureRecognizer`
+        let swipeGR: UISwipeGestureRecognizer?
+        
+        if let validCustomTransitioningDelegate = self.customTransitioningDelegate as? BaseTransitioningDelegate, let validAnimator = validCustomTransitioningDelegate.presentationalAnimator as? AxialTransitioningAnimator {
+            switch validAnimator.transitioningDirection {
+            case .Left:
+//                Logger.logDebug("\(self) \(__FUNCTION__) » Horizontal.Left", item: nil)
+                
+                // configure `swipeGR`
+                swipeGR = UISwipeGestureRecognizer(target: self, action: "transitionBackwardsPressed:")
+                swipeGR?.direction = .Right
+                
+            case .Right:
+//                Logger.logDebug("\(self) \(__FUNCTION__) » Horizontal.Right", item: nil)
+                
+                // configure `swipeGR`
+                swipeGR = UISwipeGestureRecognizer(target: self, action: "transitionBackwardsPressed:")
+                swipeGR?.direction = .Left
+                
+            case .Up:
+//                Logger.logDebug("\(self) \(__FUNCTION__) » Vertical.Top", item: nil)
+                
+                // configure `swipeGR`
+                swipeGR = UISwipeGestureRecognizer(target: self, action: "transitionBackwardsPressed:")
+                swipeGR?.direction = .Down
+                
+            case .Down:
+//                Logger.logDebug("\(self) \(__FUNCTION__) » Vertical.Bottom", item: nil)
+                
+                // configure `swipeGR`
+                swipeGR = UISwipeGestureRecognizer(target: self, action: "transitionBackwardsPressed:")
+                swipeGR?.direction = .Up
+            }
+            
+            return swipeGR
+        }
+        return nil
     }()
 
     func resignTransitionAnimated(animated: Bool, sender: AnyObject, completion: (() -> Void)?) {

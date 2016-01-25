@@ -15,4 +15,5 @@ public protocol TransitioningResignable: UIGestureRecognizerDelegate {
     func resignTransitionAnimated(animated: Bool, sender: AnyObject, completion: (() -> Void)?)
     var customTransitioningDelegate: UIViewControllerTransitioningDelegate? { get }
     var resignTransitioningGestureRecognizer: UIGestureRecognizer? { get }
+    var resignTransitioningSwipeGestureRecognizer: UISwipeGestureRecognizer? { get }
 }
