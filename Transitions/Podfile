@@ -1,6 +1,10 @@
-platform :ios, "9.1"
+platform :ios, '9.0'
 
-use_frameworks!
+target 'Transitions' do
+    use_frameworks!
+    pod 'SimpleLogger', :git => 'https://github.com/thinkaboutiter/SimpleLogger', :tag => '1.1.2'
+    pod 'Masonry', '~> 1.0'
+end
 
-pod 'SimpleLogger', :git => 'https://github.com/thinkaboutiter/SimpleLogger', :tag => '0.1.0'
-pod 'Masonry', '~> 0.6.0'
+
+
