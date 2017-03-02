@@ -12,7 +12,7 @@ import SimpleLogger
 
 class InitialTableViewController: BaseTableViewController {
     
-    private let cellTitles: [String] = [
+    fileprivate let cellTitles: [String] = [
         "Transitioning Left",
         "Transitioning Right",
         "Transitioning Up",
@@ -30,53 +30,53 @@ class InitialTableViewController: BaseTableViewController {
     
     // MARK: - UITableViewDataSource protocol
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.cellTitles.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: BaseTableViewCell
         
-        if let validCell: BaseTableViewCell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(BaseTableViewCell), forIndexPath: indexPath) as? BaseTableViewCell {
+        if let validCell: BaseTableViewCell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(BaseTableViewCell), for: indexPath) as? BaseTableViewCell {
             cell = validCell
         }
         else {
-            cell = BaseTableViewCell(style: .Default, reuseIdentifier: NSStringFromClass(BaseTableViewCell))
+            cell = BaseTableViewCell(style: .default, reuseIdentifier: NSStringFromClass(BaseTableViewCell))
         }
         
         cell.isFirstCell = indexPath.row == 0
         cell.isLastCell = indexPath.row == (self.cellTitles.count - 1)
         cell.textLabel?.text = self.cellTitles[indexPath.row]
-        cell.textLabel?.textColor = UIColor.whiteColor()
+        cell.textLabel?.textColor = UIColor.white
         
         return cell
     }
     
     // MARK: - UITableViewDelegate protocol
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50.0
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
         // `validStoryboard`
         guard let validStoryboard: UIStoryboard = self.storyboard else {
-            Logger.logError("\(self) \(__FUNCTION__) » `validStoryboard`is not available", item: self.storyboard)
+            Logger.logError("\(self) \(#function) » `validStoryboard`is not available", item: self.storyboard)
             return
         }
         
         // `finalVC` is the `presentedOne`
-        let finalVC: FinalViewController = validStoryboard.instantiateViewControllerWithIdentifier(NSStringFromClass(FinalViewController)) as! FinalViewController
+        let finalVC: FinalViewController = validStoryboard.instantiateViewController(withIdentifier: NSStringFromClass(FinalViewController)) as! FinalViewController
         
         // configure `modalPresentationStyle`
-        self.modalPresentationStyle = .Custom
-        finalVC.modalPresentationStyle = .Custom
+        self.modalPresentationStyle = .custom
+        finalVC.modalPresentationStyle = .custom
         
         // reset `transitioningDelegate`
         self.transitioningDelegate = nil
@@ -89,42 +89,42 @@ class InitialTableViewController: BaseTableViewController {
         switch indexPath.row {
         case 0:
             // Left
-            Logger.logInfo("\(self) \(__FUNCTION__) » Transition `Horizontal.Left`", item: nil)
+            Logger.logInfo("\(self) \(#function) » Transition `Horizontal.Left`", item: nil)
             
             // create `transitioningDelegate` object
             transitioningDelegate = BaseTransitioningDelegate(
-                withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .Left).shouldPresentViewController(true),
-                andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .Left))
+                withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .left).shouldPresentViewController(true),
+                andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .left))
             
         case 1:
             // Right
-            Logger.logInfo("\(self) \(__FUNCTION__) » Transition `Horizontal.Right`", item: nil)
+            Logger.logInfo("\(self) \(#function) » Transition `Horizontal.Right`", item: nil)
             
             // create `transitioningDelegate` object
             transitioningDelegate = BaseTransitioningDelegate(
-                withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .Right).shouldPresentViewController(true),
-                andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .Right))
+                withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .right).shouldPresentViewController(true),
+                andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .right))
             
         case 2:
             // Up
-            Logger.logInfo("\(self) \(__FUNCTION__) » Transition `Vertical.Top`", item: nil)
+            Logger.logInfo("\(self) \(#function) » Transition `Vertical.Top`", item: nil)
             
             // create `transitioningDelegate` object
             transitioningDelegate = BaseTransitioningDelegate(
-                withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .Up).shouldPresentViewController(true),
-                andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .Up))
+                withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .up).shouldPresentViewController(true),
+                andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .up))
             
         case 3:
             // Down
-            Logger.logInfo("\(self) \(__FUNCTION__) » Transition `Vertical.Bottom`", item: nil)
+            Logger.logInfo("\(self) \(#function) » Transition `Vertical.Bottom`", item: nil)
             
             // create `transitioningDelegate` object
             transitioningDelegate = BaseTransitioningDelegate(
-                withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .Down).shouldPresentViewController(true),
-                andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .Down))
+                withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .down).shouldPresentViewController(true),
+                andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .down))
             
         default:
-            Logger.logError("\(self) \(__FUNCTION__) » Unsupported Transition", item: nil)
+            Logger.logError("\(self) \(#function) » Unsupported Transition", item: nil)
             // TODO: show alert
             return
         }
@@ -134,19 +134,19 @@ class InitialTableViewController: BaseTableViewController {
         finalVC.transitioningDelegate = transitioningDelegate
         finalVC.customTransitioningDelegate = transitioningDelegate
         
-        self.presentViewController(finalVC, animated: true, completion: nil)
+        self.present(finalVC, animated: true, completion: nil)
     }
     
     // MARK: - Configuration
     
-    private func configureAppearance() {
+    fileprivate func configureAppearance() {
         self.title = "Transitions"
     }
     
-    private func configureTableView(tableView: UITableView) {
-        tableView.registerClass(BaseTableViewCell.self, forCellReuseIdentifier: NSStringFromClass(BaseTableViewCell))
-        tableView.separatorStyle = .None
-        tableView.backgroundColor = UIColor.blackColor()
+    fileprivate func configureTableView(_ tableView: UITableView) {
+        tableView.register(BaseTableViewCell.self, forCellReuseIdentifier: NSStringFromClass(BaseTableViewCell))
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = UIColor.black
     }
     
     // MARK: - Helpers

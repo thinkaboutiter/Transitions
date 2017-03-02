@@ -18,7 +18,7 @@ class FinalViewController: BaseViewController, TransitioningResignable {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.redColor().colorWithAlphaComponent(1)
+        self.view.backgroundColor = UIColor.red.withAlphaComponent(1)
         self.configureButton(self.transitionBackwardsButton)
         
         // attach `resignTransitioningSwipeGestureRecognizer`
@@ -34,7 +34,7 @@ class FinalViewController: BaseViewController, TransitioningResignable {
     
     // MARK: - Actions
     
-    @IBAction func transitionBackwardsPressed(sender: AnyObject) {               
+    @IBAction func transitionBackwardsPressed(_ sender: AnyObject) {               
         self.resignTransitionAnimated(true, sender: sender, completion: nil)
     }
     
@@ -53,33 +53,33 @@ class FinalViewController: BaseViewController, TransitioningResignable {
         
         if let validCustomTransitioningDelegate = self.customTransitioningDelegate as? BaseTransitioningDelegate, let validAnimator = validCustomTransitioningDelegate.presentationalAnimator as? AxialTransitioningAnimator {
             switch validAnimator.transitioningDirection {
-            case .Left:
+            case .left:
 //                Logger.logDebug("\(self) \(__FUNCTION__) » Horizontal.Left", item: nil)
                 
                 // configure `swipeGR`
-                swipeGR = UISwipeGestureRecognizer(target: self, action: "transitionBackwardsPressed:")
-                swipeGR?.direction = .Right
+                swipeGR = UISwipeGestureRecognizer(target: self, action: #selector(FinalViewController.transitionBackwardsPressed(_:)))
+                swipeGR?.direction = .right
                 
-            case .Right:
+            case .right:
 //                Logger.logDebug("\(self) \(__FUNCTION__) » Horizontal.Right", item: nil)
                 
                 // configure `swipeGR`
-                swipeGR = UISwipeGestureRecognizer(target: self, action: "transitionBackwardsPressed:")
-                swipeGR?.direction = .Left
+                swipeGR = UISwipeGestureRecognizer(target: self, action: #selector(FinalViewController.transitionBackwardsPressed(_:)))
+                swipeGR?.direction = .left
                 
-            case .Up:
+            case .up:
 //                Logger.logDebug("\(self) \(__FUNCTION__) » Vertical.Top", item: nil)
                 
                 // configure `swipeGR`
-                swipeGR = UISwipeGestureRecognizer(target: self, action: "transitionBackwardsPressed:")
-                swipeGR?.direction = .Down
+                swipeGR = UISwipeGestureRecognizer(target: self, action: #selector(FinalViewController.transitionBackwardsPressed(_:)))
+                swipeGR?.direction = .down
                 
-            case .Down:
+            case .down:
 //                Logger.logDebug("\(self) \(__FUNCTION__) » Vertical.Bottom", item: nil)
                 
                 // configure `swipeGR`
-                swipeGR = UISwipeGestureRecognizer(target: self, action: "transitionBackwardsPressed:")
-                swipeGR?.direction = .Up
+                swipeGR = UISwipeGestureRecognizer(target: self, action: #selector(FinalViewController.transitionBackwardsPressed(_:)))
+                swipeGR?.direction = .up
             }
             
             return swipeGR
@@ -87,26 +87,26 @@ class FinalViewController: BaseViewController, TransitioningResignable {
         return nil
     }()
 
-    func resignTransitionAnimated(animated: Bool, sender: AnyObject, completion: (() -> Void)?) {
+    func resignTransitionAnimated(_ animated: Bool, sender: AnyObject, completion: (() -> Void)?) {
         if let _ = self.customTransitioningDelegate {
             self.transitioningDelegate = self.customTransitioningDelegate
-            self.modalPresentationStyle = .Custom
+            self.modalPresentationStyle = .custom
         }
         else {
-            Logger.logInfo("\(self) \(__FUNCTION__) » Tansition will use default `transitioningDelegate`:", item: self.transitioningDelegate)
+            Logger.logInfo("\(self) \(#function) » Tansition will use default `transitioningDelegate`:", item: self.transitioningDelegate)
         }
         
         if let validPresentingVC = self.presentingViewController {
-            validPresentingVC.dismissViewControllerAnimated(animated, completion: completion)
+            validPresentingVC.dismiss(animated: animated, completion: completion)
         }
     }
     
     // MARK: - Configurations
     
-    private func configureButton(button: UIButton) {
-        button.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.8), forState: .Normal)
-        button.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.8), forState: .Selected)
-        button.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.8), forState: .Highlighted)
-        button.backgroundColor = UIColor.clearColor()
+    fileprivate func configureButton(_ button: UIButton) {
+        button.setTitleColor(UIColor.white.withAlphaComponent(0.8), for: UIControlState())
+        button.setTitleColor(UIColor.white.withAlphaComponent(0.8), for: .selected)
+        button.setTitleColor(UIColor.white.withAlphaComponent(0.8), for: .highlighted)
+        button.backgroundColor = UIColor.clear
     }
 }

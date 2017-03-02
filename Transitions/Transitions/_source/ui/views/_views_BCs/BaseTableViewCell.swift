@@ -12,24 +12,24 @@ import Masonry
 
 class BaseTableViewCell: UITableViewCell {
         
-    lazy private var topSeparatorView: UIView = {
+    lazy fileprivate var topSeparatorView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.1)
-        view.hidden = true
+        view.backgroundColor = UIColor.white.withAlphaComponent(0.1)
+        view.isHidden = true
         return view
     }()
     
-    lazy private var bottomSeparatorView: UIView = {
+    lazy fileprivate var bottomSeparatorView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.1)
+        view.backgroundColor = UIColor.white.withAlphaComponent(0.1)
         return view
     }()
     
     var isFirstCell: Bool = false {
         didSet {
-            self.topSeparatorView.hidden = !isFirstCell
+            self.topSeparatorView.isHidden = !isFirstCell
         }
     }
     
@@ -44,10 +44,10 @@ class BaseTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.1)
-        self.contentView.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.0)
+        self.backgroundColor = UIColor.white.withAlphaComponent(0.1)
+        self.contentView.backgroundColor = UIColor.white.withAlphaComponent(0.0)
         self.selectedBackgroundView = UIView()
-        self.selectedBackgroundView?.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.1)
+        self.selectedBackgroundView?.backgroundColor = UIColor.white.withAlphaComponent(0.1)
         self.contentView.addSubview(self.topSeparatorView)
         self.contentView.addSubview(self.bottomSeparatorView)
         
@@ -66,11 +66,11 @@ class BaseTableViewCell: UITableViewCell {
     
     // MARK: - Helpers
     
-    private let separator_offset_leading: CGFloat = 16.0
-    private let separator_offset_trailing: CGFloat = 16.0
-    private let separator_height: CGFloat = 0.5
+    fileprivate let separator_offset_leading: CGFloat = 16.0
+    fileprivate let separator_offset_trailing: CGFloat = 16.0
+    fileprivate let separator_height: CGFloat = 0.5
     
-    private func positionSeparatorViews() {
+    fileprivate func positionSeparatorViews() {
         self.topSeparatorView.mas_updateConstraints { (make: MASConstraintMaker!) -> Void in
             make.top.equalTo()(self.contentView.mas_top)
             make.leading.equalTo()(self.contentView.mas_leading).offset()(self.isFirstCell ? 0 : self.separator_offset_leading)
