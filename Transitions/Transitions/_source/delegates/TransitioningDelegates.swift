@@ -62,7 +62,7 @@ class BaseTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         
         if self.isPresentationEnabled {
-            let basePC = BasePresentationController(presentedViewController: presented, presentingViewController: presenting!)
+            let basePC = BasePresentationController(presentedViewController: presented, presenting: presenting!)
             return basePC
         }
         else {

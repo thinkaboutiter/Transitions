@@ -53,7 +53,7 @@ class BasePresentationController: UIPresentationController {
             }
         }
         else {
-            Logger.logError("\(self) \(#function) » `containerView` is not valid", item: nil)
+            Logger.error.message("`containerView` is not valid")
         }
     }
     

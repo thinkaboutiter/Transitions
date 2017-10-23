@@ -73,15 +73,15 @@ class BaseTableViewCell: UITableViewCell {
     fileprivate func positionSeparatorViews() {
         self.topSeparatorView.mas_updateConstraints { (make: MASConstraintMaker!) -> Void in
             make.top.equalTo()(self.contentView.mas_top)
-            make.leading.equalTo()(self.contentView.mas_leading).offset()(self.isFirstCell ? 0 : self.separator_offset_leading)
-            make.trailing.equalTo()(self.contentView.mas_trailing).offset()(self.isFirstCell ? 0 : -self.separator_offset_trailing)
+            make.leading.equalTo()(self.contentView.mas_leading)?.offset()(self.isFirstCell ? 0 : self.separator_offset_leading)
+            make.trailing.equalTo()(self.contentView.mas_trailing)?.offset()(self.isFirstCell ? 0 : -self.separator_offset_trailing)
             make.height.equalTo()(self.separator_height)
         }
         
         self.bottomSeparatorView.mas_updateConstraints { (make: MASConstraintMaker!) -> Void in
-            make.leading.equalTo()(self.contentView.mas_leading).offset()(self.isLastCell ? 0 : self.separator_offset_leading)
+            make.leading.equalTo()(self.contentView.mas_leading)?.offset()(self.isLastCell ? 0 : self.separator_offset_leading)
             make.bottom.equalTo()(self.contentView.mas_bottom)
-            make.trailing.equalTo()(self.contentView.mas_trailing).offset()(self.isLastCell ? 0 : -self.separator_offset_trailing)
+            make.trailing.equalTo()(self.contentView.mas_trailing)?.offset()(self.isLastCell ? 0 : -self.separator_offset_trailing)
             make.height.equalTo()(self.separator_height)
         }
     }

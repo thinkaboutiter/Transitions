@@ -1,25 +1,25 @@
 PODS:
-  - Masonry (1.0.2)
-  - SimpleLogger (1.1.2)
+  - Masonry (1.1.0)
+  - SimpleLogger (1.1.3)
 
 DEPENDENCIES:
-  - Masonry (~> 1.0)
-  - SimpleLogger (from `https://github.com/thinkaboutiter/SimpleLogger`, tag `1.1.2`)
+  - Masonry (~> 1.1)
+  - SimpleLogger (from `https://github.com/thinkaboutiter/SimpleLogger.git`, tag `1.1.3`)
 
 EXTERNAL SOURCES:
   SimpleLogger:
-    :git: https://github.com/thinkaboutiter/SimpleLogger
-    :tag: 1.1.2
+    :git: https://github.com/thinkaboutiter/SimpleLogger.git
+    :tag: 1.1.3
 
 CHECKOUT OPTIONS:
   SimpleLogger:
-    :git: https://github.com/thinkaboutiter/SimpleLogger
-    :tag: 1.1.2
+    :git: https://github.com/thinkaboutiter/SimpleLogger.git
+    :tag: 1.1.3
 
 SPEC CHECKSUMS:
-  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
-  SimpleLogger: d3afb3de0833856d510137d7391d1cb750ef5bed
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  SimpleLogger: aa148db0d914b1e7b6d1be4e1fb0a6f2a84e6c68
 
-PODFILE CHECKSUM: 2c3894f8a89d28436b2f17324be4634e0ffde764
+PODFILE CHECKSUM: 8e6174491feee489ebc1de57a5c03a2c0dae4a52
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.3.1

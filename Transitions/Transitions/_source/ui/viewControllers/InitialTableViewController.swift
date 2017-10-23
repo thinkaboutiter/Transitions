@@ -20,7 +20,6 @@ class InitialTableViewController: BaseTableViewController {
     ]
     
     // MARK: - Life cycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,7 +28,6 @@ class InitialTableViewController: BaseTableViewController {
     }
     
     // MARK: - UITableViewDataSource protocol
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -41,11 +39,11 @@ class InitialTableViewController: BaseTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: BaseTableViewCell
         
-        if let validCell: BaseTableViewCell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(BaseTableViewCell), for: indexPath) as? BaseTableViewCell {
+        if let validCell: BaseTableViewCell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(BaseTableViewCell.self), for: indexPath) as? BaseTableViewCell {
             cell = validCell
         }
         else {
-            cell = BaseTableViewCell(style: .default, reuseIdentifier: NSStringFromClass(BaseTableViewCell))
+            cell = BaseTableViewCell(style: .default, reuseIdentifier: NSStringFromClass(BaseTableViewCell.self))
         }
         
         cell.isFirstCell = indexPath.row == 0
@@ -57,7 +55,6 @@ class InitialTableViewController: BaseTableViewController {
     }
     
     // MARK: - UITableViewDelegate protocol
-    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50.0
     }
@@ -67,12 +64,12 @@ class InitialTableViewController: BaseTableViewController {
         
         // `validStoryboard`
         guard let validStoryboard: UIStoryboard = self.storyboard else {
-            Logger.logError("\(self) \(#function) » `validStoryboard`is not available", item: self.storyboard)
+            Logger.error.message("`validStoryboard`is not available")
             return
         }
         
         // `finalVC` is the `presentedOne`
-        let finalVC: FinalViewController = validStoryboard.instantiateViewController(withIdentifier: NSStringFromClass(FinalViewController)) as! FinalViewController
+        let finalVC: FinalViewController = validStoryboard.instantiateViewController(withIdentifier: NSStringFromClass(FinalViewController.self)) as! FinalViewController
         
         // configure `modalPresentationStyle`
         self.modalPresentationStyle = .custom
@@ -89,7 +86,7 @@ class InitialTableViewController: BaseTableViewController {
         switch indexPath.row {
         case 0:
             // Left
-            Logger.logInfo("\(self) \(#function) » Transition `Horizontal.Left`", item: nil)
+            Logger.debug.message("Transition `Horizontal.Left`")
             
             // create `transitioningDelegate` object
             transitioningDelegate = BaseTransitioningDelegate(
@@ -98,7 +95,7 @@ class InitialTableViewController: BaseTableViewController {
             
         case 1:
             // Right
-            Logger.logInfo("\(self) \(#function) » Transition `Horizontal.Right`", item: nil)
+            Logger.debug.message("Transition `Horizontal.Right`")
             
             // create `transitioningDelegate` object
             transitioningDelegate = BaseTransitioningDelegate(
@@ -107,7 +104,7 @@ class InitialTableViewController: BaseTableViewController {
             
         case 2:
             // Up
-            Logger.logInfo("\(self) \(#function) » Transition `Vertical.Top`", item: nil)
+            Logger.debug.message("Transition `Vertical.Top`")
             
             // create `transitioningDelegate` object
             transitioningDelegate = BaseTransitioningDelegate(
@@ -116,7 +113,7 @@ class InitialTableViewController: BaseTableViewController {
             
         case 3:
             // Down
-            Logger.logInfo("\(self) \(#function) » Transition `Vertical.Bottom`", item: nil)
+            Logger.debug.message("Transition `Vertical.Bottom`")
             
             // create `transitioningDelegate` object
             transitioningDelegate = BaseTransitioningDelegate(
@@ -124,7 +121,7 @@ class InitialTableViewController: BaseTableViewController {
                 andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .down))
             
         default:
-            Logger.logError("\(self) \(#function) » Unsupported Transition", item: nil)
+            Logger.debug.message("Unsupported Transition")
             // TODO: show alert
             return
         }
@@ -138,13 +135,12 @@ class InitialTableViewController: BaseTableViewController {
     }
     
     // MARK: - Configuration
-    
     fileprivate func configureAppearance() {
         self.title = "Transitions"
     }
     
     fileprivate func configureTableView(_ tableView: UITableView) {
-        tableView.register(BaseTableViewCell.self, forCellReuseIdentifier: NSStringFromClass(BaseTableViewCell))
+        tableView.register(BaseTableViewCell.self, forCellReuseIdentifier: NSStringFromClass(BaseTableViewCell.self))
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.black
     }
