@@ -58,7 +58,6 @@ fileprivate extension AppDelegate {
 }
 
 // MARK: - 3rd parties configurations
-
 fileprivate extension AppDelegate {
     
     func configure_3rdParties() {
