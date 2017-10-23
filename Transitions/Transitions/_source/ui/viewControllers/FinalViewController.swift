@@ -12,6 +12,7 @@ import SimpleLogger
 
 class FinalViewController: BaseViewController, TransitioningResignable {
     
+    // MARK: - Properties
     @IBOutlet weak var transitionBackwardsButton: UIButton!
     
     // MARK: - Life cycle

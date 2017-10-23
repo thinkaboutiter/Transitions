@@ -15,7 +15,6 @@ class BasePresentationController: UIPresentationController {
     fileprivate let dimmingView: UIView
     
     // MARK: - Initialization
-    
     override init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?) {
         
         self.dimmingView = UIView()
@@ -26,7 +25,6 @@ class BasePresentationController: UIPresentationController {
     }
     
     // MARK: - Presentations
-    
     override func presentationTransitionWillBegin() {
         // Get critical information about the presentation.
         
@@ -65,7 +63,6 @@ class BasePresentationController: UIPresentationController {
     }
     
     // MARK: - Dismissals
-    
     override func dismissalTransitionWillBegin() {
         if let validTC = self.presentedViewController.transitionCoordinator {
             validTC.animate(
@@ -86,7 +83,6 @@ class BasePresentationController: UIPresentationController {
     }
     
     // MARK: - Configurations
-    
     override var shouldPresentInFullscreen : Bool {
         return true
     }

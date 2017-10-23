@@ -10,11 +10,9 @@ import Foundation
 import UIKit
 
 // MARK: - BaseTransitioningDelegate
-
 class BaseTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
    
     // MARK: Presentation configuration
-    
     fileprivate(set) var isPresentationEnabled: Bool = false
     fileprivate(set) var presentationalAnimator: BaseTransitioningAnimator?
     fileprivate(set) var dismissalAnimator: BaseTransitioningAnimator?
@@ -26,7 +24,6 @@ class BaseTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate
     }
     
     // MARK: Initializers
-    
     override init() {
         super.init()
     }
@@ -40,12 +37,10 @@ class BaseTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate
     }
     
     // MARK: UIViewControllerTransitioningDelegate protocol
-    
-    // @available(iOS 2.0, *)
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return self.presentationalAnimator
     }
-    // @available(iOS 2.0, *)
+
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return self.dismissalAnimator
     }
@@ -58,7 +53,6 @@ class BaseTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate
 //        return nil
 //    }
     
-    // @available(iOS 8.0, *)
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         
         if self.isPresentationEnabled {

@@ -22,7 +22,6 @@ enum TransitioningDirection: UInt {
 }
 
 // MARK: - BaseTransitioningAnimator
-
 class BaseTransitioningAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
     fileprivate(set) var isPresenting: Bool = false
@@ -34,7 +33,6 @@ class BaseTransitioningAnimator: NSObject, UIViewControllerAnimatedTransitioning
     }
     
     // MARK: UIViewControllerAnimatedTransitioning protocol
-    
     /** This is used for percent driven interactive transitions, as well as for container controllers that have companion animations that might need to synchronize with the main animation. */
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.5
@@ -60,7 +58,6 @@ class BaseTransitioningAnimator: NSObject, UIViewControllerAnimatedTransitioning
     }
     
     // MARK: - Private
-    
     /** Non-interactive transitioning animation */
     fileprivate func animateTranstion(isPresentation: Bool, withTransitionContext transitionContext: UIViewControllerContextTransitioning) throws -> Void {
         
@@ -73,7 +70,6 @@ class BaseTransitioningAnimator: NSObject, UIViewControllerAnimatedTransitioning
     }
     
     // MARK: Presentation
-    
     fileprivate func animatePresentationalTransition(_ transitionContext: UIViewControllerContextTransitioning) throws {
         // Get the set of relevant objects.
         let containerView: UIView = self.containerViewForContext(transitionContext)
@@ -104,7 +100,6 @@ class BaseTransitioningAnimator: NSObject, UIViewControllerAnimatedTransitioning
     }
     
     // MARK: Dismissal
-    
     fileprivate func animateDismissalTransition(_ transitionContext: UIViewControllerContextTransitioning) throws {
         // Get the set of relevant objects.
         let toVC: UIViewController = try self.toViewControllerForContext(transitionContext)
@@ -176,22 +171,18 @@ class BaseTransitioningAnimator: NSObject, UIViewControllerAnimatedTransitioning
     }
     
     // MARK: containerView
-    
     fileprivate func containerViewForContext(_ transitionContext: UIViewControllerContextTransitioning) -> UIView {
         let validContainerView: UIView = transitionContext.containerView
         return validContainerView
     }
     
-    // MARK: toViewController
-    
+    // MARK: to UIs
     fileprivate func toViewControllerForContext(_ transitionContext: UIViewControllerContextTransitioning) throws -> UIViewController {
         guard let validToVC: UIViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) else {
             throw TransitioningAnimatorError.generalError(errorReason: "`transitionContext` has no `ToViewController`")
         }
         return validToVC
     }
-    
-    // MARK: toView
     
     fileprivate func toViewForContext(_ transitionContext: UIViewControllerContextTransitioning) throws -> UIView {
         guard let validToView: UIView = transitionContext.view(forKey: UITransitionContextViewKey.to) else {
@@ -200,16 +191,13 @@ class BaseTransitioningAnimator: NSObject, UIViewControllerAnimatedTransitioning
         return validToView
     }
     
-    // MARK: fromViewController
-    
+    // MARK: from UIs
     fileprivate func fromViewControllerForContext(_ transitionContext: UIViewControllerContextTransitioning) throws -> UIViewController {
         guard let validFromVC: UIViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from) else {
             throw TransitioningAnimatorError.generalError(errorReason: "`transitionContext`has no `FromViewController`")
         }
         return validFromVC
     }
-    
-    // MARK: fromView
     
     fileprivate func fromViewForContext(_ transitionContext: UIViewControllerContextTransitioning) throws -> UIView {
         guard let validFromView: UIView = transitionContext.view(forKey: UITransitionContextViewKey.from) else {
@@ -220,12 +208,10 @@ class BaseTransitioningAnimator: NSObject, UIViewControllerAnimatedTransitioning
 }
 
 // MARK: - AxialTransitioningAnimator
-
 class AxialTransitioningAnimator: BaseTransitioningAnimator {
     let transitioningDirection: TransitioningDirection
     
     // MARK: Initializers
-    
     init(withTransitioningDirection transitioningDirection: TransitioningDirection) {
         self.transitioningDirection = transitioningDirection
         super.init()
@@ -233,7 +219,6 @@ class AxialTransitioningAnimator: BaseTransitioningAnimator {
     
     // MARK: - Animation objects (helpers)
     // MARK: Presentation
-    
     fileprivate override func toView_PresentationalAnimationFrames(_ transitionContext: UIViewControllerContextTransitioning) throws -> ( CGRect, CGRect) {
         
         // Get the set of relevant objects.

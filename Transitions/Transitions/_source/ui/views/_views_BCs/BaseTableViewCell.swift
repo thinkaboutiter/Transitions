@@ -11,7 +11,8 @@ import UIKit
 import SnapKit
 
 class BaseTableViewCell: UITableViewCell {
-        
+    
+    // MARK: - Properties
     lazy fileprivate var topSeparatorView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -40,7 +41,6 @@ class BaseTableViewCell: UITableViewCell {
     }
     
     // MARK: - Initializers
-    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -59,13 +59,11 @@ class BaseTableViewCell: UITableViewCell {
     }
     
     // MARK: - life cycle
-    
     override func updateConstraints() {
         super.updateConstraints()
     }
     
     // MARK: - Helpers
-    
     fileprivate let separator_offset_leading: CGFloat = 16.0
     fileprivate let separator_offset_trailing: CGFloat = 16.0
     fileprivate let separator_height: CGFloat = 0.5

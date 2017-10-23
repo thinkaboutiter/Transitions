@@ -144,6 +144,4 @@ class InitialTableViewController: BaseTableViewController {
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.black
     }
-    
-    // MARK: - Helpers
 }
