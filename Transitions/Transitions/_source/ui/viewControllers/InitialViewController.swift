@@ -12,7 +12,6 @@ import UIKit
 class InitialViewController: BaseViewController {
     
     // MARK: - Life cycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,7 +23,6 @@ class InitialViewController: BaseViewController {
     }
     
     // MARK: - Actions
-    
     @IBAction func startTransitionPressed(_ sender: UIButton) {
         if let validStoryboard: UIStoryboard = self.storyboard {
             let finalVC: FinalViewController = validStoryboard.instantiateViewController(withIdentifier: NSStringFromClass(FinalViewController.self)) as! FinalViewController

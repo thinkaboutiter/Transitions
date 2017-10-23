@@ -20,7 +20,6 @@ class InitialTableViewController: BaseTableViewController {
     ]
     
     // MARK: - Life cycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,7 +28,6 @@ class InitialTableViewController: BaseTableViewController {
     }
     
     // MARK: - UITableViewDataSource protocol
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -57,7 +55,6 @@ class InitialTableViewController: BaseTableViewController {
     }
     
     // MARK: - UITableViewDelegate protocol
-    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50.0
     }
@@ -138,7 +135,6 @@ class InitialTableViewController: BaseTableViewController {
     }
     
     // MARK: - Configuration
-    
     fileprivate func configureAppearance() {
         self.title = "Transitions"
     }

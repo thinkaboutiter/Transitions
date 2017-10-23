@@ -13,8 +13,8 @@ import SimpleLogger
 class FinalViewController: BaseViewController, TransitioningResignable {
     
     @IBOutlet weak var transitionBackwardsButton: UIButton!
-    // MARK: - Life cycle
     
+    // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,13 +33,11 @@ class FinalViewController: BaseViewController, TransitioningResignable {
     }
     
     // MARK: - Actions
-    
-    @IBAction func transitionBackwardsPressed(_ sender: AnyObject) {               
+    @IBAction func transitionBackwardsPressed(_ sender: AnyObject) {
         self.resignTransitionAnimated(true, sender: sender, completion: nil)
     }
     
     // MARK: - TransitioningResignable
-    
     var customTransitioningDelegate: UIViewControllerTransitioningDelegate?
     lazy var resignTransitioningGestureRecognizer: UIGestureRecognizer? = {
         // TODO: implement `resignTransitioningGestureRecognizer`
@@ -102,7 +100,6 @@ class FinalViewController: BaseViewController, TransitioningResignable {
     }
     
     // MARK: - Configurations
-    
     fileprivate func configureButton(_ button: UIButton) {
         button.setTitleColor(UIColor.white.withAlphaComponent(0.8), for: UIControlState())
         button.setTitleColor(UIColor.white.withAlphaComponent(0.8), for: .selected)
