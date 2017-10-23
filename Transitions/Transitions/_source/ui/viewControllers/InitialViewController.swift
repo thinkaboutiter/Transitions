@@ -27,7 +27,7 @@ class InitialViewController: BaseViewController {
     
     @IBAction func startTransitionPressed(_ sender: UIButton) {
         if let validStoryboard: UIStoryboard = self.storyboard {
-            let finalVC: FinalViewController = validStoryboard.instantiateViewController(withIdentifier: NSStringFromClass(FinalViewController)) as! FinalViewController
+            let finalVC: FinalViewController = validStoryboard.instantiateViewController(withIdentifier: NSStringFromClass(FinalViewController.self)) as! FinalViewController
             
             if let _ = self.transitioningDelegate {
                 self.modalPresentationStyle = .custom

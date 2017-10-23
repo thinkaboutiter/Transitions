@@ -47,10 +47,10 @@ class BaseTransitioningAnimator: NSObject, UIViewControllerAnimatedTransitioning
             try self.animateTranstion(isPresentation: self.isPresenting, withTransitionContext: transitionContext)
         }
         catch TransitioningAnimatorError.generalError(let errorReason) {
-            Logger.logError("\(self) \(#function) » General TransitionError:", item: errorReason)
+            Logger.error.message("Transitioning Animator Error:").object(errorReason)
         }
         catch {
-            Logger.logError("\(self) \(#function) » TransactionError:", item: error)
+            Logger.error.message("TransactionError:").object(error.localizedDescription)
         }
     }
     
@@ -76,7 +76,7 @@ class BaseTransitioningAnimator: NSObject, UIViewControllerAnimatedTransitioning
     
     fileprivate func animatePresentationalTransition(_ transitionContext: UIViewControllerContextTransitioning) throws {
         // Get the set of relevant objects.
-        let containerView: UIView = try self.containerViewForContext(transitionContext)
+        let containerView: UIView = self.containerViewForContext(transitionContext)
         let toView: UIView = try self.toViewForContext(transitionContext)
         let (toView_StartFrame, toView_FinalFrame) = try self.toView_PresentationalAnimationFrames(transitionContext)
         
@@ -177,10 +177,8 @@ class BaseTransitioningAnimator: NSObject, UIViewControllerAnimatedTransitioning
     
     // MARK: containerView
     
-    fileprivate func containerViewForContext(_ transitionContext: UIViewControllerContextTransitioning) throws -> UIView {
-        guard let validContainerView: UIView = transitionContext.containerView else {
-            throw TransitioningAnimatorError.generalError(errorReason: "`transitionContext` has no `containerView`")
-        }
+    fileprivate func containerViewForContext(_ transitionContext: UIViewControllerContextTransitioning) -> UIView {
+        let validContainerView: UIView = transitionContext.containerView
         return validContainerView
     }
     
@@ -239,7 +237,7 @@ class AxialTransitioningAnimator: BaseTransitioningAnimator {
     fileprivate override func toView_PresentationalAnimationFrames(_ transitionContext: UIViewControllerContextTransitioning) throws -> ( CGRect, CGRect) {
         
         // Get the set of relevant objects.
-        let containerView: UIView = try self.containerViewForContext(transitionContext)
+        let containerView: UIView = self.containerViewForContext(transitionContext)
         let toVC: UIViewController = try self.toViewControllerForContext(transitionContext)
         
         var toView_InitialFrame: CGRect
@@ -311,7 +309,7 @@ class AxialTransitioningAnimator: BaseTransitioningAnimator {
     }
     
     fileprivate override func fromView_DismissalAnimationFrames(_ transitionContext: UIViewControllerContextTransitioning) throws -> (CGRect, CGRect) {
-        let containerView: UIView = try self.containerViewForContext(transitionContext)
+        let containerView: UIView = self.containerViewForContext(transitionContext)
         let toVC: UIViewController = try self.toViewControllerForContext(transitionContext)
         let fromVC: UIViewController = try self.fromViewControllerForContext(transitionContext)
         
