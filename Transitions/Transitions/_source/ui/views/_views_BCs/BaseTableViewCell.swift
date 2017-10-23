@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import Masonry
+import SnapKit
 
 class BaseTableViewCell: UITableViewCell {
         
@@ -71,18 +71,19 @@ class BaseTableViewCell: UITableViewCell {
     fileprivate let separator_height: CGFloat = 0.5
     
     fileprivate func positionSeparatorViews() {
-        self.topSeparatorView.mas_updateConstraints { (make: MASConstraintMaker!) -> Void in
-            make.top.equalTo()(self.contentView.mas_top)
-            make.leading.equalTo()(self.contentView.mas_leading)?.offset()(self.isFirstCell ? 0 : self.separator_offset_leading)
-            make.trailing.equalTo()(self.contentView.mas_trailing)?.offset()(self.isFirstCell ? 0 : -self.separator_offset_trailing)
-            make.height.equalTo()(self.separator_height)
-        }
         
-        self.bottomSeparatorView.mas_updateConstraints { (make: MASConstraintMaker!) -> Void in
-            make.leading.equalTo()(self.contentView.mas_leading)?.offset()(self.isLastCell ? 0 : self.separator_offset_leading)
-            make.bottom.equalTo()(self.contentView.mas_bottom)
-            make.trailing.equalTo()(self.contentView.mas_trailing)?.offset()(self.isLastCell ? 0 : -self.separator_offset_trailing)
-            make.height.equalTo()(self.separator_height)
+        self.topSeparatorView.snp.updateConstraints { (maker: ConstraintMaker) in
+            maker.top.equalTo(self.contentView.snp.top)
+            maker.leading.equalTo(self.contentView.snp.leading).offset(self.isFirstCell ? 0 : self.separator_offset_leading)
+            maker.trailing.equalTo(self.contentView.snp.trailing).offset(self.isFirstCell ? 0 : -self.separator_offset_trailing)
+            maker.height.equalTo(self.separator_height)
+        }
+
+        self.bottomSeparatorView.snp.updateConstraints { (maker: ConstraintMaker) in
+            maker.leading.equalTo(self.contentView.snp.leading).offset(self.isLastCell ? 0 : self.separator_offset_leading)
+            maker.bottom.equalTo(self.contentView.snp.bottom)
+            maker.trailing.equalTo(self.contentView.snp.trailing).offset(self.isLastCell ? 0 : -self.separator_offset_trailing)
+            maker.height.equalTo(self.separator_height)
         }
     }
 }
