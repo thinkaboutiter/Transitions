@@ -12,7 +12,6 @@ import UIKit
 class BaseViewController: UIViewController {
     
     // MARK: - Life cycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -21,7 +20,7 @@ class BaseViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
 }

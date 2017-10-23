@@ -12,7 +12,7 @@ import SimpleLogger
 
 public protocol TransitioningResignable: UIGestureRecognizerDelegate {
     /** Custom resign flow (dismissal animation and transition) */
-    func resignTransitionAnimated(animated: Bool, sender: AnyObject, completion: (() -> Void)?)
+    func resignTransitionAnimated(_ animated: Bool, sender: AnyObject, completion: (() -> Void)?)
     var customTransitioningDelegate: UIViewControllerTransitioningDelegate? { get }
     var resignTransitioningGestureRecognizer: UIGestureRecognizer? { get }
     var resignTransitioningSwipeGestureRecognizer: UISwipeGestureRecognizer? { get }

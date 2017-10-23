@@ -12,11 +12,10 @@ import UIKit
 class InitialViewController: BaseViewController {
     
     // MARK: - Life cycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.yellowColor()
+        self.view.backgroundColor = UIColor.yellow
     }
     
     override func didReceiveMemoryWarning() {
@@ -24,20 +23,19 @@ class InitialViewController: BaseViewController {
     }
     
     // MARK: - Actions
-    
-    @IBAction func startTransitionPressed(sender: UIButton) {
+    @IBAction func startTransitionPressed(_ sender: UIButton) {
         if let validStoryboard: UIStoryboard = self.storyboard {
-            let finalVC: FinalViewController = validStoryboard.instantiateViewControllerWithIdentifier(NSStringFromClass(FinalViewController)) as! FinalViewController
+            let finalVC: FinalViewController = validStoryboard.instantiateViewController(withIdentifier: NSStringFromClass(FinalViewController.self)) as! FinalViewController
             
             if let _ = self.transitioningDelegate {
-                self.modalPresentationStyle = .Custom
+                self.modalPresentationStyle = .custom
             }
             
             if let _ = finalVC.transitioningDelegate {
-                finalVC.modalPresentationStyle = .Custom
+                finalVC.modalPresentationStyle = .custom
             }
             
-            self.presentViewController(finalVC, animated: true, completion: nil)
+            self.present(finalVC, animated: true, completion: nil)
         }
     }
 }

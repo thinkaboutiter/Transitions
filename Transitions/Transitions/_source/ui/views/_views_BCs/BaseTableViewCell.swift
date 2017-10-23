@@ -8,28 +8,29 @@
 
 import Foundation
 import UIKit
-import Masonry
+import SnapKit
 
 class BaseTableViewCell: UITableViewCell {
-        
-    lazy private var topSeparatorView: UIView = {
+    
+    // MARK: - Properties
+    lazy fileprivate var topSeparatorView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.1)
-        view.hidden = true
+        view.backgroundColor = UIColor.white.withAlphaComponent(0.1)
+        view.isHidden = true
         return view
     }()
     
-    lazy private var bottomSeparatorView: UIView = {
+    lazy fileprivate var bottomSeparatorView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.1)
+        view.backgroundColor = UIColor.white.withAlphaComponent(0.1)
         return view
     }()
     
     var isFirstCell: Bool = false {
         didSet {
-            self.topSeparatorView.hidden = !isFirstCell
+            self.topSeparatorView.isHidden = !isFirstCell
         }
     }
     
@@ -40,17 +41,10 @@ class BaseTableViewCell: UITableViewCell {
     }
     
     // MARK: - Initializers
-    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.1)
-        self.contentView.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.0)
-        self.selectedBackgroundView = UIView()
-        self.selectedBackgroundView?.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.1)
-        self.contentView.addSubview(self.topSeparatorView)
-        self.contentView.addSubview(self.bottomSeparatorView)
-        
+        self.confugure_ui()
         self.positionSeparatorViews()
     }
 
@@ -59,30 +53,52 @@ class BaseTableViewCell: UITableViewCell {
     }
     
     // MARK: - life cycle
-    
     override func updateConstraints() {
         super.updateConstraints()
     }
+}
+
+// MARK: - UI configurations
+fileprivate extension BaseTableViewCell {
     
-    // MARK: - Helpers
+    func confugure_ui() {
+        self.backgroundColor = UIColor.white.withAlphaComponent(0.1)
+        self.contentView.backgroundColor = UIColor.white.withAlphaComponent(0.0)
+        self.selectedBackgroundView = UIView()
+        self.selectedBackgroundView?.backgroundColor = UIColor.white.withAlphaComponent(0.1)
+        self.contentView.addSubview(self.topSeparatorView)
+        self.contentView.addSubview(self.bottomSeparatorView)
+    }
     
-    private let separator_offset_leading: CGFloat = 16.0
-    private let separator_offset_trailing: CGFloat = 16.0
-    private let separator_height: CGFloat = 0.5
-    
-    private func positionSeparatorViews() {
-        self.topSeparatorView.mas_updateConstraints { (make: MASConstraintMaker!) -> Void in
-            make.top.equalTo()(self.contentView.mas_top)
-            make.leading.equalTo()(self.contentView.mas_leading).offset()(self.isFirstCell ? 0 : self.separator_offset_leading)
-            make.trailing.equalTo()(self.contentView.mas_trailing).offset()(self.isFirstCell ? 0 : -self.separator_offset_trailing)
-            make.height.equalTo()(self.separator_height)
+    func positionSeparatorViews() {
+        self.topSeparatorView.snp.updateConstraints { (maker: ConstraintMaker) in
+            maker.top.equalTo(self.contentView.snp.top)
+            maker.leading.equalTo(self.contentView.snp.leading).offset(self.isFirstCell ? 0 : Dimensions.Separator.Offset.leading)
+            maker.trailing.equalTo(self.contentView.snp.trailing).offset(self.isFirstCell ? 0 : -Dimensions.Separator.Offset.trailing)
+            maker.height.equalTo(Dimensions.Separator.height)
         }
         
-        self.bottomSeparatorView.mas_updateConstraints { (make: MASConstraintMaker!) -> Void in
-            make.leading.equalTo()(self.contentView.mas_leading).offset()(self.isLastCell ? 0 : self.separator_offset_leading)
-            make.bottom.equalTo()(self.contentView.mas_bottom)
-            make.trailing.equalTo()(self.contentView.mas_trailing).offset()(self.isLastCell ? 0 : -self.separator_offset_trailing)
-            make.height.equalTo()(self.separator_height)
+        self.bottomSeparatorView.snp.updateConstraints { (maker: ConstraintMaker) in
+            maker.leading.equalTo(self.contentView.snp.leading).offset(self.isLastCell ? 0 : Dimensions.Separator.Offset.leading)
+            maker.bottom.equalTo(self.contentView.snp.bottom)
+            maker.trailing.equalTo(self.contentView.snp.trailing).offset(self.isLastCell ? 0 : -Dimensions.Separator.Offset.trailing)
+            maker.height.equalTo(Dimensions.Separator.height)
+        }
+    }
+}
+
+// MARK: - Dimensions
+fileprivate extension BaseTableViewCell {
+    
+    struct Dimensions {
+        
+        struct Separator {
+            static let height: CGFloat = 0.5
+            
+            struct Offset {
+                static let leading: CGFloat = 16.0
+                static let trailing: CGFloat = 16.0
+            }
         }
     }
 }
