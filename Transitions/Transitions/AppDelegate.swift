@@ -16,7 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        Logger.enableLogging(true)
+        
+        self.configure_3rdParties()
         self.configureApplicationAppearance()
         
         return true
@@ -43,15 +44,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+}
 
-    // MARK: - Configurations
+// MARK: - UI Configurations
+fileprivate extension AppDelegate {
     
-    fileprivate func configureApplicationAppearance() {
+    func configureApplicationAppearance() {
         UINavigationBar.appearance().barStyle = .blackTranslucent
         UINavigationBar.appearance().tintColor = UIColor.lightText
         UIBarButtonItem.appearance().tintColor = UIColor.lightText
         UIButton.appearance().tintColor = UIColor.lightText
     }
+}
 
+// MARK: - 3rd parties configurations
+
+fileprivate extension AppDelegate {
+    
+    func configure_3rdParties() {
+        self.configure_simpleLogger()
+    }
+    
+    func configure_simpleLogger() {
+        #if DEBUG
+            Logger.enableLogging(true)
+        #endif
+    }
 }
 
