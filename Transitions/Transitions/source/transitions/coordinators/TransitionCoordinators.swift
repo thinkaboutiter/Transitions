@@ -6,5 +6,4 @@
 //  Copyright © 2016 Boyan Yankov. All rights reserved.
 //
 
-import Foundation
 import UIKit

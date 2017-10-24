@@ -6,11 +6,10 @@
 //  Copyright © 2016 Boyan Yankov. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import SimpleLogger
 
-class FinalViewController: BaseViewController, TransitioningResignable {
+class FinalViewController: BaseViewController, TransitionResignable {
     
     // MARK: - Properties
     @IBOutlet weak var transitionBackwardsButton: UIButton!
@@ -26,23 +25,16 @@ class FinalViewController: BaseViewController, TransitioningResignable {
         if let _ = self.resignTransitioningSwipeGestureRecognizer {
             self.view.addGestureRecognizer(self.resignTransitioningSwipeGestureRecognizer!)
         }
-        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    // MARK: - Actions
-    @IBAction func transitionBackwardsPressed(_ sender: AnyObject) {
-        self.resignTransitionAnimated(true, sender: sender, completion: nil)
-    }
-    
-    // MARK: - TransitioningResignable
+    // MARK: - TransitionResignable protocol
     var customTransitioningDelegate: UIViewControllerTransitioningDelegate?
     lazy var resignTransitioningGestureRecognizer: UIGestureRecognizer? = {
         // TODO: implement `resignTransitioningGestureRecognizer`
-        
         return nil
     }()
     
@@ -100,8 +92,16 @@ class FinalViewController: BaseViewController, TransitioningResignable {
         }
     }
     
-    // MARK: - Configurations
-    fileprivate func configureButton(_ button: UIButton) {
+    // MARK: - Actions
+    @IBAction func transitionBackwardsPressed(_ sender: AnyObject) {
+        self.resignTransitionAnimated(true, sender: sender, completion: nil)
+    }
+}
+
+// MARK: - UI configurations
+fileprivate extension FinalViewController {
+   
+    func configureButton(_ button: UIButton) {
         button.setTitleColor(UIColor.white.withAlphaComponent(0.8), for: UIControlState())
         button.setTitleColor(UIColor.white.withAlphaComponent(0.8), for: .selected)
         button.setTitleColor(UIColor.white.withAlphaComponent(0.8), for: .highlighted)

@@ -11,4 +11,7 @@ import UIKit
 
 class BaseTableViewController: UITableViewController {
     
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
+    }
 }
