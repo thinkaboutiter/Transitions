@@ -24,6 +24,8 @@
 		4F36D7BB1F9F40F900E744D5 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7BA1F9F40F900E744D5 /* UIView+Extensions.swift */; };
 		4F36D7BE1F9F428000E744D5 /* Initial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F36D7C01F9F428000E744D5 /* Initial.storyboard */; };
 		4F36D7C21F9F46B600E744D5 /* AppUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7C11F9F46B600E744D5 /* AppUtilities.swift */; };
+		4F4F07451F9F8BD90035BAA1 /* MainTableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4F07441F9F8BD90035BAA1 /* MainTableViewHeaderFooterView.swift */; };
+		4F4F07471F9F8BF80035BAA1 /* MainTableViewHeaderFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F4F07461F9F8BF80035BAA1 /* MainTableViewHeaderFooterView.xib */; };
 		4F8C727A1F9F66BB00E751E3 /* BaseTransitioningAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8C72791F9F66BB00E751E3 /* BaseTransitioningAnimator.swift */; };
 		4F8C727E1F9F744B00E751E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F8C72801F9F744B00E751E3 /* Main.storyboard */; };
 		4FB56C131F9F7B9C00276F98 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB56C121F9F7B9C00276F98 /* MainViewModel.swift */; };
@@ -53,6 +55,8 @@
 		4F36D7BA1F9F40F900E744D5 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		4F36D7BF1F9F428000E744D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Initial.storyboard; sourceTree = "<group>"; };
 		4F36D7C11F9F46B600E744D5 /* AppUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtilities.swift; sourceTree = "<group>"; };
+		4F4F07441F9F8BD90035BAA1 /* MainTableViewHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewHeaderFooterView.swift; sourceTree = "<group>"; };
+		4F4F07461F9F8BF80035BAA1 /* MainTableViewHeaderFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTableViewHeaderFooterView.xib; sourceTree = "<group>"; };
 		4F8C72791F9F66BB00E751E3 /* BaseTransitioningAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTransitioningAnimator.swift; sourceTree = "<group>"; };
 		4F8C727F1F9F744B00E751E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4FB56C121F9F7B9C00276F98 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -166,6 +170,7 @@
 		4F36D7981F9F389300E744D5 /* main */ = {
 			isa = PBXGroup;
 			children = (
+				4F4F07431F9F8B5A0035BAA1 /* _customUI */,
 				4F8C72801F9F744B00E751E3 /* Main.storyboard */,
 				4F36D79A1F9F389300E744D5 /* View */,
 				4F36D7991F9F389300E744D5 /* ViewModel */,
@@ -259,6 +264,15 @@
 				4F36D7B61F9F3A3B00E744D5 /* ErrorCreator.swift */,
 			);
 			path = utilities;
+			sourceTree = "<group>";
+		};
+		4F4F07431F9F8B5A0035BAA1 /* _customUI */ = {
+			isa = PBXGroup;
+			children = (
+				4F4F07441F9F8BD90035BAA1 /* MainTableViewHeaderFooterView.swift */,
+				4F4F07461F9F8BF80035BAA1 /* MainTableViewHeaderFooterView.xib */,
+			);
+			path = _customUI;
 			sourceTree = "<group>";
 		};
 		4F8C727B1F9F6F8500E751E3 /* ViewModel */ = {
@@ -384,6 +398,7 @@
 				7D323B5A1C46309900938F08 /* Assets.xcassets in Resources */,
 				4F36D7BE1F9F428000E744D5 /* Initial.storyboard in Resources */,
 				4F8C727E1F9F744B00E751E3 /* Main.storyboard in Resources */,
+				4F4F07471F9F8BF80035BAA1 /* MainTableViewHeaderFooterView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,6 +486,7 @@
 				4F36D7AB1F9F389300E744D5 /* FinalViewController.swift in Sources */,
 				7D323B531C46309900938F08 /* AppDelegate.swift in Sources */,
 				4F36D7BB1F9F40F900E744D5 /* UIView+Extensions.swift in Sources */,
+				4F4F07451F9F8BD90035BAA1 /* MainTableViewHeaderFooterView.swift in Sources */,
 				4F36D7B91F9F407A00E744D5 /* UIWindow+Extensions.swift in Sources */,
 				4F36D7AA1F9F389300E744D5 /* BaseTableViewController.swift in Sources */,
 				4F36D7AF1F9F389300E744D5 /* BaseTransitioningDelegate.swift in Sources */,
