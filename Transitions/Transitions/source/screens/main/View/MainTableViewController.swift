@@ -1,5 +1,5 @@
 //
-//  InitialTableViewController.swift
+//  MainTableViewController.swift
 //  Transitions
 //
 //  Created by Boyan Yankov on 19/01/2016.
@@ -9,7 +9,7 @@
 import UIKit
 import SimpleLogger
 
-class InitialTableViewController: BaseTableViewController {
+class MainTableViewController: BaseTableViewController {
     
     fileprivate let cellTitles: [String] = [
         "Transitioning Left",
