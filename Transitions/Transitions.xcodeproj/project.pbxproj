@@ -20,6 +20,8 @@
 		4F36D7B11F9F389300E744D5 /* PresentationControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7A61F9F389300E744D5 /* PresentationControllers.swift */; };
 		4F36D7B51F9F3A2E00E744D5 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7B41F9F3A2E00E744D5 /* AppConstants.swift */; };
 		4F36D7B71F9F3A3B00E744D5 /* ErrorCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7B61F9F3A3B00E744D5 /* ErrorCreator.swift */; };
+		4F36D7B91F9F407A00E744D5 /* UIWindow+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7B81F9F407A00E744D5 /* UIWindow+Extensions.swift */; };
+		4F36D7BB1F9F40F900E744D5 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7BA1F9F40F900E744D5 /* UIView+Extensions.swift */; };
 		7D323B531C46309900938F08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D323B521C46309900938F08 /* AppDelegate.swift */; };
 		7D323B581C46309900938F08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D323B561C46309900938F08 /* Main.storyboard */; };
 		7D323B5A1C46309900938F08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D323B591C46309900938F08 /* Assets.xcassets */; };
@@ -42,6 +44,8 @@
 		4F36D7A61F9F389300E744D5 /* PresentationControllers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationControllers.swift; sourceTree = "<group>"; };
 		4F36D7B41F9F3A2E00E744D5 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		4F36D7B61F9F3A3B00E744D5 /* ErrorCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCreator.swift; sourceTree = "<group>"; };
+		4F36D7B81F9F407A00E744D5 /* UIWindow+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Extensions.swift"; sourceTree = "<group>"; };
+		4F36D7BA1F9F40F900E744D5 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		5BE8176FFD4F224A4D7922B6 /* Pods-Transitions.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Transitions.release.xcconfig"; path = "Pods/Target Support Files/Pods-Transitions/Pods-Transitions.release.xcconfig"; sourceTree = "<group>"; };
 		7D323B4F1C46309900938F08 /* Transitions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Transitions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D323B521C46309900938F08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -233,6 +237,8 @@
 		4F36D7B21F9F3A1300E744D5 /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				4F36D7B81F9F407A00E744D5 /* UIWindow+Extensions.swift */,
+				4F36D7BA1F9F40F900E744D5 /* UIView+Extensions.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -447,6 +453,8 @@
 				4F36D7AE1F9F389300E744D5 /* TransitioningAnimators.swift in Sources */,
 				4F36D7AB1F9F389300E744D5 /* FinalViewController.swift in Sources */,
 				7D323B531C46309900938F08 /* AppDelegate.swift in Sources */,
+				4F36D7BB1F9F40F900E744D5 /* UIView+Extensions.swift in Sources */,
+				4F36D7B91F9F407A00E744D5 /* UIWindow+Extensions.swift in Sources */,
 				4F36D7AA1F9F389300E744D5 /* BaseTableViewController.swift in Sources */,
 				4F36D7AF1F9F389300E744D5 /* TransitioningDelegates.swift in Sources */,
 				4F36D7B11F9F389300E744D5 /* PresentationControllers.swift in Sources */,
