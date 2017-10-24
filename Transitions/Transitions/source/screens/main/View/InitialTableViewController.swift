@@ -6,7 +6,6 @@
 //  Copyright © 2016 Boyan Yankov. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import SimpleLogger
 
@@ -46,8 +45,8 @@ class InitialTableViewController: BaseTableViewController {
             cell = BaseTableViewCell(style: .default, reuseIdentifier: NSStringFromClass(BaseTableViewCell.self))
         }
         
-        cell.isFirstCell = indexPath.row == 0
-        cell.isLastCell = indexPath.row == (self.cellTitles.count - 1)
+        cell.isFirst = indexPath.row == 0
+        cell.isLast = indexPath.row == (self.cellTitles.count - 1)
         cell.textLabel?.text = self.cellTitles[indexPath.row]
         cell.textLabel?.textColor = UIColor.white
         
