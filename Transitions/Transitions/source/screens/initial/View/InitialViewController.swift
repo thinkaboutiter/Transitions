@@ -21,21 +21,4 @@ class InitialViewController: BaseViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    // MARK: - Actions
-    @IBAction func startTransitionPressed(_ sender: UIButton) {
-        if let validStoryboard: UIStoryboard = self.storyboard {
-            let finalVC: FinalViewController = validStoryboard.instantiateViewController(withIdentifier: NSStringFromClass(FinalViewController.self)) as! FinalViewController
-            
-            if let _ = self.transitioningDelegate {
-                self.modalPresentationStyle = .custom
-            }
-            
-            if let _ = finalVC.transitioningDelegate {
-                finalVC.modalPresentationStyle = .custom
-            }
-            
-            self.present(finalVC, animated: true, completion: nil)
-        }
-    }
 }
