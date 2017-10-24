@@ -13,15 +13,8 @@ import SimpleLogger
 
 class MainViewController: BaseViewController, MainViewModelConsumable {
     
-    fileprivate let cellTitles: [String] = [
-        "Transitioning Left",
-        "Transitioning Right",
-        "Transitioning Up",
-        "Transitioning Down"
-    ]
-    
     // MARK: - Properties
-    @IBOutlet weak var functionalitesTableView: UITableView!
+    @IBOutlet weak var functionalitesTableView: BaseTableView!
     
     // MARK: - MainViewModelConsumable protocol
     fileprivate(set) var viewModel: MainViewModelable?
@@ -42,6 +35,11 @@ class MainViewController: BaseViewController, MainViewModelConsumable {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // we need a valid `viewModel` object
+        if self.viewModel == nil {
+            self.viewModel = MainViewModel()
+        }
+        
         self.configure_appearance()
         self.configure(self.functionalitesTableView)
     }
@@ -56,11 +54,12 @@ class MainViewController: BaseViewController, MainViewModelConsumable {
 fileprivate extension MainViewController {
     
     fileprivate func configure_appearance() {
-        self.title = "Transitions"
+        self.title = self.viewModel?.title
     }
     
     fileprivate func configure(_ tableView: UITableView) {
         tableView.register(BaseTableViewCell.self, forCellReuseIdentifier: NSStringFromClass(BaseTableViewCell.self))
+        tableView.register(UINib(nibName: String(describing: MainTableViewHeaderFooterView.self), bundle: nil), forHeaderFooterViewReuseIdentifier: String(describing: MainTableViewHeaderFooterView.self))
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.black
         tableView.delegate = self
@@ -72,14 +71,60 @@ fileprivate extension MainViewController {
 extension MainViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        // we need a valid `viewModel` object
+        guard let valid_viewModel: MainViewModelable = self.viewModel else {
+            Logger.error.message("Invalid \(String(describing: MainViewModelable.self))")
+            return 0
+        }
+        
+        return valid_viewModel.sectionsData.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.cellTitles.count
+        // we need a valid `viewModel` object
+        guard let valid_viewModel: MainViewModelable = self.viewModel else {
+            Logger.error.message("Invalid \(String(describing: MainViewModelable.self))")
+            return 0
+        }
+        
+        // section index check
+        guard section < valid_viewModel.sectionsData.count else {
+            Logger.error.message("Invalid section index")
+            return 0
+        }
+        
+        // obtain section data
+        let sectionData: MainViewModel.StaticSectionData = valid_viewModel.sectionsData[section]
+        
+        return sectionData.rowsData().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // we need a valid `viewModel` object
+        guard let valid_viewModel: MainViewModelable = self.viewModel else {
+            Logger.error.message("Invalid \(String(describing: MainViewModelable.self))")
+            return UITableViewCell()
+        }
+        
+        // section index check
+        guard indexPath.section < valid_viewModel.sectionsData.count else {
+            Logger.error.message("Invalid section index")
+            return UITableViewCell()
+        }
+        
+        // obtain section data
+        let sectionData: MainViewModel.StaticSectionData = valid_viewModel.sectionsData[indexPath.section]
+        
+        // cell section check
+        guard indexPath.row < sectionData.rowsData().count else {
+            Logger.error.message("Invalid cell index")
+            return UITableViewCell()
+        }
+        
+        // obtain cell data
+        let rowData: MainViewModel.StaticRowData = sectionData.rowsData()[indexPath.row]
+        
+        // cell creation
         let cell: BaseTableViewCell
         
         if let validCell: BaseTableViewCell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(BaseTableViewCell.self), for: indexPath) as? BaseTableViewCell {
@@ -89,21 +134,41 @@ extension MainViewController: UITableViewDataSource {
             cell = BaseTableViewCell(style: .default, reuseIdentifier: NSStringFromClass(BaseTableViewCell.self))
         }
         
-        cell.isFirst = indexPath.row == 0
-        cell.isLast = indexPath.row == (self.cellTitles.count - 1)
-        cell.textLabel?.text = self.cellTitles[indexPath.row]
-        cell.textLabel?.textColor = UIColor.white
+        cell.configure(with: rowData,
+                       isFirst: indexPath.row == 0,
+                       isLast: indexPath.row == (sectionData.rowsData().count - 1))
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let valid_header: MainTableViewHeaderFooterView = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: MainTableViewHeaderFooterView.self)) as? MainTableViewHeaderFooterView else {
+            Logger.error.message("Unable to dequeue \(String(describing: MainTableViewHeaderFooterView.self)) object")
+            return nil
+        }
+        
+        // we need a valid `viewModel` object
+        guard let valid_viewModel: MainViewModelable = self.viewModel else {
+            Logger.error.message("Invalid \(String(describing: MainViewModelable.self))")
+            return nil
+        }
+        
+        // section index check
+        guard section < valid_viewModel.sectionsData.count else {
+            Logger.error.message("Invalid section index")
+            return nil
+        }
+        
+        // obtain section data
+        let sectionData: MainViewModel.StaticSectionData = valid_viewModel.sectionsData[section]
+        
+        valid_header.configure(with: sectionData.title())
+        return valid_header
     }
 }
 
 // MARK: - UITableViewDelegate protocol
 extension MainViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50.0
-    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -178,5 +243,50 @@ extension MainViewController: UITableViewDelegate {
         finalVC.customTransitioningDelegate = transitioningDelegate
         
         self.present(finalVC, animated: true, completion: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        // we need a valid `viewModel` object
+        guard let valid_viewModel: MainViewModelable = self.viewModel else {
+            Logger.error.message("Invalid \(String(describing: MainViewModelable.self))")
+            return BaseTableView.Dimensions.rowHeight
+        }
+        
+        // section index check
+        guard indexPath.section < valid_viewModel.sectionsData.count else {
+            Logger.error.message("Invalid section index")
+            return BaseTableView.Dimensions.rowHeight
+        }
+        
+        // obtain section data
+        let sectionData: MainViewModel.StaticSectionData = valid_viewModel.sectionsData[indexPath.section]
+        
+        // cell section check
+        guard indexPath.row < sectionData.rowsData().count else {
+            Logger.error.message("Invalid cell index")
+            return BaseTableView.Dimensions.rowHeight
+        }
+        
+        // obtain cell data
+        let rowData: MainViewModel.StaticRowData = sectionData.rowsData()[indexPath.row]
+        return rowData.height()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        // we need a valid `viewModel` object
+        guard let valid_viewModel: MainViewModelable = self.viewModel else {
+            Logger.error.message("Invalid \(String(describing: MainViewModelable.self))")
+            return BaseTableView.Dimensions.sectionHeight
+        }
+        
+        // section index check
+        guard section < valid_viewModel.sectionsData.count else {
+            Logger.error.message("Invalid section index")
+            return BaseTableView.Dimensions.sectionHeight
+        }
+        
+        // obtain section data
+        let sectionData: MainViewModel.StaticSectionData = valid_viewModel.sectionsData[section]
+        return sectionData.height()
     }
 }

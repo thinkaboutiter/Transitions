@@ -80,10 +80,10 @@ extension MainViewModel {
             
             switch self {
             case .nonInteractiveTransitions:
-                title = NSLocalizedString("Noninteractive Transitions", comment: AppConstants.LocalizedStringComment.sectionTitle)
+                title = NSLocalizedString("Noninteractive", comment: AppConstants.LocalizedStringComment.sectionTitle)
                 
             case .interactiveTransitions:
-                title = NSLocalizedString("Interactive Transitions", comment: AppConstants.LocalizedStringComment.sectionTitle)
+                title = NSLocalizedString("Interactive", comment: AppConstants.LocalizedStringComment.sectionTitle)
             }
             return title
         }
