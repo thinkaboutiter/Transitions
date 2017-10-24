@@ -26,6 +26,7 @@
 		4F36D7C21F9F46B600E744D5 /* AppUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7C11F9F46B600E744D5 /* AppUtilities.swift */; };
 		4F8C727A1F9F66BB00E751E3 /* BaseTransitioningAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8C72791F9F66BB00E751E3 /* BaseTransitioningAnimator.swift */; };
 		4F8C727E1F9F744B00E751E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F8C72801F9F744B00E751E3 /* Main.storyboard */; };
+		4FB56C131F9F7B9C00276F98 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB56C121F9F7B9C00276F98 /* MainViewModel.swift */; };
 		7D323B531C46309900938F08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D323B521C46309900938F08 /* AppDelegate.swift */; };
 		7D323B5A1C46309900938F08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D323B591C46309900938F08 /* Assets.xcassets */; };
 		7D323B5D1C46309900938F08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D323B5B1C46309900938F08 /* LaunchScreen.storyboard */; };
@@ -53,6 +54,7 @@
 		4F36D7C11F9F46B600E744D5 /* AppUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtilities.swift; sourceTree = "<group>"; };
 		4F8C72791F9F66BB00E751E3 /* BaseTransitioningAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTransitioningAnimator.swift; sourceTree = "<group>"; };
 		4F8C727F1F9F744B00E751E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4FB56C121F9F7B9C00276F98 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		5BE8176FFD4F224A4D7922B6 /* Pods-Transitions.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Transitions.release.xcconfig"; path = "Pods/Target Support Files/Pods-Transitions/Pods-Transitions.release.xcconfig"; sourceTree = "<group>"; };
 		7D323B4F1C46309900938F08 /* Transitions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Transitions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D323B521C46309900938F08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 		4F36D7991F9F389300E744D5 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				4FB56C121F9F7B9C00276F98 /* MainViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 				4F36D7B11F9F389300E744D5 /* BasePresentationController.swift in Sources */,
 				4F36D7A71F9F389300E744D5 /* InitialViewController.swift in Sources */,
 				4F36D7B01F9F389300E744D5 /* TransitionResignable.swift in Sources */,
+				4FB56C131F9F7B9C00276F98 /* MainViewModel.swift in Sources */,
 				4F36D7B51F9F3A2E00E744D5 /* AppConstants.swift in Sources */,
 				4F36D7AC1F9F389300E744D5 /* MainViewController.swift in Sources */,
 				4F36D7C21F9F46B600E744D5 /* AppUtilities.swift in Sources */,
