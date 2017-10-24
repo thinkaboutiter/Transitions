@@ -12,7 +12,7 @@
 		4F36D7A91F9F389300E744D5 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7921F9F389300E744D5 /* BaseTableViewCell.swift */; };
 		4F36D7AA1F9F389300E744D5 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7931F9F389300E744D5 /* BaseTableViewController.swift */; };
 		4F36D7AB1F9F389300E744D5 /* FinalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7971F9F389300E744D5 /* FinalViewController.swift */; };
-		4F36D7AC1F9F389300E744D5 /* InitialTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D79B1F9F389300E744D5 /* InitialTableViewController.swift */; };
+		4F36D7AC1F9F389300E744D5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D79B1F9F389300E744D5 /* MainViewController.swift */; };
 		4F36D7AD1F9F389300E744D5 /* TransitionCoordinators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D79E1F9F389300E744D5 /* TransitionCoordinators.swift */; };
 		4F36D7AE1F9F389300E744D5 /* AxialTransitioningAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7A01F9F389300E744D5 /* AxialTransitioningAnimator.swift */; };
 		4F36D7AF1F9F389300E744D5 /* BaseTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7A21F9F389300E744D5 /* BaseTransitioningDelegate.swift */; };
@@ -24,9 +24,13 @@
 		4F36D7BB1F9F40F900E744D5 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7BA1F9F40F900E744D5 /* UIView+Extensions.swift */; };
 		4F36D7BE1F9F428000E744D5 /* Initial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F36D7C01F9F428000E744D5 /* Initial.storyboard */; };
 		4F36D7C21F9F46B600E744D5 /* AppUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7C11F9F46B600E744D5 /* AppUtilities.swift */; };
+		4F4F07451F9F8BD90035BAA1 /* MainTableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4F07441F9F8BD90035BAA1 /* MainTableViewHeaderFooterView.swift */; };
+		4F4F07471F9F8BF80035BAA1 /* MainTableViewHeaderFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F4F07461F9F8BF80035BAA1 /* MainTableViewHeaderFooterView.xib */; };
 		4F8C727A1F9F66BB00E751E3 /* BaseTransitioningAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8C72791F9F66BB00E751E3 /* BaseTransitioningAnimator.swift */; };
+		4F8C727E1F9F744B00E751E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F8C72801F9F744B00E751E3 /* Main.storyboard */; };
+		4FB56C131F9F7B9C00276F98 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB56C121F9F7B9C00276F98 /* MainViewModel.swift */; };
+		4FB56C151F9F870700276F98 /* BaseTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB56C141F9F870700276F98 /* BaseTableView.swift */; };
 		7D323B531C46309900938F08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D323B521C46309900938F08 /* AppDelegate.swift */; };
-		7D323B581C46309900938F08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D323B561C46309900938F08 /* Main.storyboard */; };
 		7D323B5A1C46309900938F08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D323B591C46309900938F08 /* Assets.xcassets */; };
 		7D323B5D1C46309900938F08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D323B5B1C46309900938F08 /* LaunchScreen.storyboard */; };
 		E5A6B4013DB2F9A99450327B /* Pods_Transitions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30702B6A674F8A5118C4DDE4 /* Pods_Transitions.framework */; };
@@ -39,7 +43,7 @@
 		4F36D7921F9F389300E744D5 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		4F36D7931F9F389300E744D5 /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		4F36D7971F9F389300E744D5 /* FinalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalViewController.swift; sourceTree = "<group>"; };
-		4F36D79B1F9F389300E744D5 /* InitialTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialTableViewController.swift; sourceTree = "<group>"; };
+		4F36D79B1F9F389300E744D5 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		4F36D79E1F9F389300E744D5 /* TransitionCoordinators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionCoordinators.swift; sourceTree = "<group>"; };
 		4F36D7A01F9F389300E744D5 /* AxialTransitioningAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AxialTransitioningAnimator.swift; sourceTree = "<group>"; };
 		4F36D7A21F9F389300E744D5 /* BaseTransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTransitioningDelegate.swift; sourceTree = "<group>"; };
@@ -51,11 +55,15 @@
 		4F36D7BA1F9F40F900E744D5 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		4F36D7BF1F9F428000E744D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Initial.storyboard; sourceTree = "<group>"; };
 		4F36D7C11F9F46B600E744D5 /* AppUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtilities.swift; sourceTree = "<group>"; };
+		4F4F07441F9F8BD90035BAA1 /* MainTableViewHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewHeaderFooterView.swift; sourceTree = "<group>"; };
+		4F4F07461F9F8BF80035BAA1 /* MainTableViewHeaderFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTableViewHeaderFooterView.xib; sourceTree = "<group>"; };
 		4F8C72791F9F66BB00E751E3 /* BaseTransitioningAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTransitioningAnimator.swift; sourceTree = "<group>"; };
+		4F8C727F1F9F744B00E751E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4FB56C121F9F7B9C00276F98 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		4FB56C141F9F870700276F98 /* BaseTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableView.swift; sourceTree = "<group>"; };
 		5BE8176FFD4F224A4D7922B6 /* Pods-Transitions.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Transitions.release.xcconfig"; path = "Pods/Target Support Files/Pods-Transitions/Pods-Transitions.release.xcconfig"; sourceTree = "<group>"; };
 		7D323B4F1C46309900938F08 /* Transitions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Transitions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D323B521C46309900938F08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7D323B571C46309900938F08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7D323B591C46309900938F08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7D323B5C1C46309900938F08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7D323B5E1C46309900938F08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -127,6 +135,7 @@
 		4F36D7901F9F389300E744D5 /* _UIBaseClasses */ = {
 			isa = PBXGroup;
 			children = (
+				4FB56C141F9F870700276F98 /* BaseTableView.swift */,
 				4F36D7921F9F389300E744D5 /* BaseTableViewCell.swift */,
 				4F36D7931F9F389300E744D5 /* BaseTableViewController.swift */,
 				4F36D7911F9F389300E744D5 /* BaseViewController.swift */,
@@ -161,6 +170,8 @@
 		4F36D7981F9F389300E744D5 /* main */ = {
 			isa = PBXGroup;
 			children = (
+				4F4F07431F9F8B5A0035BAA1 /* _customUI */,
+				4F8C72801F9F744B00E751E3 /* Main.storyboard */,
 				4F36D79A1F9F389300E744D5 /* View */,
 				4F36D7991F9F389300E744D5 /* ViewModel */,
 			);
@@ -170,6 +181,7 @@
 		4F36D7991F9F389300E744D5 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				4FB56C121F9F7B9C00276F98 /* MainViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -177,7 +189,7 @@
 		4F36D79A1F9F389300E744D5 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4F36D79B1F9F389300E744D5 /* InitialTableViewController.swift */,
+				4F36D79B1F9F389300E744D5 /* MainViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -254,6 +266,15 @@
 			path = utilities;
 			sourceTree = "<group>";
 		};
+		4F4F07431F9F8B5A0035BAA1 /* _customUI */ = {
+			isa = PBXGroup;
+			children = (
+				4F4F07441F9F8BD90035BAA1 /* MainTableViewHeaderFooterView.swift */,
+				4F4F07461F9F8BF80035BAA1 /* MainTableViewHeaderFooterView.xib */,
+			);
+			path = _customUI;
+			sourceTree = "<group>";
+		};
 		4F8C727B1F9F6F8500E751E3 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,7 +314,6 @@
 			children = (
 				7D323B521C46309900938F08 /* AppDelegate.swift */,
 				7D323B591C46309900938F08 /* Assets.xcassets */,
-				7D323B561C46309900938F08 /* Main.storyboard */,
 				4F36D78A1F9F389300E744D5 /* source */,
 				4F36D7891F9F373000E744D5 /* Supporting Files */,
 			);
@@ -376,8 +396,9 @@
 			files = (
 				7D323B5D1C46309900938F08 /* LaunchScreen.storyboard in Resources */,
 				7D323B5A1C46309900938F08 /* Assets.xcassets in Resources */,
-				7D323B581C46309900938F08 /* Main.storyboard in Resources */,
 				4F36D7BE1F9F428000E744D5 /* Initial.storyboard in Resources */,
+				4F8C727E1F9F744B00E751E3 /* Main.storyboard in Resources */,
+				4F4F07471F9F8BF80035BAA1 /* MainTableViewHeaderFooterView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,17 +482,20 @@
 				4F36D7B71F9F3A3B00E744D5 /* ErrorCreator.swift in Sources */,
 				4F36D7AD1F9F389300E744D5 /* TransitionCoordinators.swift in Sources */,
 				4F36D7AE1F9F389300E744D5 /* AxialTransitioningAnimator.swift in Sources */,
+				4FB56C151F9F870700276F98 /* BaseTableView.swift in Sources */,
 				4F36D7AB1F9F389300E744D5 /* FinalViewController.swift in Sources */,
 				7D323B531C46309900938F08 /* AppDelegate.swift in Sources */,
 				4F36D7BB1F9F40F900E744D5 /* UIView+Extensions.swift in Sources */,
+				4F4F07451F9F8BD90035BAA1 /* MainTableViewHeaderFooterView.swift in Sources */,
 				4F36D7B91F9F407A00E744D5 /* UIWindow+Extensions.swift in Sources */,
 				4F36D7AA1F9F389300E744D5 /* BaseTableViewController.swift in Sources */,
 				4F36D7AF1F9F389300E744D5 /* BaseTransitioningDelegate.swift in Sources */,
 				4F36D7B11F9F389300E744D5 /* BasePresentationController.swift in Sources */,
 				4F36D7A71F9F389300E744D5 /* InitialViewController.swift in Sources */,
 				4F36D7B01F9F389300E744D5 /* TransitionResignable.swift in Sources */,
+				4FB56C131F9F7B9C00276F98 /* MainViewModel.swift in Sources */,
 				4F36D7B51F9F3A2E00E744D5 /* AppConstants.swift in Sources */,
-				4F36D7AC1F9F389300E744D5 /* InitialTableViewController.swift in Sources */,
+				4F36D7AC1F9F389300E744D5 /* MainViewController.swift in Sources */,
 				4F36D7C21F9F46B600E744D5 /* AppUtilities.swift in Sources */,
 				4F36D7A81F9F389300E744D5 /* BaseViewController.swift in Sources */,
 				4F8C727A1F9F66BB00E751E3 /* BaseTransitioningAnimator.swift in Sources */,
@@ -489,10 +513,10 @@
 			name = Initial.storyboard;
 			sourceTree = "<group>";
 		};
-		7D323B561C46309900938F08 /* Main.storyboard */ = {
+		4F8C72801F9F744B00E751E3 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				7D323B571C46309900938F08 /* Base */,
+				4F8C727F1F9F744B00E751E3 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

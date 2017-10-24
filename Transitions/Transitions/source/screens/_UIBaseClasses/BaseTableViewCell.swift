@@ -6,7 +6,6 @@
 //  Copyright © 2016 Boyan Yankov. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import SnapKit
 
@@ -28,13 +27,13 @@ class BaseTableViewCell: UITableViewCell {
         return view
     }()
     
-    var isFirstCell: Bool = false {
+    fileprivate var isFirst: Bool = false {
         didSet {
-            self.topSeparatorView.isHidden = !isFirstCell
+            self.topSeparatorView.isHidden = !isFirst
         }
     }
     
-    var isLastCell: Bool = false {
+    fileprivate var isLast: Bool = false {
         didSet {
             self.positionSeparatorViews()
         }
@@ -56,6 +55,13 @@ class BaseTableViewCell: UITableViewCell {
     override func updateConstraints() {
         super.updateConstraints()
     }
+    
+    func configure(with rowData: MainViewModel.StaticRowData, isFirst: Bool, isLast: Bool) {
+        self.textLabel?.text = rowData.title()
+        self.textLabel?.textColor = UIColor.white
+        self.isFirst = isFirst
+        self.isLast = isLast
+    }
 }
 
 // MARK: - UI configurations
@@ -73,15 +79,15 @@ fileprivate extension BaseTableViewCell {
     func positionSeparatorViews() {
         self.topSeparatorView.snp.updateConstraints { (maker: ConstraintMaker) in
             maker.top.equalTo(self.contentView.snp.top)
-            maker.leading.equalTo(self.contentView.snp.leading).offset(self.isFirstCell ? 0 : Dimensions.Separator.Offset.leading)
-            maker.trailing.equalTo(self.contentView.snp.trailing).offset(self.isFirstCell ? 0 : -Dimensions.Separator.Offset.trailing)
+            maker.leading.equalTo(self.contentView.snp.leading).offset(self.isFirst ? 0 : Dimensions.Separator.Offset.leading)
+            maker.trailing.equalTo(self.contentView.snp.trailing).offset(self.isFirst ? 0 : -Dimensions.Separator.Offset.trailing)
             maker.height.equalTo(Dimensions.Separator.height)
         }
         
         self.bottomSeparatorView.snp.updateConstraints { (maker: ConstraintMaker) in
-            maker.leading.equalTo(self.contentView.snp.leading).offset(self.isLastCell ? 0 : Dimensions.Separator.Offset.leading)
+            maker.leading.equalTo(self.contentView.snp.leading).offset(self.isLast ? 0 : Dimensions.Separator.Offset.leading)
             maker.bottom.equalTo(self.contentView.snp.bottom)
-            maker.trailing.equalTo(self.contentView.snp.trailing).offset(self.isLastCell ? 0 : -Dimensions.Separator.Offset.trailing)
+            maker.trailing.equalTo(self.contentView.snp.trailing).offset(self.isLast ? 0 : -Dimensions.Separator.Offset.trailing)
             maker.height.equalTo(Dimensions.Separator.height)
         }
     }

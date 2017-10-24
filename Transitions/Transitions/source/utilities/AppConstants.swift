@@ -33,5 +33,8 @@ struct AppConstants {
     // MARK: - Localized strings comments
     struct LocalizedStringComment {
         static let errorMessage: String = "Error message"
+        static let sectionTitle: String = "Section title"
+        static let rowTitle: String = "Row title"
+        static let screenTitle: String = "Screen title"
     }
 }
