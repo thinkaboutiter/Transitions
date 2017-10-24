@@ -11,6 +11,16 @@ import SimpleLogger
 
 class InitialViewController: BaseViewController {
     
+    // MARK: - Initialize
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    deinit {
+        Logger.debug.message("\(String(describing: InitialViewController.self)) deinitialized")
+    }
+    
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()

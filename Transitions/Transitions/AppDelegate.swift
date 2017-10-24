@@ -77,9 +77,10 @@ fileprivate extension AppDelegate {
     }
     
     func configure_simpleLogger() {
-        #if DEBUG
+        // for some reason this is not enbabled in DEBUG mode! :(
+//        #if DEBUG
             Logger.enableLogging(true)
-        #endif
+//        #endif
     }
 }
 
