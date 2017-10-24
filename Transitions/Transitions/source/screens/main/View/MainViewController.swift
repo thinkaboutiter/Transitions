@@ -9,7 +9,9 @@
 import UIKit
 import SimpleLogger
 
-class MainViewController: BaseViewController {
+import SimpleLogger
+
+class MainViewController: BaseViewController, MainViewModelConsumable {
     
     fileprivate let cellTitles: [String] = [
         "Transitioning Left",
@@ -21,6 +23,21 @@ class MainViewController: BaseViewController {
     // MARK: - Properties
     @IBOutlet weak var functionalitesTableView: UITableView!
     
+    // MARK: - MainViewModelConsumable protocol
+    fileprivate(set) var viewModel: MainViewModelable?
+    func updateViewModel(_ viewModel: MainViewModelable?) {
+        self.viewModel = viewModel
+    }
+    
+    // MARK: - Initialization
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    deinit {
+        Logger.debug.message("\(String(describing: MainViewController.self)) deinitialized")
+    }
+    
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +45,11 @@ class MainViewController: BaseViewController {
         self.configure_appearance()
         self.configure(self.functionalitesTableView)
     }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }    
 }
 
 // MARK: - UI configurations
