@@ -15,9 +15,9 @@
 		4F36D7AC1F9F389300E744D5 /* InitialTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D79B1F9F389300E744D5 /* InitialTableViewController.swift */; };
 		4F36D7AD1F9F389300E744D5 /* TransitionCoordinators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D79E1F9F389300E744D5 /* TransitionCoordinators.swift */; };
 		4F36D7AE1F9F389300E744D5 /* AxialTransitioningAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7A01F9F389300E744D5 /* AxialTransitioningAnimator.swift */; };
-		4F36D7AF1F9F389300E744D5 /* TransitioningDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7A21F9F389300E744D5 /* TransitioningDelegates.swift */; };
-		4F36D7B01F9F389300E744D5 /* TransitioningProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7A41F9F389300E744D5 /* TransitioningProtocols.swift */; };
-		4F36D7B11F9F389300E744D5 /* PresentationControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7A61F9F389300E744D5 /* PresentationControllers.swift */; };
+		4F36D7AF1F9F389300E744D5 /* BaseTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7A21F9F389300E744D5 /* BaseTransitioningDelegate.swift */; };
+		4F36D7B01F9F389300E744D5 /* TransitionResignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7A41F9F389300E744D5 /* TransitionResignable.swift */; };
+		4F36D7B11F9F389300E744D5 /* BasePresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7A61F9F389300E744D5 /* BasePresentationController.swift */; };
 		4F36D7B51F9F3A2E00E744D5 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7B41F9F3A2E00E744D5 /* AppConstants.swift */; };
 		4F36D7B71F9F3A3B00E744D5 /* ErrorCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7B61F9F3A3B00E744D5 /* ErrorCreator.swift */; };
 		4F36D7B91F9F407A00E744D5 /* UIWindow+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7B81F9F407A00E744D5 /* UIWindow+Extensions.swift */; };
@@ -42,9 +42,9 @@
 		4F36D79B1F9F389300E744D5 /* InitialTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialTableViewController.swift; sourceTree = "<group>"; };
 		4F36D79E1F9F389300E744D5 /* TransitionCoordinators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionCoordinators.swift; sourceTree = "<group>"; };
 		4F36D7A01F9F389300E744D5 /* AxialTransitioningAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AxialTransitioningAnimator.swift; sourceTree = "<group>"; };
-		4F36D7A21F9F389300E744D5 /* TransitioningDelegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitioningDelegates.swift; sourceTree = "<group>"; };
-		4F36D7A41F9F389300E744D5 /* TransitioningProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitioningProtocols.swift; sourceTree = "<group>"; };
-		4F36D7A61F9F389300E744D5 /* PresentationControllers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationControllers.swift; sourceTree = "<group>"; };
+		4F36D7A21F9F389300E744D5 /* BaseTransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTransitioningDelegate.swift; sourceTree = "<group>"; };
+		4F36D7A41F9F389300E744D5 /* TransitionResignable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionResignable.swift; sourceTree = "<group>"; };
+		4F36D7A61F9F389300E744D5 /* BasePresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePresentationController.swift; sourceTree = "<group>"; };
 		4F36D7B41F9F3A2E00E744D5 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		4F36D7B61F9F3A3B00E744D5 /* ErrorCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCreator.swift; sourceTree = "<group>"; };
 		4F36D7B81F9F407A00E744D5 /* UIWindow+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Extensions.swift"; sourceTree = "<group>"; };
@@ -111,16 +111,9 @@
 			children = (
 				4F36D7C01F9F428000E744D5 /* Initial.storyboard */,
 				4F36D78E1F9F389300E744D5 /* View */,
-				4F36D78D1F9F389300E744D5 /* ViewModel */,
+				4F8C727B1F9F6F8500E751E3 /* ViewModel */,
 			);
 			path = initial;
-			sourceTree = "<group>";
-		};
-		4F36D78D1F9F389300E744D5 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		4F36D78E1F9F389300E744D5 /* View */ = {
@@ -221,7 +214,7 @@
 		4F36D7A11F9F389300E744D5 /* delegates */ = {
 			isa = PBXGroup;
 			children = (
-				4F36D7A21F9F389300E744D5 /* TransitioningDelegates.swift */,
+				4F36D7A21F9F389300E744D5 /* BaseTransitioningDelegate.swift */,
 			);
 			path = delegates;
 			sourceTree = "<group>";
@@ -229,7 +222,7 @@
 		4F36D7A31F9F389300E744D5 /* protocols */ = {
 			isa = PBXGroup;
 			children = (
-				4F36D7A41F9F389300E744D5 /* TransitioningProtocols.swift */,
+				4F36D7A41F9F389300E744D5 /* TransitionResignable.swift */,
 			);
 			path = protocols;
 			sourceTree = "<group>";
@@ -237,7 +230,7 @@
 		4F36D7A51F9F389300E744D5 /* presentationControllers */ = {
 			isa = PBXGroup;
 			children = (
-				4F36D7A61F9F389300E744D5 /* PresentationControllers.swift */,
+				4F36D7A61F9F389300E744D5 /* BasePresentationController.swift */,
 			);
 			path = presentationControllers;
 			sourceTree = "<group>";
@@ -259,6 +252,13 @@
 				4F36D7B61F9F3A3B00E744D5 /* ErrorCreator.swift */,
 			);
 			path = utilities;
+			sourceTree = "<group>";
+		};
+		4F8C727B1F9F6F8500E751E3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		60F4BE5DDDEEAFE198277C83 /* Frameworks */ = {
@@ -466,10 +466,10 @@
 				4F36D7BB1F9F40F900E744D5 /* UIView+Extensions.swift in Sources */,
 				4F36D7B91F9F407A00E744D5 /* UIWindow+Extensions.swift in Sources */,
 				4F36D7AA1F9F389300E744D5 /* BaseTableViewController.swift in Sources */,
-				4F36D7AF1F9F389300E744D5 /* TransitioningDelegates.swift in Sources */,
-				4F36D7B11F9F389300E744D5 /* PresentationControllers.swift in Sources */,
+				4F36D7AF1F9F389300E744D5 /* BaseTransitioningDelegate.swift in Sources */,
+				4F36D7B11F9F389300E744D5 /* BasePresentationController.swift in Sources */,
 				4F36D7A71F9F389300E744D5 /* InitialViewController.swift in Sources */,
-				4F36D7B01F9F389300E744D5 /* TransitioningProtocols.swift in Sources */,
+				4F36D7B01F9F389300E744D5 /* TransitionResignable.swift in Sources */,
 				4F36D7B51F9F3A2E00E744D5 /* AppConstants.swift in Sources */,
 				4F36D7AC1F9F389300E744D5 /* InitialTableViewController.swift in Sources */,
 				4F36D7C21F9F46B600E744D5 /* AppUtilities.swift in Sources */,

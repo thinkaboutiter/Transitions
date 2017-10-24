@@ -1,5 +1,5 @@
 //
-//  TransitioningDelegates.swift
+//  BaseTransitioningDelegate.swift
 //  Transitions
 //
 //  Created by Boyan Yankov on 13/01/2016.
