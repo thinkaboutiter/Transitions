@@ -22,6 +22,7 @@
 		4F36D7B71F9F3A3B00E744D5 /* ErrorCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7B61F9F3A3B00E744D5 /* ErrorCreator.swift */; };
 		4F36D7B91F9F407A00E744D5 /* UIWindow+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7B81F9F407A00E744D5 /* UIWindow+Extensions.swift */; };
 		4F36D7BB1F9F40F900E744D5 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7BA1F9F40F900E744D5 /* UIView+Extensions.swift */; };
+		4F36D7BE1F9F428000E744D5 /* Initial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F36D7C01F9F428000E744D5 /* Initial.storyboard */; };
 		7D323B531C46309900938F08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D323B521C46309900938F08 /* AppDelegate.swift */; };
 		7D323B581C46309900938F08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D323B561C46309900938F08 /* Main.storyboard */; };
 		7D323B5A1C46309900938F08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D323B591C46309900938F08 /* Assets.xcassets */; };
@@ -46,6 +47,7 @@
 		4F36D7B61F9F3A3B00E744D5 /* ErrorCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCreator.swift; sourceTree = "<group>"; };
 		4F36D7B81F9F407A00E744D5 /* UIWindow+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Extensions.swift"; sourceTree = "<group>"; };
 		4F36D7BA1F9F40F900E744D5 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		4F36D7BF1F9F428000E744D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Initial.storyboard; sourceTree = "<group>"; };
 		5BE8176FFD4F224A4D7922B6 /* Pods-Transitions.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Transitions.release.xcconfig"; path = "Pods/Target Support Files/Pods-Transitions/Pods-Transitions.release.xcconfig"; sourceTree = "<group>"; };
 		7D323B4F1C46309900938F08 /* Transitions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Transitions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D323B521C46309900938F08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 		4F36D78C1F9F389300E744D5 /* initial */ = {
 			isa = PBXGroup;
 			children = (
+				4F36D7C01F9F428000E744D5 /* Initial.storyboard */,
 				4F36D78E1F9F389300E744D5 /* View */,
 				4F36D78D1F9F389300E744D5 /* ViewModel */,
 			);
@@ -368,6 +371,7 @@
 				7D323B5D1C46309900938F08 /* LaunchScreen.storyboard in Resources */,
 				7D323B5A1C46309900938F08 /* Assets.xcassets in Resources */,
 				7D323B581C46309900938F08 /* Main.storyboard in Resources */,
+				4F36D7BE1F9F428000E744D5 /* Initial.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,6 +473,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		4F36D7C01F9F428000E744D5 /* Initial.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4F36D7BF1F9F428000E744D5 /* Base */,
+			);
+			name = Initial.storyboard;
+			sourceTree = "<group>";
+		};
 		7D323B561C46309900938F08 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
