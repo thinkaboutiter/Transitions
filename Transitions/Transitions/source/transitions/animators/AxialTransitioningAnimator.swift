@@ -18,9 +18,9 @@ class AxialTransitioningAnimator: BaseTransitioningAnimator {
         super.init()
     }
     
-    // MARK: - Animation objects (helpers)
+    // MARK: - Animations
     // MARK: Presentation
-    override func toView_PresentationalAnimationFrames(_ transitionContext: UIViewControllerContextTransitioning) throws -> (CGRect, CGRect) {
+    override func toView_presentationalAnimationFrames(_ transitionContext: UIViewControllerContextTransitioning) throws -> (CGRect, CGRect) {
         
         // Get the set of relevant objects.
         let containerView: UIView = self.containerViewForContext(transitionContext)
@@ -70,7 +70,7 @@ class AxialTransitioningAnimator: BaseTransitioningAnimator {
         return (toView_InitialFrame, toView_FinalFrame)
     }
     
-    override func toView_DismissalAnimationFrames(_ transitionContext: UIViewControllerContextTransitioning) throws -> (CGRect, CGRect) {
+    override func toView_dismissalAnimationFrames(_ transitionContext: UIViewControllerContextTransitioning) throws -> (CGRect, CGRect) {
         // Get the set of relevant objects.
         let toVC: UIViewController = try self.toViewControllerForContext(transitionContext)
         let toView_InitialFrame: CGRect = transitionContext.initialFrame(for: toVC)
@@ -79,7 +79,7 @@ class AxialTransitioningAnimator: BaseTransitioningAnimator {
         return (toView_InitialFrame, toView_FinalFrame)
     }
     
-    override func fromView_DismissalAnimationFrames(_ transitionContext: UIViewControllerContextTransitioning) throws -> (CGRect, CGRect) {
+    override func fromView_dismissalAnimationFrames(_ transitionContext: UIViewControllerContextTransitioning) throws -> (CGRect, CGRect) {
         let containerView: UIView = self.containerViewForContext(transitionContext)
         let toVC: UIViewController = try self.toViewControllerForContext(transitionContext)
         let fromVC: UIViewController = try self.fromViewControllerForContext(transitionContext)
