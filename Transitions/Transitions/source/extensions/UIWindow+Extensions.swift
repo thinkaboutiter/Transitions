@@ -17,7 +17,7 @@ extension UIWindow {
     /**
      * Replace `rootViewController` object with snapshot cover image
      */
-    @objc func replaceRootViewController(with replacementController: UIViewController, animated: Bool, completion: (() -> Void)?) {
+    func replaceRootViewController(with replacementController: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
         
         // we need a valid `rootViewController`
         guard let validRootViewController: UIViewController = self.rootViewController else {
@@ -50,7 +50,7 @@ extension UIWindow {
     fileprivate func transitionTo(_ replacementViewController: UIViewController,
                                   snapshotImageView: UIImageView,
                                   animated: Bool,
-                                  completion: (() -> Void)?)
+                                  completion: (() -> Void)? = nil)
     {
         self.rootViewController = replacementViewController
         self.bringSubview(toFront: snapshotImageView)
