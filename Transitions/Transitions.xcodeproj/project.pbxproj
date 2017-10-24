@@ -12,7 +12,7 @@
 		4F36D7A91F9F389300E744D5 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7921F9F389300E744D5 /* BaseTableViewCell.swift */; };
 		4F36D7AA1F9F389300E744D5 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7931F9F389300E744D5 /* BaseTableViewController.swift */; };
 		4F36D7AB1F9F389300E744D5 /* FinalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7971F9F389300E744D5 /* FinalViewController.swift */; };
-		4F36D7AC1F9F389300E744D5 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D79B1F9F389300E744D5 /* MainTableViewController.swift */; };
+		4F36D7AC1F9F389300E744D5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D79B1F9F389300E744D5 /* MainViewController.swift */; };
 		4F36D7AD1F9F389300E744D5 /* TransitionCoordinators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D79E1F9F389300E744D5 /* TransitionCoordinators.swift */; };
 		4F36D7AE1F9F389300E744D5 /* AxialTransitioningAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7A01F9F389300E744D5 /* AxialTransitioningAnimator.swift */; };
 		4F36D7AF1F9F389300E744D5 /* BaseTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F36D7A21F9F389300E744D5 /* BaseTransitioningDelegate.swift */; };
@@ -39,7 +39,7 @@
 		4F36D7921F9F389300E744D5 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		4F36D7931F9F389300E744D5 /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		4F36D7971F9F389300E744D5 /* FinalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalViewController.swift; sourceTree = "<group>"; };
-		4F36D79B1F9F389300E744D5 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		4F36D79B1F9F389300E744D5 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		4F36D79E1F9F389300E744D5 /* TransitionCoordinators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionCoordinators.swift; sourceTree = "<group>"; };
 		4F36D7A01F9F389300E744D5 /* AxialTransitioningAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AxialTransitioningAnimator.swift; sourceTree = "<group>"; };
 		4F36D7A21F9F389300E744D5 /* BaseTransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTransitioningDelegate.swift; sourceTree = "<group>"; };
@@ -178,7 +178,7 @@
 		4F36D79A1F9F389300E744D5 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4F36D79B1F9F389300E744D5 /* MainTableViewController.swift */,
+				4F36D79B1F9F389300E744D5 /* MainViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -471,7 +471,7 @@
 				4F36D7A71F9F389300E744D5 /* InitialViewController.swift in Sources */,
 				4F36D7B01F9F389300E744D5 /* TransitionResignable.swift in Sources */,
 				4F36D7B51F9F3A2E00E744D5 /* AppConstants.swift in Sources */,
-				4F36D7AC1F9F389300E744D5 /* MainTableViewController.swift in Sources */,
+				4F36D7AC1F9F389300E744D5 /* MainViewController.swift in Sources */,
 				4F36D7C21F9F46B600E744D5 /* AppUtilities.swift in Sources */,
 				4F36D7A81F9F389300E744D5 /* BaseViewController.swift in Sources */,
 				4F8C727A1F9F66BB00E751E3 /* BaseTransitioningAnimator.swift in Sources */,

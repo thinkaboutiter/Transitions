@@ -1,5 +1,5 @@
 //
-//  MainTableViewController.swift
+//  MainViewController.swift
 //  Transitions
 //
 //  Created by Boyan Yankov on 19/01/2016.
@@ -9,7 +9,7 @@
 import UIKit
 import SimpleLogger
 
-class MainTableViewController: BaseTableViewController {
+class MainViewController: BaseViewController {
     
     fileprivate let cellTitles: [String] = [
         "Transitioning Left",
@@ -18,24 +18,46 @@ class MainTableViewController: BaseTableViewController {
         "Transitioning Down"
     ]
     
+    // MARK: - Properties
+    @IBOutlet weak var functionalitesTableView: UITableView!
+    
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.configureAppearance()
-        self.configureTableView(self.tableView)
+        self.configure_appearance()
+        self.configure(self.functionalitesTableView)
+    }
+}
+
+// MARK: - UI configurations
+fileprivate extension MainViewController {
+    
+    fileprivate func configure_appearance() {
+        self.title = "Transitions"
     }
     
-    // MARK: - UITableViewDataSource protocol
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    fileprivate func configure(_ tableView: UITableView) {
+        tableView.register(BaseTableViewCell.self, forCellReuseIdentifier: NSStringFromClass(BaseTableViewCell.self))
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = UIColor.black
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+}
+
+// MARK: - UITableViewDataSource protocol
+extension MainViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.cellTitles.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: BaseTableViewCell
         
         if let validCell: BaseTableViewCell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(BaseTableViewCell.self), for: indexPath) as? BaseTableViewCell {
@@ -52,13 +74,16 @@ class MainTableViewController: BaseTableViewController {
         
         return cell
     }
+}
+
+// MARK: - UITableViewDelegate protocol
+extension MainViewController: UITableViewDelegate {
     
-    // MARK: - UITableViewDelegate protocol
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50.0
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
         // `validStoryboard`
@@ -131,16 +156,5 @@ class MainTableViewController: BaseTableViewController {
         finalVC.customTransitioningDelegate = transitioningDelegate
         
         self.present(finalVC, animated: true, completion: nil)
-    }
-    
-    // MARK: - Configuration
-    fileprivate func configureAppearance() {
-        self.title = "Transitions"
-    }
-    
-    fileprivate func configureTableView(_ tableView: UITableView) {
-        tableView.register(BaseTableViewCell.self, forCellReuseIdentifier: NSStringFromClass(BaseTableViewCell.self))
-        tableView.separatorStyle = .none
-        tableView.backgroundColor = UIColor.black
     }
 }

@@ -1,53 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YWv-dc-unA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YWv-dc-unA">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main Table View Controller-->
-        <scene sceneID="Txb-ou-ute">
-            <objects>
-                <tableViewController storyboardIdentifier="Transitions.InitialTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fHV-iX-9Gb" customClass="MainTableViewController" customModule="Transitions" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="bei-KR-kkd">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.3333333432674408" green="0.3333333432674408" blue="0.3333333432674408" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UITableViewCell" id="s7q-cc-lNv">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="s7q-cc-lNv" id="7OD-dn-qs1">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="fHV-iX-9Gb" id="Koi-Oy-JKd"/>
-                            <outlet property="delegate" destination="fHV-iX-9Gb" id="iFa-c9-t3x"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="H3z-sg-KFG"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sMh-cG-g5N" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1361" y="-63"/>
-        </scene>
         <!--Final View Controller-->
         <scene sceneID="FiD-qa-NMJ">
             <objects>
                 <viewController storyboardIdentifier="Transitions.FinalViewController" id="Y8b-ul-AsW" customClass="FinalViewController" customModule="Transitions" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="x3w-fS-7sY"/>
-                        <viewControllerLayoutGuide type="bottom" id="bZS-by-nbL"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kEX-m0-DNG">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oId-fL-zXo">
-                                <rect key="frame" x="229" y="285" width="142" height="30"/>
+                                <rect key="frame" x="116.5" y="318.5" width="142" height="30"/>
                                 <color key="backgroundColor" red="0.2470170454545455" green="0.2470170454545455" blue="0.2470170454545455" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Transiton backwards"/>
                                 <connections>
@@ -58,8 +31,9 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="oId-fL-zXo" firstAttribute="centerY" secondItem="kEX-m0-DNG" secondAttribute="centerY" id="2Ga-6J-qto"/>
-                            <constraint firstItem="oId-fL-zXo" firstAttribute="centerX" secondItem="kEX-m0-DNG" secondAttribute="centerX" id="36i-JC-WGd"/>
+                            <constraint firstItem="oId-fL-zXo" firstAttribute="centerX" secondItem="vZA-mv-tvw" secondAttribute="centerX" id="36i-JC-WGd"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="vZA-mv-tvw"/>
                     </view>
                     <connections>
                         <outlet property="transitionBackwardsButton" destination="oId-fL-zXo" id="QP8-kS-nxX"/>
@@ -67,7 +41,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gks-LB-ggP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1361" y="602"/>
+            <point key="canvasLocation" x="1398" y="607"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cXl-e5-kfZ">
@@ -80,12 +54,43 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="fHV-iX-9Gb" kind="relationship" relationship="rootViewController" id="GLr-Zl-MJu"/>
+                        <segue destination="nUN-hj-UTa" kind="relationship" relationship="rootViewController" id="Mhe-J1-Pzi"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="inT-ii-AT0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="639" y="-63"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="1B8-hc-6hX">
+            <objects>
+                <viewController storyboardIdentifier="MainViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nUN-hj-UTa" customClass="MainViewController" customModule="Transitions" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RqL-Bi-Kgx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Aq8-iQ-po2" userLabel="table-view">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Aq8-iQ-po2" firstAttribute="top" secondItem="WXl-sR-hY0" secondAttribute="top" id="FFJ-6E-BBa"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="Aq8-iQ-po2" secondAttribute="bottom" id="dL4-SR-qvG"/>
+                            <constraint firstItem="Aq8-iQ-po2" firstAttribute="leading" secondItem="RqL-Bi-Kgx" secondAttribute="leading" id="uaj-i9-Ctg"/>
+                            <constraint firstAttribute="trailing" secondItem="Aq8-iQ-po2" secondAttribute="trailing" id="vfs-4V-ERZ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="WXl-sR-hY0"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ELy-Rd-1oM"/>
+                    <connections>
+                        <outlet property="functionalitesTableView" destination="Aq8-iQ-po2" id="WM0-jL-qbB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x8c-vQ-DPH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1399" y="-63"/>
         </scene>
     </scenes>
 </document>
