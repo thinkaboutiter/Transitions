@@ -52,7 +52,7 @@ extension MainViewModel {
             ]
         }
         
-        func staticRowData() -> [MainViewModel.StaticRowData] {
+        func rowsData() -> [MainViewModel.StaticRowData] {
             let staticRowData: [MainViewModel.StaticRowData]
             
             switch self {
