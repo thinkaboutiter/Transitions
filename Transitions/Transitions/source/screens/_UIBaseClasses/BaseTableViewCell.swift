@@ -59,6 +59,8 @@ class BaseTableViewCell: UITableViewCell {
     func configure(with rowData: MainViewModel.StaticRowData, isFirst: Bool, isLast: Bool) {
         self.textLabel?.text = rowData.title()
         self.textLabel?.textColor = UIColor.white
+        self.isFirst = isFirst
+        self.isLast = isLast
     }
 }
 
