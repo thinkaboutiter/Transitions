@@ -27,13 +27,13 @@ class BaseTableViewCell: UITableViewCell {
         return view
     }()
     
-    var isFirst: Bool = false {
+    fileprivate var isFirst: Bool = false {
         didSet {
             self.topSeparatorView.isHidden = !isFirst
         }
     }
     
-    var isLast: Bool = false {
+    fileprivate var isLast: Bool = false {
         didSet {
             self.positionSeparatorViews()
         }
@@ -54,6 +54,11 @@ class BaseTableViewCell: UITableViewCell {
     // MARK: - life cycle
     override func updateConstraints() {
         super.updateConstraints()
+    }
+    
+    func configure(with rowData: MainViewModel.StaticRowData, isFirst: Bool, isLast: Bool) {
+        self.textLabel?.text = rowData.title()
+        self.textLabel?.textColor = UIColor.white
     }
 }
 
