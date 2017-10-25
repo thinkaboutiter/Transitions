@@ -18,13 +18,9 @@ class FinalViewController: BaseViewController, TransitionResignable {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.red.withAlphaComponent(1)
-        self.configureButton(self.transitionBackwardsButton)
-        
-        // attach `resignTransitioningSwipeGestureRecognizer`
-        if let _ = self.resignTransitioningSwipeGestureRecognizer {
-            self.view.addGestureRecognizer(self.resignTransitioningSwipeGestureRecognizer!)
-        }
+        self.configure(self.view)
+        self.configure(self.transitionBackwardsButton)
+        self.attach(self.resignTransitioningSwipeGestureRecognizer, to: self.view)
     }
     
     override func didReceiveMemoryWarning() {
@@ -40,39 +36,29 @@ class FinalViewController: BaseViewController, TransitionResignable {
     
     lazy var resignTransitioningSwipeGestureRecognizer: UISwipeGestureRecognizer? = {
         // configure `resignTransitioningSwipeGestureRecognizer`
-        let swipeGR: UISwipeGestureRecognizer?
+        let swipeGR: UISwipeGestureRecognizer
         
-        if let validCustomTransitioningDelegate = self.customTransitioningDelegate as? BaseTransitioningDelegate, let validAnimator = validCustomTransitioningDelegate.presentationalAnimator as? AxialTransitioningAnimator {
+        if
+            let validCustomTransitioningDelegate = self.customTransitioningDelegate as? BaseTransitioningDelegate,
+            let validAnimator = validCustomTransitioningDelegate.presentationalAnimator as? AxialTransitioningAnimator
+        {
             switch validAnimator.transitioningDirection {
             case .left:
-                Logger.debug.message("Horizontal.Left")
-                
-                // configure `swipeGR`
                 swipeGR = UISwipeGestureRecognizer(target: self, action: #selector(FinalViewController.transitionBackwardsPressed(_:)))
-                swipeGR?.direction = .right
+                swipeGR.direction = .right
                 
             case .right:
-                Logger.debug.message("Horizontal.Right")
-                
-                // configure `swipeGR`
                 swipeGR = UISwipeGestureRecognizer(target: self, action: #selector(FinalViewController.transitionBackwardsPressed(_:)))
-                swipeGR?.direction = .left
+                swipeGR.direction = .left
                 
             case .up:
-                Logger.debug.message("Vertical.Top")
-                
-                // configure `swipeGR`
                 swipeGR = UISwipeGestureRecognizer(target: self, action: #selector(FinalViewController.transitionBackwardsPressed(_:)))
-                swipeGR?.direction = .down
+                swipeGR.direction = .down
                 
             case .down:
-                Logger.debug.message("Vertical.Bottom")
-                
-                // configure `swipeGR`
                 swipeGR = UISwipeGestureRecognizer(target: self, action: #selector(FinalViewController.transitionBackwardsPressed(_:)))
-                swipeGR?.direction = .up
+                swipeGR.direction = .up
             }
-            
             return swipeGR
         }
         return nil
@@ -87,8 +73,8 @@ class FinalViewController: BaseViewController, TransitionResignable {
             Logger.debug.message("Tansition will use default `transitioningDelegate`").object(self.transitioningDelegate)
         }
         
-        if let validPresentingVC = self.presentingViewController {
-            validPresentingVC.dismiss(animated: animated, completion: completion)
+        if let valid_presentingVC = self.presentingViewController {
+            valid_presentingVC.dismiss(animated: animated, completion: completion)
         }
     }
     
@@ -101,10 +87,22 @@ class FinalViewController: BaseViewController, TransitionResignable {
 // MARK: - UI configurations
 fileprivate extension FinalViewController {
    
-    func configureButton(_ button: UIButton) {
-        button.setTitleColor(UIColor.white.withAlphaComponent(0.8), for: UIControlState())
-        button.setTitleColor(UIColor.white.withAlphaComponent(0.8), for: .selected)
-        button.setTitleColor(UIColor.white.withAlphaComponent(0.8), for: .highlighted)
-        button.backgroundColor = UIColor.clear
+    func configure(_ aButton: UIButton) {
+        aButton.setTitleColor(UIColor.white.withAlphaComponent(0.8), for: UIControlState())
+        aButton.setTitleColor(UIColor.white.withAlphaComponent(0.8), for: .selected)
+        aButton.setTitleColor(UIColor.white.withAlphaComponent(0.8), for: .highlighted)
+        aButton.backgroundColor = UIColor.clear
+    }
+    
+    func configure(_ aView: UIView) {
+        aView.backgroundColor = UIColor.red.withAlphaComponent(1)
+    }
+    
+    func attach(_ recognizer: UIGestureRecognizer?, to aView: UIView) {
+        guard let valid_recognizer: UIGestureRecognizer = recognizer else {
+            Logger.error.message("Invalid \(String(describing: UIGestureRecognizer.self)) object!")
+            return
+        }
+        aView.addGestureRecognizer(valid_recognizer)
     }
 }
