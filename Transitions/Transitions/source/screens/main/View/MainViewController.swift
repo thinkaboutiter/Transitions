@@ -173,14 +173,10 @@ extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        // `validStoryboard`
-        guard let validStoryboard: UIStoryboard = self.storyboard else {
-            Logger.error.message("`validStoryboard`is not available")
+        guard let finalVC: FinalViewController = UIStoryboard(name: AppConstants.StoryboardName.final, bundle: nil).instantiateViewController(withIdentifier: String(describing: FinalViewController.self)) as? FinalViewController else {
+            Logger.error.message("Unable to instantiate \(String(describing: FinalViewController.self))")
             return
         }
-        
-        // `finalVC` is the `presentedOne`
-        let finalVC: FinalViewController = validStoryboard.instantiateViewController(withIdentifier: NSStringFromClass(FinalViewController.self)) as! FinalViewController
         
         // configure `modalPresentationStyle`
         self.modalPresentationStyle = .custom
