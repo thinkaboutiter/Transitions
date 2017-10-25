@@ -22,33 +22,33 @@ class BaseTransitioningAnimator: NSObject {
     
     // MARK: - Animation objects
     // MARK: Frames
-    func toView_presentationalAnimationFrames(_ transitionContext: UIViewControllerContextTransitioning) throws -> (CGRect, CGRect) {
+    func toView_presentationalAnimationFrames(using transitionContext: UIViewControllerContextTransitioning) throws -> (CGRect, CGRect) {
         fatalError("`toView_PresentationalAnimationFrames(_:)` has not been implemented")
     }
     
-    func toView_dismissalAnimationFrames(_ transitionContext: UIViewControllerContextTransitioning) throws -> (CGRect, CGRect) {
+    func toView_dismissalAnimationFrames(using transitionContext: UIViewControllerContextTransitioning) throws -> (CGRect, CGRect) {
         fatalError("`toView_DismissalAnimationFrames(_:)` has not been implemented")
     }
     
-    func fromView_dismissalAnimationFrames(_ transitionContext: UIViewControllerContextTransitioning) throws -> (CGRect, CGRect) {
+    func fromView_dismissalAnimationFrames(using transitionContext: UIViewControllerContextTransitioning) throws -> (CGRect, CGRect) {
         fatalError("`fromView_DismissalAnimationFrames(_:)` has not been implemented")
     }
     
     // MARK: containerView
-    func containerViewForContext(_ transitionContext: UIViewControllerContextTransitioning) -> UIView {
+    func containerView(using transitionContext: UIViewControllerContextTransitioning) -> UIView {
         let validContainerView: UIView = transitionContext.containerView
         return validContainerView
     }
     
     // MARK: to UIs
-    func toViewControllerForContext(_ transitionContext: UIViewControllerContextTransitioning) throws -> UIViewController {
+    func toViewController(using transitionContext: UIViewControllerContextTransitioning) throws -> UIViewController {
         guard let validToVC: UIViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) else {
             throw TransitioningAnimatorError.generalError(errorReason: "`transitionContext` has no `ToViewController`")
         }
         return validToVC
     }
     
-    func toViewForContext(_ transitionContext: UIViewControllerContextTransitioning) throws -> UIView {
+    func toView(using transitionContext: UIViewControllerContextTransitioning) throws -> UIView {
         guard let validToView: UIView = transitionContext.view(forKey: UITransitionContextViewKey.to) else {
             throw TransitioningAnimatorError.generalError(errorReason: "`transitionContext` has no `ToView`")
         }
@@ -56,14 +56,14 @@ class BaseTransitioningAnimator: NSObject {
     }
     
     // MARK: from UIs
-    func fromViewControllerForContext(_ transitionContext: UIViewControllerContextTransitioning) throws -> UIViewController {
+    func fromViewController(using transitionContext: UIViewControllerContextTransitioning) throws -> UIViewController {
         guard let validFromVC: UIViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from) else {
             throw TransitioningAnimatorError.generalError(errorReason: "`transitionContext`has no `FromViewController`")
         }
         return validFromVC
     }
     
-    func fromViewForContext(_ transitionContext: UIViewControllerContextTransitioning) throws -> UIView {
+    func fromView(using transitionContext: UIViewControllerContextTransitioning) throws -> UIView {
         guard let validFromView: UIView = transitionContext.view(forKey: UITransitionContextViewKey.from) else {
             throw TransitioningAnimatorError.generalError(errorReason: "`transitionContext` has no `FromView`")
         }
@@ -83,7 +83,7 @@ extension BaseTransitioningAnimator: UIViewControllerAnimatedTransitioning {
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         // non-interactive animation
         do {
-            try self.animateTranstion(isPresentation: self.isPresenting, withTransitionContext: transitionContext)
+            try self.animateTranstion(isPresentation: self.isPresenting, using: transitionContext)
         }
         catch TransitioningAnimatorError.generalError(let errorReason) {
             Logger.error.message("Transitioning Animator Error:").object(errorReason)
@@ -103,21 +103,21 @@ extension BaseTransitioningAnimator: UIViewControllerAnimatedTransitioning {
 fileprivate extension BaseTransitioningAnimator {
     
     /** Non-interactive transitioning animation */
-    func animateTranstion(isPresentation: Bool, withTransitionContext transitionContext: UIViewControllerContextTransitioning) throws -> Void {
+    func animateTranstion(isPresentation: Bool, using transitionContext: UIViewControllerContextTransitioning) throws -> Void {
         
         if isPresentation {
-            try self.animatePresentationalTransition(transitionContext)
+            try self.animatePresentationalTransition(using: transitionContext)
         }
         else {
-            try self.animateDismissalTransition(transitionContext)
+            try self.animateDismissalTransition(using: transitionContext)
         }
     }
     
-    func animatePresentationalTransition(_ transitionContext: UIViewControllerContextTransitioning) throws {
+    func animatePresentationalTransition(using transitionContext: UIViewControllerContextTransitioning) throws {
         // Get the set of relevant objects.
-        let containerView: UIView = self.containerViewForContext(transitionContext)
-        let toView: UIView = try self.toViewForContext(transitionContext)
-        let (toView_StartFrame, toView_FinalFrame) = try self.toView_presentationalAnimationFrames(transitionContext)
+        let containerView: UIView = self.containerView(using: transitionContext)
+        let toView: UIView = try self.toView(using: transitionContext)
+        let (toView_StartFrame, toView_FinalFrame) = try self.toView_presentationalAnimationFrames(using: transitionContext)
         
         // Always add the "to" view to the container. And it doesn't hurt to set its start frame.
         containerView.addSubview(toView)
@@ -142,14 +142,14 @@ fileprivate extension BaseTransitioningAnimator {
         })
     }
     
-    func animateDismissalTransition(_ transitionContext: UIViewControllerContextTransitioning) throws {
+    func animateDismissalTransition(using transitionContext: UIViewControllerContextTransitioning) throws {
         // Get the set of relevant objects.
-        let toVC: UIViewController = try self.toViewControllerForContext(transitionContext)
-        let fromVC: UIViewController = try self.fromViewControllerForContext(transitionContext)
+        let toVC: UIViewController = try self.toViewController(using: transitionContext)
+        let fromVC: UIViewController = try self.fromViewController(using: transitionContext)
         
         // try to obtain the `toView` either from `toVC`, or via `transitionContext` `viewForKey(UITransitionContextToViewKey)`
         let toView: UIView = {
-            if let validToView = try? self.toViewForContext(transitionContext) {
+            if let validToView = try? self.toView(using: transitionContext) {
                 return validToView
             }
             else {
@@ -158,7 +158,7 @@ fileprivate extension BaseTransitioningAnimator {
         }()
         
         let fromView: UIView = {
-            if let validFromView = try? self.fromViewForContext(transitionContext) {
+            if let validFromView = try? self.fromView(using: transitionContext) {
                 return validFromView
             }
             else {
@@ -167,8 +167,8 @@ fileprivate extension BaseTransitioningAnimator {
         }()
         
         // Set up some variables for the animation.
-        let (_, toView_FinalFrame) = try self.toView_dismissalAnimationFrames(transitionContext)
-        let (_, fromView_FinalFrame) = try self.fromView_dismissalAnimationFrames(transitionContext)
+        let (_, toView_FinalFrame) = try self.toView_dismissalAnimationFrames(using: transitionContext)
+        let (_, fromView_FinalFrame) = try self.fromView_dismissalAnimationFrames(using: transitionContext)
         
         // Always add the "to" view to the container. And it doesn't hurt to set its start frame.
         /** we don't need to add the `toView` if it is already added - this is dismissal animation */

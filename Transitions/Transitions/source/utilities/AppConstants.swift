@@ -14,6 +14,7 @@ struct AppConstants {
     struct StoryboardName {
         static let initial: String = "Initial"
         static let main: String = "Main"
+        static let final: String = "Final"
     }
     
     // MARK: - Error messages

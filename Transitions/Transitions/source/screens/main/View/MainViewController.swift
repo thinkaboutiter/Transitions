@@ -100,29 +100,17 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // we need a valid `viewModel` object
-        guard let valid_viewModel: MainViewModelable = self.viewModel else {
-            Logger.error.message("Invalid \(String(describing: MainViewModelable.self))")
+        // we need a valid `StaticSectionData` object
+        guard let valid_sectionData: MainViewModel.StaticSectionData = self.sectionData(for: indexPath.section) else {
+            Logger.error.message("Unable to obtain \(String(describing: MainViewModel.StaticSectionData.self)) object!")
             return UITableViewCell()
         }
-        
-        // section index check
-        guard indexPath.section < valid_viewModel.sectionsData.count else {
-            Logger.error.message("Invalid section index")
+
+        // we need a valid `StaticRowData` object
+        guard let valid_rowData: MainViewModel.StaticRowData = self.rowData(for: indexPath, from: valid_sectionData) else {
+            Logger.error.message("Unable to obtain \(String(describing: MainViewModel.StaticRowData.self)) object!")
             return UITableViewCell()
         }
-        
-        // obtain section data
-        let sectionData: MainViewModel.StaticSectionData = valid_viewModel.sectionsData[indexPath.section]
-        
-        // cell section check
-        guard indexPath.row < sectionData.rowsData().count else {
-            Logger.error.message("Invalid cell index")
-            return UITableViewCell()
-        }
-        
-        // obtain cell data
-        let rowData: MainViewModel.StaticRowData = sectionData.rowsData()[indexPath.row]
         
         // cell creation
         let cell: BaseTableViewCell
@@ -134,9 +122,9 @@ extension MainViewController: UITableViewDataSource {
             cell = BaseTableViewCell(style: .default, reuseIdentifier: NSStringFromClass(BaseTableViewCell.self))
         }
         
-        cell.configure(with: rowData,
+        cell.configure(with: valid_rowData,
                        isFirst: indexPath.row == 0,
-                       isLast: indexPath.row == (sectionData.rowsData().count - 1))
+                       isLast: indexPath.row == (valid_sectionData.rowsData().count - 1))
         
         return cell
     }
@@ -147,22 +135,13 @@ extension MainViewController: UITableViewDataSource {
             return nil
         }
         
-        // we need a valid `viewModel` object
-        guard let valid_viewModel: MainViewModelable = self.viewModel else {
-            Logger.error.message("Invalid \(String(describing: MainViewModelable.self))")
+        // we need a valid `StaticSectionData` object
+        guard let valid_sectionData: MainViewModel.StaticSectionData = self.sectionData(for: section) else {
+            Logger.error.message("Unable to obtain \(String(describing: MainViewModel.StaticSectionData.self)) object!")
             return nil
         }
         
-        // section index check
-        guard section < valid_viewModel.sectionsData.count else {
-            Logger.error.message("Invalid section index")
-            return nil
-        }
-        
-        // obtain section data
-        let sectionData: MainViewModel.StaticSectionData = valid_viewModel.sectionsData[section]
-        
-        valid_header.configure(with: sectionData.title())
+        valid_header.configure(with: valid_sectionData.title())
         return valid_header
     }
 }
@@ -173,14 +152,15 @@ extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        // `validStoryboard`
-        guard let validStoryboard: UIStoryboard = self.storyboard else {
-            Logger.error.message("`validStoryboard`is not available")
+        guard let finalVC: FinalViewController = UIStoryboard(name: AppConstants.StoryboardName.final, bundle: nil).instantiateViewController(withIdentifier: String(describing: FinalViewController.self)) as? FinalViewController else {
+            Logger.error.message("Unable to instantiate \(String(describing: FinalViewController.self))")
             return
         }
         
-        // `finalVC` is the `presentedOne`
-        let finalVC: FinalViewController = validStoryboard.instantiateViewController(withIdentifier: NSStringFromClass(FinalViewController.self)) as! FinalViewController
+        guard let valid_rowData: MainViewModel.StaticRowData = self.rowData(for: indexPath) else {
+            Logger.error.message("Unable to obtain \(String(describing: MainViewModel.StaticRowData.self)) object!")
+            return
+        }
         
         // configure `modalPresentationStyle`
         self.modalPresentationStyle = .custom
@@ -190,46 +170,38 @@ extension MainViewController: UITableViewDelegate {
         self.transitioningDelegate = nil
         finalVC.transitioningDelegate = nil
         
-        // `transitioningDelegate`
+        // we need a `transitioningDelegate` for the transition
         let transitioningDelegate: UIViewControllerTransitioningDelegate
         
-        // do presentations with their directions here
-        switch indexPath.row {
-        case 0:
-            // Left
+        // configure `transitioningDelegate`
+        switch valid_rowData {
+        case .nonInteractive_left:
             Logger.debug.message("Transition `Horizontal.Left`")
             
             // create `transitioningDelegate` object
-            transitioningDelegate = BaseTransitioningDelegate(
-                withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .left).shouldPresentViewController(true),
-                andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .left))
+            transitioningDelegate = BaseTransitioningDelegate(withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .left).shouldPresentViewController(true),
+                                                              andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .left))
             
-        case 1:
-            // Right
+        case .nonInteractive_right:
             Logger.debug.message("Transition `Horizontal.Right`")
             
             // create `transitioningDelegate` object
-            transitioningDelegate = BaseTransitioningDelegate(
-                withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .right).shouldPresentViewController(true),
-                andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .right))
+            transitioningDelegate = BaseTransitioningDelegate(withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .right).shouldPresentViewController(true),
+                                                              andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .right))
             
-        case 2:
-            // Up
-            Logger.debug.message("Transition `Vertical.Top`")
+        case .nonInteractive_up:
+            Logger.debug.message("Transition `Vertical.Up`")
             
             // create `transitioningDelegate` object
-            transitioningDelegate = BaseTransitioningDelegate(
-                withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .up).shouldPresentViewController(true),
-                andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .up))
+            transitioningDelegate = BaseTransitioningDelegate(withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .up).shouldPresentViewController(true),
+                                                              andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .up))
             
-        case 3:
-            // Down
-            Logger.debug.message("Transition `Vertical.Bottom`")
+        case .nonInteractive_down:
+            Logger.debug.message("Transition `Vertical.Down`")
             
             // create `transitioningDelegate` object
-            transitioningDelegate = BaseTransitioningDelegate(
-                withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .down).shouldPresentViewController(true),
-                andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .down))
+            transitioningDelegate = BaseTransitioningDelegate(withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .down).shouldPresentViewController(true),
+                                                              andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .down))
             
         default:
             Logger.debug.message("Unsupported Transition")
@@ -246,47 +218,72 @@ extension MainViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        // we need a valid `viewModel` object
-        guard let valid_viewModel: MainViewModelable = self.viewModel else {
-            Logger.error.message("Invalid \(String(describing: MainViewModelable.self))")
-            return BaseTableView.Dimensions.rowHeight
+        // we need a valid `StaticRowData` object
+        guard let valid_rowData: MainViewModel.StaticRowData = self.rowData(for: indexPath) else {
+            Logger.error.message("Unable to obtain \(String(describing: MainViewModel.StaticRowData.self)) object!")
+            return 0
         }
-        
-        // section index check
-        guard indexPath.section < valid_viewModel.sectionsData.count else {
-            Logger.error.message("Invalid section index")
-            return BaseTableView.Dimensions.rowHeight
-        }
-        
-        // obtain section data
-        let sectionData: MainViewModel.StaticSectionData = valid_viewModel.sectionsData[indexPath.section]
-        
-        // cell section check
-        guard indexPath.row < sectionData.rowsData().count else {
-            Logger.error.message("Invalid cell index")
-            return BaseTableView.Dimensions.rowHeight
-        }
-        
-        // obtain cell data
-        let rowData: MainViewModel.StaticRowData = sectionData.rowsData()[indexPath.row]
-        return rowData.height()
+        return valid_rowData.height()
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        // we need a valid `StaticSectionData` object
+        guard let valid_sectionData: MainViewModel.StaticSectionData = self.sectionData(for: section) else {
+            Logger.error.message("Unable to obtain \(String(describing: MainViewModel.StaticSectionData.self)) object!")
+            return 0
+        }
+        return valid_sectionData.height()
+    }
+}
+
+// MARK: - Static data (obtaining)
+fileprivate extension MainViewController {
+    
+    // this optional `sectionData` parameter with default nil value is added (and used) only for the additional
+    // knowledge needed to determine whether the cell is last in a section (UI related)
+    func rowData(for indexPath: IndexPath, from sectionData: MainViewModel.StaticSectionData? = nil) -> MainViewModel.StaticRowData? {
+        let valid_sectionData: MainViewModel.StaticSectionData
+        
+        // we need to know if there is a valid `sectionData` parameter passed in
+        if let passed_sectionData: MainViewModel.StaticSectionData = sectionData {
+            valid_sectionData = passed_sectionData
+        }
+        else {
+            // or we should obtain one from passed `indexPath`
+            guard let obtained_sectionData: MainViewModel.StaticSectionData = self.sectionData(for: indexPath.section) else {
+                Logger.error.message("Unable to obtain \(String(describing: MainViewModel.StaticSectionData.self)) object")
+                return nil
+            }
+            valid_sectionData = obtained_sectionData
+        }
+        
+        // row index check
+        let rowIndex: Int = indexPath.row
+        guard rowIndex < valid_sectionData.rowsData().count else {
+            Logger.error.message("Invalid row index")
+            return nil
+        }
+        
+        // obtain cell data
+        let rowData: MainViewModel.StaticRowData = valid_sectionData.rowsData()[rowIndex]
+        return rowData
+    }
+    
+    func sectionData(for sectionIndex: Int) -> MainViewModel.StaticSectionData? {
         // we need a valid `viewModel` object
         guard let valid_viewModel: MainViewModelable = self.viewModel else {
             Logger.error.message("Invalid \(String(describing: MainViewModelable.self))")
-            return BaseTableView.Dimensions.sectionHeight
+            return nil
         }
         
         // section index check
-        guard section < valid_viewModel.sectionsData.count else {
+        guard sectionIndex < valid_viewModel.sectionsData.count else {
             Logger.error.message("Invalid section index")
-            return BaseTableView.Dimensions.sectionHeight
+            return nil
         }
         
         // obtain section data
-        let sectionData: MainViewModel.StaticSectionData = valid_viewModel.sectionsData[section]
-        return sectionData.height()
+        let sectionData: MainViewModel.StaticSectionData = valid_viewModel.sectionsData[sectionIndex]
+        return sectionData
     }
 }
