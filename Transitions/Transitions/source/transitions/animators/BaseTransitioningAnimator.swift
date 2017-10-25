@@ -14,24 +14,27 @@ class BaseTransitioningAnimator: NSObject {
     
     fileprivate(set) var isPresenting: Bool = false
     
-    // chainable
-    func shouldPresentViewController(_ isPresenting: Bool) -> BaseTransitioningAnimator {
-        self.isPresenting = isPresenting
-        return self
+    // MARK: - Animations
+    func animatePresentationalTransition(using transitionContext: UIViewControllerContextTransitioning) throws {
+        fatalError("Subclasses should implement")
+    }
+    
+    func animateDismissalTransition(using transitionContext: UIViewControllerContextTransitioning) throws {
+        fatalError("Subclasses should implement")
     }
     
     // MARK: - Animation objects
     // MARK: Frames
     func toView_presentationalAnimationFrames(using transitionContext: UIViewControllerContextTransitioning) throws -> (CGRect, CGRect) {
-        fatalError("`toView_PresentationalAnimationFrames(_:)` has not been implemented")
+        fatalError("Subclasses should implement")
     }
     
     func toView_dismissalAnimationFrames(using transitionContext: UIViewControllerContextTransitioning) throws -> (CGRect, CGRect) {
-        fatalError("`toView_DismissalAnimationFrames(_:)` has not been implemented")
+        fatalError("Subclasses should implement")
     }
     
     func fromView_dismissalAnimationFrames(using transitionContext: UIViewControllerContextTransitioning) throws -> (CGRect, CGRect) {
-        fatalError("`fromView_DismissalAnimationFrames(_:)` has not been implemented")
+        fatalError("Subclasses should implement")
     }
     
     // MARK: containerView
@@ -93,17 +96,8 @@ extension BaseTransitioningAnimator: UIViewControllerAnimatedTransitioning {
         }
     }
     
-    /** This is a convenience and if implemented will be invoked by the system when the transition context's completeTransition: method is invoked. */
-    func animationEnded(_ transitionCompleted: Bool) {
-        // clean up
-    }
-}
-
-// MARK: - Animations
-fileprivate extension BaseTransitioningAnimator {
-    
-    /** Non-interactive transitioning animation */
-    func animateTranstion(isPresentation: Bool, using transitionContext: UIViewControllerContextTransitioning) throws -> Void {
+    // Non-interactive transitioning animation
+    fileprivate func animateTranstion(isPresentation: Bool, using transitionContext: UIViewControllerContextTransitioning) throws -> Void {
         
         if isPresentation {
             try self.animatePresentationalTransition(using: transitionContext)
@@ -113,89 +107,9 @@ fileprivate extension BaseTransitioningAnimator {
         }
     }
     
-    func animatePresentationalTransition(using transitionContext: UIViewControllerContextTransitioning) throws {
-        // Get the set of relevant objects.
-        let containerView: UIView = self.containerView(using: transitionContext)
-        let toView: UIView = try self.toView(using: transitionContext)
-        let (toView_StartFrame, toView_FinalFrame) = try self.toView_presentationalAnimationFrames(using: transitionContext)
-        
-        // Always add the "to" view to the container. And it doesn't hurt to set its start frame.
-        containerView.addSubview(toView)
-        toView.frame = toView_StartFrame
-        
-        // Animate using the animator's own duration value.
-        UIView.animate(
-            withDuration: self.transitionDuration(using: transitionContext),
-            animations: { () -> Void in
-                toView.frame = toView_FinalFrame
-        },
-            completion: { (finished: Bool) -> Void in
-                let transitionWasCancelled: Bool = transitionContext.transitionWasCancelled
-                
-                // After a failed presentation remove the view.
-                if (transitionWasCancelled) {
-                    toView.removeFromSuperview()
-                }
-                
-                // Notify UIKit that the transition has finished
-                transitionContext.completeTransition(!transitionWasCancelled)
-        })
-    }
-    
-    func animateDismissalTransition(using transitionContext: UIViewControllerContextTransitioning) throws {
-        // Get the set of relevant objects.
-        let toVC: UIViewController = try self.toViewController(using: transitionContext)
-        let fromVC: UIViewController = try self.fromViewController(using: transitionContext)
-        
-        // try to obtain the `toView` either from `toVC`, or via `transitionContext` `viewForKey(UITransitionContextToViewKey)`
-        let toView: UIView = {
-            if let validToView = try? self.toView(using: transitionContext) {
-                return validToView
-            }
-            else {
-                return toVC.view
-            }
-        }()
-        
-        let fromView: UIView = {
-            if let validFromView = try? self.fromView(using: transitionContext) {
-                return validFromView
-            }
-            else {
-                return fromVC.view
-            }
-        }()
-        
-        // Set up some variables for the animation.
-        let (_, toView_FinalFrame) = try self.toView_dismissalAnimationFrames(using: transitionContext)
-        let (_, fromView_FinalFrame) = try self.fromView_dismissalAnimationFrames(using: transitionContext)
-        
-        // Always add the "to" view to the container. And it doesn't hurt to set its start frame.
-        /** we don't need to add the `toView` if it is already added - this is dismissal animation */
-        /*
-         containerView.addSubview(toView)
-         containerView.addSubview(fromView)
-         */
-        toView.frame = toView_FinalFrame
-        
-        // Animate using the animator's own duration value.
-        UIView.animate(
-            withDuration: self.transitionDuration(using: transitionContext),
-            animations: { () -> Void in
-                fromView.frame = fromView_FinalFrame
-        },
-            completion: { (finished: Bool) -> Void in
-                let transitionWasCancelled: Bool = transitionContext.transitionWasCancelled
-                
-                // After a successful dismissal remove the view.
-                if (!transitionWasCancelled) {
-                    /** we don't need to remove the `toView` if it is not added */
-                    //                    toView.removeFromSuperview()
-                }
-                
-                // Notify UIKit that the transition has finished
-                transitionContext.completeTransition(!transitionWasCancelled)
-        })
+    /** This is a convenience and if implemented will be invoked by the system when the transition context's completeTransition: method is invoked. */
+    func animationEnded(_ transitionCompleted: Bool) {
+        // clean up
     }
 }
 

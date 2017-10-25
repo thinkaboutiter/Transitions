@@ -1,72 +1,26 @@
 //
-//  AxialTransitioningAnimator.swift
+//  AxialDismissalTransitioningAnimator.swift
 //  Transitions
 //
-//  Created by Boyan Yankov on 13/01/2016.
-//  Copyright © 2016 Boyan Yankov. All rights reserved.
+//  Created by boyankov on W43 25/Oct/2017 Wed.
+//  Copyright © 2017 Boyan Yankov. All rights reserved.
 //
 
 import UIKit
-import SimpleLogger
 
-class AxialTransitioningAnimator: BaseTransitioningAnimator {
+class AxialDismissalTransitioningAnimator: BaseTransitioningAnimator {
+
+    // MARK: - Properties
+    override var isPresenting: Bool {
+        return false
+    }
+    
     let transitioningDirection: TransitioningDirection
     
-    // MARK: - Initializers
+    // MARK: - Initialization
     init(withTransitioningDirection transitioningDirection: TransitioningDirection) {
         self.transitioningDirection = transitioningDirection
         super.init()
-    }
-    
-    // MARK: - Presentational animation frames
-    override func toView_presentationalAnimationFrames(using transitionContext: UIViewControllerContextTransitioning) throws -> (CGRect, CGRect) {
-        
-        // Get the set of relevant objects.
-        let containerView: UIView = self.containerView(using: transitionContext)
-        let toVC: UIViewController = try self.toViewController(using: transitionContext)
-        
-        var toView_initialFrame: CGRect
-        let toView_finalFrame: CGRect = transitionContext.finalFrame(for: toVC)
-        
-        switch self.transitioningDirection {
-        case .left:
-            // Set up some variables for the animation.
-            toView_initialFrame = transitionContext.initialFrame(for: toVC)
-            
-            // Set up the animation parameters.
-            toView_initialFrame.origin.x = containerView.frame.width
-            toView_initialFrame.size.width = toVC.view.frame.width
-            toView_initialFrame.size.height = toVC.view.frame.height
-            
-        case .right:
-            // Set up some variables for the animation.
-            toView_initialFrame = transitionContext.initialFrame(for: toVC)
-            
-            // Set up the animation parameters.
-            toView_initialFrame.origin.x = -containerView.frame.width
-            toView_initialFrame.size.width = toVC.view.frame.width
-            toView_initialFrame.size.height = toVC.view.frame.height
-            
-        case .up:
-            // Set up some variables for the animation.
-            toView_initialFrame = transitionContext.initialFrame(for: toVC)
-            
-            // Set up the animation parameters.
-            toView_initialFrame.origin.y = containerView.frame.height
-            toView_initialFrame.size.width = toVC.view.frame.width
-            toView_initialFrame.size.height = toVC.view.frame.height
-            
-        case .down:
-            // Set up some variables for the animation.
-            toView_initialFrame = transitionContext.initialFrame(for: toVC)
-            
-            // Set up the animation parameters.
-            toView_initialFrame.origin.y = -containerView.frame.height
-            toView_initialFrame.size.width = toVC.view.frame.width
-            toView_initialFrame.size.height = toVC.view.frame.height
-        }
-        
-        return (toView_initialFrame, toView_finalFrame)
     }
     
     // MARK: - Dismissal animation frames
@@ -125,9 +79,66 @@ class AxialTransitioningAnimator: BaseTransitioningAnimator {
                                          y: -containerView.frame.height,
                                          width: toView.frame.width,
                                          height: toView.frame.height)
-
+            
         }
         
         return (fromView_initialFrame, fromView_finalFrame)
+    }
+    
+    // MARK: - Animations
+    override func animateDismissalTransition(using transitionContext: UIViewControllerContextTransitioning) throws {
+        // Get the set of relevant objects.
+        let toVC: UIViewController = try self.toViewController(using: transitionContext)
+        let fromVC: UIViewController = try self.fromViewController(using: transitionContext)
+        
+        // try to obtain the `toView` either from `toVC`, or via `transitionContext` `viewForKey(UITransitionContextToViewKey)`
+        let toView: UIView = {
+            if let validToView = try? self.toView(using: transitionContext) {
+                return validToView
+            }
+            else {
+                return toVC.view
+            }
+        }()
+        
+        let fromView: UIView = {
+            if let validFromView = try? self.fromView(using: transitionContext) {
+                return validFromView
+            }
+            else {
+                return fromVC.view
+            }
+        }()
+        
+        // Set up some variables for the animation.
+        let (_, toView_FinalFrame) = try self.toView_dismissalAnimationFrames(using: transitionContext)
+        let (_, fromView_FinalFrame) = try self.fromView_dismissalAnimationFrames(using: transitionContext)
+        
+        // Always add the "to" view to the container. And it doesn't hurt to set its start frame.
+        /** we don't need to add the `toView` if it is already added - this is dismissal animation */
+        /*
+         containerView.addSubview(toView)
+         containerView.addSubview(fromView)
+         */
+        toView.frame = toView_FinalFrame
+        
+        // Animate using the animator's own duration value.
+        UIView.animate(
+            withDuration: self.transitionDuration(using: transitionContext),
+            animations: { () -> Void in
+                fromView.frame = fromView_FinalFrame
+        },
+            completion: { (finished: Bool) -> Void in
+                let transitionWasCancelled: Bool = transitionContext.transitionWasCancelled
+                
+                // After a successful dismissal remove the view.
+                if (!transitionWasCancelled) {
+                    /** we don't need to remove the `toView` if it is not added */
+                    //                    toView.removeFromSuperview()
+                }
+                
+                // Notify UIKit that the transition has finished
+                transitionContext.completeTransition(!transitionWasCancelled)
+        })
     }
 }
