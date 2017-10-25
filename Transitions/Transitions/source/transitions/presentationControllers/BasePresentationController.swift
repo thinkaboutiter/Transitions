@@ -6,7 +6,6 @@
 //  Copyright © 2016 Boyan Yankov. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import SimpleLogger
 
@@ -27,32 +26,34 @@ class BasePresentationController: UIPresentationController {
     // MARK: - Presentations
     override func presentationTransitionWillBegin() {
         // Get critical information about the presentation.
-        
-        if let validCV = self.containerView {
-            let presentedVC = self.presentedViewController
-            
-            // Set the dimming view to the size of the container's bounds, and make it transparent initially
-            self.dimmingView.frame = validCV.bounds
-            self.dimmingView.alpha = 0.0
-            
-            // Insert the dimming view below everything else.
-            validCV.insertSubview(self.dimmingView, at: 0)
-            
-            // Set up the animations for fading in the dimming view
-            if let validTC = presentedVC.transitionCoordinator {
-                validTC.animate(
-                    alongsideTransition: { (transitioningContext: UIViewControllerTransitionCoordinatorContext) -> Void in
-                        self.dimmingView.alpha = 1.0
-                    },
-                    completion: nil)
-            }
-            else {
-                self.dimmingView.alpha = 1.0
-            }
-        }
-        else {
+        guard let valid_containerView = self.containerView else {
             Logger.error.message("`containerView` is not valid")
+            return
         }
+        
+        let presentedVC = self.presentedViewController
+        
+        // Set the dimming view to the size of the container's bounds, and make it transparent initially
+        self.dimmingView.frame = valid_containerView.bounds
+        self.dimmingView.alpha = 0.0
+        
+        // Insert the dimming view below everything else.
+        valid_containerView.insertSubview(self.dimmingView, at: 0)
+        
+        // Set up the animations for fading in the dimming view
+        guard let valid_transitionCoordinator: UIViewControllerTransitionCoordinator = presentedVC.transitionCoordinator else {
+            Logger.error.message("Unable to obtain \(String(describing: UIViewControllerTransitionCoordinator.self))")
+
+            self.dimmingView.alpha = 1.0
+            return
+        }
+        
+        valid_transitionCoordinator
+            .animate(
+                alongsideTransition: { (transitioningContext: UIViewControllerTransitionCoordinatorContext) -> Void in
+                    self.dimmingView.alpha = 1.0
+            },
+                completion: nil)
     }
     
     override func presentationTransitionDidEnd(_ completed: Bool) {
@@ -64,16 +65,19 @@ class BasePresentationController: UIPresentationController {
     
     // MARK: - Dismissals
     override func dismissalTransitionWillBegin() {
-        if let validTC = self.presentedViewController.transitionCoordinator {
-            validTC.animate(
+        guard let valid_transitionCoordinator: UIViewControllerTransitionCoordinator = self.presentedViewController.transitionCoordinator else {
+            Logger.error.message("Unable to obtain \(String(describing: UIViewControllerTransitionCoordinator.self))")
+            
+            self.dimmingView.alpha = 0.0
+            return
+        }
+        
+        valid_transitionCoordinator
+            .animate(
                 alongsideTransition: { (transitioningContext: UIViewControllerTransitionCoordinatorContext) -> Void in
                     self.dimmingView.alpha = 0.0
-                },
+            },
                 completion: nil)
-        }
-        else {
-            self.dimmingView.alpha = 0.0
-        }
     }
     
     override func dismissalTransitionDidEnd(_ completed: Bool) {
@@ -92,15 +96,16 @@ class BasePresentationController: UIPresentationController {
     }
     
     override var frameOfPresentedViewInContainerView : CGRect {
-        var presentedView_frame = CGRect.zero
-        if let validContainerView_bounds = self.containerView?.bounds {
-            presentedView_frame.size = CGSize(width: validContainerView_bounds.size.width / CGFloat(2.0), height: validContainerView_bounds.size.height)
-            presentedView_frame.origin.x = validContainerView_bounds.size.width - presentedView_frame.size.width
-            
-            return presentedView_frame
-        }
-        else {
+        guard let valid_containerView_bounds: CGRect = self.containerView?.bounds else {
+            Logger.error.message("Unable ot obtain container view's bounds")
             return CGRect.zero
         }
+        
+        var presentedView_frame: CGRect = CGRect.zero
+        presentedView_frame.size = CGSize(width: valid_containerView_bounds.size.width / CGFloat(2.0),
+                                          height: valid_containerView_bounds.size.height)
+        presentedView_frame.origin.x = valid_containerView_bounds.size.width - presentedView_frame.size.width
+        
+        return presentedView_frame
     }
 }
