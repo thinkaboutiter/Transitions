@@ -9,8 +9,6 @@
 import UIKit
 import SimpleLogger
 
-import SimpleLogger
-
 class MainViewController: BaseViewController, MainViewModelConsumable {
     
     // MARK: - Properties
@@ -162,14 +160,6 @@ extension MainViewController: UITableViewDelegate {
             return
         }
         
-        // configure `modalPresentationStyle`
-        self.modalPresentationStyle = .custom
-        finalVC.modalPresentationStyle = .custom
-        
-        // reset `transitioningDelegate`
-        self.transitioningDelegate = nil
-        finalVC.transitioningDelegate = nil
-        
         // we need a `transitioningDelegate` for the transition
         let transitioningDelegate: UIViewControllerTransitioningDelegate
         
@@ -178,36 +168,40 @@ extension MainViewController: UITableViewDelegate {
         case .nonInteractive_left:
             Logger.debug.message("Transition `Horizontal.Left`")
             
-            // create `transitioningDelegate` object
-            transitioningDelegate = BaseTransitioningDelegate(withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .left).shouldPresentViewController(true),
-                                                              andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .left))
+            transitioningDelegate = BaseTransitioningDelegate(withPresentationalAnimator: AxialPresentationalTransitioningAnimator(withTransitioningDirection: .left),
+                                                              andDismissalAnimator: AxialDismissalTransitioningAnimator(withTransitioningDirection: .left))
             
         case .nonInteractive_right:
             Logger.debug.message("Transition `Horizontal.Right`")
             
-            // create `transitioningDelegate` object
-            transitioningDelegate = BaseTransitioningDelegate(withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .right).shouldPresentViewController(true),
-                                                              andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .right))
+            transitioningDelegate = BaseTransitioningDelegate(withPresentationalAnimator: AxialPresentationalTransitioningAnimator(withTransitioningDirection: .right),
+                                                              andDismissalAnimator: AxialDismissalTransitioningAnimator(withTransitioningDirection: .right))
             
         case .nonInteractive_up:
             Logger.debug.message("Transition `Vertical.Up`")
             
-            // create `transitioningDelegate` object
-            transitioningDelegate = BaseTransitioningDelegate(withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .up).shouldPresentViewController(true),
-                                                              andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .up))
+            transitioningDelegate = BaseTransitioningDelegate(withPresentationalAnimator: AxialPresentationalTransitioningAnimator(withTransitioningDirection: .up),
+                                                              andDismissalAnimator: AxialDismissalTransitioningAnimator(withTransitioningDirection: .up))
             
         case .nonInteractive_down:
             Logger.debug.message("Transition `Vertical.Down`")
             
-            // create `transitioningDelegate` object
-            transitioningDelegate = BaseTransitioningDelegate(withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .down).shouldPresentViewController(true),
-                                                              andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .down))
+            transitioningDelegate = BaseTransitioningDelegate(withPresentationalAnimator: AxialPresentationalTransitioningAnimator(withTransitioningDirection: .down),
+                                                              andDismissalAnimator: AxialDismissalTransitioningAnimator(withTransitioningDirection: .down))
             
         default:
             Logger.debug.message("Unsupported Transition")
             // TODO: show alert
             return
         }
+        
+        // configure `modalPresentationStyle`
+        self.modalPresentationStyle = .custom
+        finalVC.modalPresentationStyle = .custom
+        
+        // reset `transitioningDelegate`
+        self.transitioningDelegate = nil
+        finalVC.transitioningDelegate = nil
         
         // assign `transitioningDelegate`
         self.transitioningDelegate = transitioningDelegate

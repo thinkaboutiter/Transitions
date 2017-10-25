@@ -40,7 +40,7 @@ class FinalViewController: BaseViewController, TransitionResignable {
         
         if
             let validCustomTransitioningDelegate = self.customTransitioningDelegate as? BaseTransitioningDelegate,
-            let validAnimator = validCustomTransitioningDelegate.presentationalAnimator as? AxialTransitioningAnimator
+            let validAnimator = validCustomTransitioningDelegate.presentationalAnimator as? AxialPresentationalTransitioningAnimator
         {
             switch validAnimator.transitioningDirection {
             case .left:
