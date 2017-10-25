@@ -170,46 +170,38 @@ extension MainViewController: UITableViewDelegate {
         self.transitioningDelegate = nil
         finalVC.transitioningDelegate = nil
         
-        // `transitioningDelegate`
+        // we need a `transitioningDelegate` for the transition
         let transitioningDelegate: UIViewControllerTransitioningDelegate
         
-        // do presentations with their directions here
-        switch indexPath.row {
-        case 0:
-            // Left
+        // configure `transitioningDelegate`
+        switch valid_rowData {
+        case .nonInteractive_left:
             Logger.debug.message("Transition `Horizontal.Left`")
             
             // create `transitioningDelegate` object
-            transitioningDelegate = BaseTransitioningDelegate(
-                withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .left).shouldPresentViewController(true),
-                andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .left))
+            transitioningDelegate = BaseTransitioningDelegate(withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .left).shouldPresentViewController(true),
+                                                              andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .left))
             
-        case 1:
-            // Right
+        case .nonInteractive_right:
             Logger.debug.message("Transition `Horizontal.Right`")
             
             // create `transitioningDelegate` object
-            transitioningDelegate = BaseTransitioningDelegate(
-                withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .right).shouldPresentViewController(true),
-                andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .right))
+            transitioningDelegate = BaseTransitioningDelegate(withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .right).shouldPresentViewController(true),
+                                                              andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .right))
             
-        case 2:
-            // Up
-            Logger.debug.message("Transition `Vertical.Top`")
+        case .nonInteractive_up:
+            Logger.debug.message("Transition `Vertical.Up`")
             
             // create `transitioningDelegate` object
-            transitioningDelegate = BaseTransitioningDelegate(
-                withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .up).shouldPresentViewController(true),
-                andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .up))
+            transitioningDelegate = BaseTransitioningDelegate(withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .up).shouldPresentViewController(true),
+                                                              andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .up))
             
-        case 3:
-            // Down
-            Logger.debug.message("Transition `Vertical.Bottom`")
+        case .nonInteractive_down:
+            Logger.debug.message("Transition `Vertical.Down`")
             
             // create `transitioningDelegate` object
-            transitioningDelegate = BaseTransitioningDelegate(
-                withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .down).shouldPresentViewController(true),
-                andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .down))
+            transitioningDelegate = BaseTransitioningDelegate(withPresentationalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .down).shouldPresentViewController(true),
+                                                              andDismissalAnimator: AxialTransitioningAnimator(withTransitioningDirection: .down))
             
         default:
             Logger.debug.message("Unsupported Transition")
