@@ -12,14 +12,13 @@ import SimpleLogger
 class AxialTransitioningAnimator: BaseTransitioningAnimator {
     let transitioningDirection: TransitioningDirection
     
-    // MARK: Initializers
+    // MARK: - Initializers
     init(withTransitioningDirection transitioningDirection: TransitioningDirection) {
         self.transitioningDirection = transitioningDirection
         super.init()
     }
     
-    // MARK: - Animations
-    // MARK: Presentation
+    // MARK: - Presentational animation frames
     override func toView_presentationalAnimationFrames(using transitionContext: UIViewControllerContextTransitioning) throws -> (CGRect, CGRect) {
         
         // Get the set of relevant objects.
@@ -70,6 +69,7 @@ class AxialTransitioningAnimator: BaseTransitioningAnimator {
         return (toView_InitialFrame, toView_FinalFrame)
     }
     
+    // MARK: - Dismissal animation frames
     override func toView_dismissalAnimationFrames(using transitionContext: UIViewControllerContextTransitioning) throws -> (CGRect, CGRect) {
         // Get the set of relevant objects.
         let toVC: UIViewController = try self.toViewController(using: transitionContext)
