@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YWv-dc-unA">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="cXl-e5-kfZ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YWv-dc-unA" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ar7-S6-SmC">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="nUN-hj-UTa" kind="relationship" relationship="rootViewController" id="Mhe-J1-Pzi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="inT-ii-AT0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="639" y="-63"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="1B8-hc-6hX">
+            <objects>
+                <viewController storyboardIdentifier="MainViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nUN-hj-UTa" customClass="MainViewController" customModule="Transitions" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RqL-Bi-Kgx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Aq8-iQ-po2" userLabel="table-view" customClass="BaseTableView" customModule="Transitions" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Aq8-iQ-po2" firstAttribute="top" secondItem="WXl-sR-hY0" secondAttribute="top" id="FFJ-6E-BBa"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="Aq8-iQ-po2" secondAttribute="bottom" id="dL4-SR-qvG"/>
+                            <constraint firstItem="Aq8-iQ-po2" firstAttribute="leading" secondItem="RqL-Bi-Kgx" secondAttribute="leading" id="uaj-i9-Ctg"/>
+                            <constraint firstAttribute="trailing" secondItem="Aq8-iQ-po2" secondAttribute="trailing" id="vfs-4V-ERZ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="WXl-sR-hY0"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ELy-Rd-1oM"/>
+                    <connections>
+                        <outlet property="functionalitesTableView" destination="Aq8-iQ-po2" id="WM0-jL-qbB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x8c-vQ-DPH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1399" y="-63"/>
+        </scene>
+    </scenes>
+</document>

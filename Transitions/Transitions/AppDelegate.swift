@@ -46,6 +46,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+// MARK: - Root ViewController switching
+extension AppDelegate {
+    
+    func switchRootViewControllerToMainScreen(animated: Bool = true) {
+        guard let valid_initial_vc: UIViewController = UIStoryboard(name: AppConstants.StoryboardName.main, bundle: nil).instantiateInitialViewController() else {
+            Logger.error.message("Unable to instantiate initial view controller")
+            return
+        }
+        self.window?.replaceRootViewController(with: valid_initial_vc, animated: animated)
+    }
+}
+
 // MARK: - UI Configurations
 fileprivate extension AppDelegate {
     
@@ -65,9 +77,10 @@ fileprivate extension AppDelegate {
     }
     
     func configure_simpleLogger() {
-        #if DEBUG
+        // for some reason this is not enbabled in DEBUG mode! :(
+//        #if DEBUG
             Logger.enableLogging(true)
-        #endif
+//        #endif
     }
 }
 
