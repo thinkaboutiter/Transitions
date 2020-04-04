@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F60E158243925E400763F33 /* PresentationDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F60E157243925E400763F33 /* PresentationDirection.swift */; };
 		4F6B63172438C08000BE9B1F /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6B63042438C08000BE9B1F /* AppConstants.swift */; };
 		4F6B63182438C08000BE9B1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6B63052438C08000BE9B1F /* AppDelegate.swift */; };
 		4F6B631B2438C08000BE9B1F /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6B630E2438C08000BE9B1F /* RootViewController.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F60E157243925E400763F33 /* PresentationDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationDirection.swift; sourceTree = "<group>"; };
 		4F6B63042438C08000BE9B1F /* AppConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		4F6B63052438C08000BE9B1F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4F6B630E2438C08000BE9B1F /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -53,11 +55,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4F60E15424391D7100763F33 /* _presentation */ = {
+		4F60E15424391D7100763F33 /* Presentations */ = {
 			isa = PBXGroup;
 			children = (
+				4F60E157243925E400763F33 /* PresentationDirection.swift */,
 			);
-			path = _presentation;
+			path = Presentations;
 			sourceTree = "<group>";
 		};
 		4F6B63022438C08000BE9B1F /* source */ = {
@@ -83,6 +86,7 @@
 		4F6B63062438C08000BE9B1F /* UILayer */ = {
 			isa = PBXGroup;
 			children = (
+				4F60E15424391D7100763F33 /* Presentations */,
 				4F6B63112438C08000BE9B1F /* _UIBaseClasses */,
 				4F6B63072438C08000BE9B1F /* Screens */,
 			);
@@ -144,7 +148,6 @@
 		4F6B63242438C2EC00BE9B1F /* Sample */ = {
 			isa = PBXGroup;
 			children = (
-				4F60E15424391D7100763F33 /* _presentation */,
 				4F6B63252438C37A00BE9B1F /* View */,
 			);
 			path = Sample;
@@ -306,6 +309,7 @@
 				4FF867242439185E005FF395 /* ContentViewController.swift in Sources */,
 				4F6B631B2438C08000BE9B1F /* RootViewController.swift in Sources */,
 				4F6B632F2438C45200BE9B1F /* SampleViewController.swift in Sources */,
+				4F60E158243925E400763F33 /* PresentationDirection.swift in Sources */,
 				4F6B63182438C08000BE9B1F /* AppDelegate.swift in Sources */,
 				4F6B63172438C08000BE9B1F /* AppConstants.swift in Sources */,
 				4F6B63232438C20000BE9B1F /* UIViewController+Extensions.swift in Sources */,
