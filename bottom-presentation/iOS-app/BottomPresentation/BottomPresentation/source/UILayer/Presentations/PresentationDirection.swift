@@ -18,16 +18,23 @@ enum PresentationDirection {
     /// Utility type holding the % coverage of the screen for presentation.
     struct Coverage {
         
+        static let full: Coverage = Coverage(rawValue: 1.000)!
+        static let half: Coverage = Coverage(rawValue: 0.500)!
+        static let oneThird: Coverage = Coverage(rawValue: 0.333)!
+        static let twoThirds: Coverage = Coverage(rawValue: 0.666)!
+        static let oneQuarter: Coverage = Coverage(rawValue: 0.250)!
+        static let threeQuarters: Coverage = Coverage(rawValue: 0.750)!
+        
         /// The value of the coverage in 0.0...1.0 interval.
-        private(set) var value: Double
+        private(set) var rawValue: Double
         private static let range: ClosedRange = 0.0...1.0
         
-        init?(value: Double) {
-            guard Coverage.range ~= value else {
-                assert(false, "value=\(value) out of range=\(Coverage.range)!")
+        init?(rawValue: Double) {
+            guard Coverage.range ~= rawValue else {
+                assert(false, "value=\(rawValue) out of range=\(Coverage.range)!")
                 return nil
             }
-            self.value = value
+            self.rawValue = rawValue
         }
     }
 }
