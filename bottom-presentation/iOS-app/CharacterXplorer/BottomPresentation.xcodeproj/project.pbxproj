@@ -22,7 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4FAC0A7023F7F48200B1FB76 /* CharacterXplorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CharacterXplorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FAC0A7023F7F48200B1FB76 /* BottomPresentation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BottomPresentation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FAC0A7C23F7F48600B1FB76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4FAC0A8C23F7FA8500B1FB76 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4FAC0A9A23F7FA8500B1FB76 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -52,7 +52,7 @@
 		4FAC0A6723F7F48200B1FB76 = {
 			isa = PBXGroup;
 			children = (
-				4FAC0A7223F7F48200B1FB76 /* CharacterXplorer */,
+				4FAC0A7223F7F48200B1FB76 /* BottomPresentation */,
 				4FAC0A7123F7F48200B1FB76 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -60,19 +60,19 @@
 		4FAC0A7123F7F48200B1FB76 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4FAC0A7023F7F48200B1FB76 /* CharacterXplorer.app */,
+				4FAC0A7023F7F48200B1FB76 /* BottomPresentation.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4FAC0A7223F7F48200B1FB76 /* CharacterXplorer */ = {
+		4FAC0A7223F7F48200B1FB76 /* BottomPresentation */ = {
 			isa = PBXGroup;
 			children = (
 				4FAC0A8823F7FA8500B1FB76 /* source */,
 				4FAC0A7C23F7F48600B1FB76 /* Assets.xcassets */,
 				4FAC0AB723F80E8200B1FB76 /* Localizable.strings */,
 			);
-			path = CharacterXplorer;
+			path = BottomPresentation;
 			sourceTree = "<group>";
 		};
 		4FAC0A8823F7FA8500B1FB76 /* source */ = {
@@ -223,9 +223,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4FAC0A6F23F7F48200B1FB76 /* CharacterXplorer */ = {
+		4FAC0A6F23F7F48200B1FB76 /* BottomPresentation */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4FAC0A8423F7F48700B1FB76 /* Build configuration list for PBXNativeTarget "CharacterXplorer" */;
+			buildConfigurationList = 4FAC0A8423F7F48700B1FB76 /* Build configuration list for PBXNativeTarget "BottomPresentation" */;
 			buildPhases = (
 				4FAC0A6C23F7F48200B1FB76 /* Sources */,
 				4FAC0A6D23F7F48200B1FB76 /* Frameworks */,
@@ -236,12 +236,12 @@
 			);
 			dependencies = (
 			);
-			name = CharacterXplorer;
+			name = BottomPresentation;
 			packageProductDependencies = (
 				4FAC0AA823F8001600B1FB76 /* SimpleLogger */,
 			);
 			productName = CharacterXplorer;
-			productReference = 4FAC0A7023F7F48200B1FB76 /* CharacterXplorer.app */;
+			productReference = 4FAC0A7023F7F48200B1FB76 /* BottomPresentation.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -259,7 +259,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4FAC0A6B23F7F48200B1FB76 /* Build configuration list for PBXProject "CharacterXplorer" */;
+			buildConfigurationList = 4FAC0A6B23F7F48200B1FB76 /* Build configuration list for PBXProject "BottomPresentation" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -275,7 +275,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4FAC0A6F23F7F48200B1FB76 /* CharacterXplorer */,
+				4FAC0A6F23F7F48200B1FB76 /* BottomPresentation */,
 			);
 		};
 /* End PBXProject section */
@@ -470,7 +470,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = J48Y9TAH25;
 				INFOPLIST_FILE = "$(PROJECT_NAME)/source/SupportFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -478,7 +478,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yahoo.boyankov.CharacterXplorer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yahoo.boyankov.BottomPresentation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -490,7 +490,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = J48Y9TAH25;
 				INFOPLIST_FILE = "$(PROJECT_NAME)/source/SupportFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -498,7 +498,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yahoo.boyankov.CharacterXplorer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yahoo.boyankov.BottomPresentation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -508,7 +508,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4FAC0A6B23F7F48200B1FB76 /* Build configuration list for PBXProject "CharacterXplorer" */ = {
+		4FAC0A6B23F7F48200B1FB76 /* Build configuration list for PBXProject "BottomPresentation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FAC0A8223F7F48700B1FB76 /* Debug */,
@@ -517,7 +517,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4FAC0A8423F7F48700B1FB76 /* Build configuration list for PBXNativeTarget "CharacterXplorer" */ = {
+		4FAC0A8423F7F48700B1FB76 /* Build configuration list for PBXNativeTarget "BottomPresentation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FAC0A8523F7F48700B1FB76 /* Debug */,
