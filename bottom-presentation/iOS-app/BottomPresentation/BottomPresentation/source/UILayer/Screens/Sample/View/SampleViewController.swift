@@ -18,6 +18,7 @@ class SampleViewController: UIViewController, SampleViewModelConsumer {
     
     // MARK: - Properties
     private let viewModel: SampleViewModel
+    @IBOutlet private weak var actionButton: UIButton!
     
     // MARK: - Initialization
     @available(*, unavailable, message: "Creating this view controller with `init(coder:)` is unsupported in favor of initializer dependency injection.")
@@ -46,7 +47,23 @@ class SampleViewController: UIViewController, SampleViewModelConsumer {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+        self.configure_ui()
+    }
+    
+    // MARK: - actions
+    @IBAction func actionButton_touchUpInside(_ sender: UIButton) {
+        Logger.debug.message()
+    }
+}
+
+private extension SampleViewController {
+    
+    func configure_ui() {
+        self.configure_actionButton(self.actionButton)
+    }
+    
+    func configure_actionButton(_ button: UIButton) {
+        let title: String = NSLocalizedString("SampleViewController.actionButton.title", comment: AppConstants.LocalizedStringComment.buttonTitle)
+        button.setTitle(title, for: .normal)
     }
 }

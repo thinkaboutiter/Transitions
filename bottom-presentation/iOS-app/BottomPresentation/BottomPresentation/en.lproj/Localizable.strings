@@ -1,2 +1,3 @@
 /* Root Screen*/
 "RootViewController.testLabel.text" = "Hello Root";
+"SampleViewController.actionButton.title" = "Show";

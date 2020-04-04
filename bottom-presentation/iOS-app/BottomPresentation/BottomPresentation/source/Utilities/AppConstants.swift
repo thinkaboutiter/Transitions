@@ -14,5 +14,6 @@ enum AppConstants {
     
     enum LocalizedStringComment {
         static let labelTitle: String = "Label title"
+        static let buttonTitle: String = "Button title"
     }
 }

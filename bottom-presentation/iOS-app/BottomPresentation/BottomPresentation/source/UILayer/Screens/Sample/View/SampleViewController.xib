@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SampleViewController" customModule="BottomPresentation" customModuleProvider="target">
             <connections>
+                <outlet property="actionButton" destination="eC4-Uw-5HP" id="ze8-Ub-PWV"/>
                 <outlet property="view" destination="3xg-BZ-bvt" id="5lu-Zp-WqU"/>
             </connections>
         </placeholder>
@@ -17,17 +18,18 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SampleViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mve-YP-u1p">
-                    <rect key="frame" x="122.5" y="437.5" width="169" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eC4-Uw-5HP" userLabel="action-button">
+                    <rect key="frame" x="184" y="657" width="46" height="30"/>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="actionButton_touchUpInside:" destination="-1" eventType="touchUpInside" id="Kdv-4x-hEH"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="Mve-YP-u1p" firstAttribute="centerX" secondItem="3xg-BZ-bvt" secondAttribute="centerX" id="fV5-nx-Soi"/>
-                <constraint firstItem="Mve-YP-u1p" firstAttribute="centerY" secondItem="3xg-BZ-bvt" secondAttribute="centerY" id="kY8-Hj-UbR"/>
+                <constraint firstItem="eC4-Uw-5HP" firstAttribute="centerX" secondItem="3xg-BZ-bvt" secondAttribute="centerX" id="0qf-Ty-Kg1"/>
+                <constraint firstItem="eC4-Uw-5HP" firstAttribute="centerY" secondItem="3xg-BZ-bvt" secondAttribute="centerY" multiplier="1.5" id="DPs-Lg-CdS"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Gpt-H5-st2"/>
             <point key="canvasLocation" x="687" y="-213"/>
