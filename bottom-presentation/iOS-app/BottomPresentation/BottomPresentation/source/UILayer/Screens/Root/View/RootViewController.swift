@@ -18,6 +18,7 @@ class RootViewController: BaseViewController, RootViewModelConsumer {
     
     // MARK: - Properties
     private let viewModel: RootViewModel
+    private let sampleViewControllerFactory: SampleViewControllerFactory
     @IBOutlet weak var testLabel: UILabel!
     
     // MARK: - Initialization
@@ -33,8 +34,11 @@ class RootViewController: BaseViewController, RootViewModelConsumer {
         fatalError("Creating this view controller with `init(nibName:bundle:)` is unsupported in favor of dependency injection initializer.")
     }
     
-    init(viewModel: RootViewModel) {
+    init(viewModel: RootViewModel,
+         sampleViewControllerFactory: SampleViewControllerFactory)
+    {
         self.viewModel = viewModel
+        self.sampleViewControllerFactory = sampleViewControllerFactory
         super.init(nibName: String(describing: RootViewController.self), bundle: nil)
         self.viewModel.setViewModelConsumer(self)
         Logger.success.message()
@@ -49,8 +53,21 @@ class RootViewController: BaseViewController, RootViewModelConsumer {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
         self.testLabel.text = NSLocalizedString("RootViewController.testLabel.text", comment: AppConstants.LocalizedStringComment.labelTitle)
+        self.embedSampleViewController()
+    }
+}
+
+// MARK: - Embedding
+private extension RootViewController {
+    
+    func embedSampleViewController() {
+        let vc: SampleViewController = self.sampleViewControllerFactory.makeSampleViewController()
+        do {
+            try self.embed(vc, containerView: self.view)
+        }
+        catch let error as NSError {
+            Logger.error.message().object(error)
+        }
     }
 }
