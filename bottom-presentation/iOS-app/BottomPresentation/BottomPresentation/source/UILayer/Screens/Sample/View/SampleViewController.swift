@@ -44,7 +44,13 @@ class SampleViewController: BaseViewController {
     
     // MARK: - actions
     @IBAction func actionButton_touchUpInside(_ sender: UIButton) {
-        Logger.debug.message()
+        let vc: BottomMenuViewController = BottomMenuViewController()
+        self.initiatePageSheetPresentation(with: vc)
+    }
+    
+    private func initiatePageSheetPresentation(with viewController: UIViewController) {
+        viewController.modalPresentationStyle = .pageSheet
+        self.present(viewController, animated: true, completion: nil)
     }
 }
 
