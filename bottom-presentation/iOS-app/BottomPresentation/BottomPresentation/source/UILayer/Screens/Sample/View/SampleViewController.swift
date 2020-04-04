@@ -9,15 +9,9 @@
 import UIKit
 import SimpleLogger
 
-/// APIs for `DependecyContainer` to expose.
-protocol SampleViewControllerFactory {
-    func makeSampleViewController() -> SampleViewController
-}
-
-class SampleViewController: UIViewController, SampleViewModelConsumer {
+class SampleViewController: BaseViewController {
     
     // MARK: - Properties
-    private let viewModel: SampleViewModel
     @IBOutlet private weak var actionButton: UIButton!
     
     // MARK: - Initialization
@@ -31,10 +25,8 @@ class SampleViewController: UIViewController, SampleViewModelConsumer {
         fatalError("Creating this view controller with `init(nibName:bundle:)` is unsupported in favor of dependency injection initializer.")
     }
     
-    init(viewModel: SampleViewModel) {
-        self.viewModel = viewModel
+    init() {
         super.init(nibName: String(describing: SampleViewController.self), bundle: nil)
-        self.viewModel.setViewModelConsumer(self)
         Logger.success.message()
     }
     

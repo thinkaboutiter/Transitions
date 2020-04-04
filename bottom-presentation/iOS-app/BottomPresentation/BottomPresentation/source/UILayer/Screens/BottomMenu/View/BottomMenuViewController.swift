@@ -14,7 +14,7 @@ protocol BottomMenuViewControllerFactory {
     func makeBottomMenuViewController() -> BottomMenuViewController
 }
 
-class BottomMenuViewController: UIViewController {
+class BottomMenuViewController: BaseViewController {
     
     // MARK: - Properties
     

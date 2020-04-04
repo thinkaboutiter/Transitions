@@ -9,16 +9,10 @@
 import UIKit
 import SimpleLogger
 
-/// APIs for `DependecyContainer` to expose.
-protocol RootViewControllerFactory {
-    func makeRootViewController() -> RootViewController
-}
 
-class RootViewController: BaseViewController, RootViewModelConsumer {
+class RootViewController: BaseViewController {
     
     // MARK: - Properties
-    private let viewModel: RootViewModel
-    private let sampleViewControllerFactory: SampleViewControllerFactory
     @IBOutlet weak var testLabel: UILabel!
     
     // MARK: - Initialization
@@ -34,13 +28,8 @@ class RootViewController: BaseViewController, RootViewModelConsumer {
         fatalError("Creating this view controller with `init(nibName:bundle:)` is unsupported in favor of dependency injection initializer.")
     }
     
-    init(viewModel: RootViewModel,
-         sampleViewControllerFactory: SampleViewControllerFactory)
-    {
-        self.viewModel = viewModel
-        self.sampleViewControllerFactory = sampleViewControllerFactory
+    init() {
         super.init(nibName: String(describing: RootViewController.self), bundle: nil)
-        self.viewModel.setViewModelConsumer(self)
         Logger.success.message()
     }
     
@@ -62,7 +51,7 @@ class RootViewController: BaseViewController, RootViewModelConsumer {
 private extension RootViewController {
     
     func embedSampleViewController() {
-        let vc: SampleViewController = self.sampleViewControllerFactory.makeSampleViewController()
+        let vc: SampleViewController = SampleViewController()
         do {
             try self.embed(vc, containerView: self.view)
         }
