@@ -240,7 +240,7 @@
 			packageProductDependencies = (
 				4FAC0AA823F8001600B1FB76 /* SimpleLogger */,
 			);
-			productName = CharacterXplorer;
+			productName = BottomPresentation;
 			productReference = 4FAC0A7023F7F48200B1FB76 /* BottomPresentation.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -310,7 +310,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/zsh\nagvtool next-version -all\n";
+			shellScript = "#!/bin/sh\nagvtool next-version -all\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
