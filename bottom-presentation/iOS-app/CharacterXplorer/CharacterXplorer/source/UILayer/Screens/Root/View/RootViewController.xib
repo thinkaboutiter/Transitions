@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RootViewController" customModule="CharacterXplorer" customModuleProvider="target">
+            <connections>
+                <outlet property="testLabel" destination="9am-lq-meX" id="wsB-0s-Tbk"/>
+                <outlet property="view" destination="qzC-lG-Gb2" id="2Fy-C6-Ydf"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="qzC-lG-Gb2">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello Root" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9am-lq-meX">
+                    <rect key="frame" x="167.5" y="437.5" width="79" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="9am-lq-meX" firstAttribute="centerY" secondItem="qzC-lG-Gb2" secondAttribute="centerY" id="5kv-27-iBP"/>
+                <constraint firstItem="9am-lq-meX" firstAttribute="centerX" secondItem="qzC-lG-Gb2" secondAttribute="centerX" id="szp-kq-j7s"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Jp2-0J-Uvl"/>
+            <point key="canvasLocation" x="-28" y="-288"/>
+        </view>
+    </objects>
+</document>
