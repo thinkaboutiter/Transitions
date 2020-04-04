@@ -310,7 +310,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/zsh\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
+			shellScript = "#!/bin/zsh\nagvtool next-version -all\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -470,6 +470,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = J48Y9TAH25;
 				INFOPLIST_FILE = "$(PROJECT_NAME)/source/SupportFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -489,6 +490,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = J48Y9TAH25;
 				INFOPLIST_FILE = "$(PROJECT_NAME)/source/SupportFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
