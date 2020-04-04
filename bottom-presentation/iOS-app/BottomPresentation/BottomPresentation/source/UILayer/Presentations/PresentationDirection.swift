@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// The direction form where the presentation is starting.
 enum PresentationDirection {
     case top(Coverage)
     case left(Coverage)
@@ -18,12 +19,12 @@ enum PresentationDirection {
     /// Utility type holding the % coverage of the screen for presentation.
     struct Coverage {
         
-        static let full: Coverage = Coverage(rawValue: 1.000)!
-        static let half: Coverage = Coverage(rawValue: 0.500)!
-        static let oneThird: Coverage = Coverage(rawValue: 0.333)!
-        static let twoThirds: Coverage = Coverage(rawValue: 0.666)!
-        static let oneQuarter: Coverage = Coverage(rawValue: 0.250)!
-        static let threeQuarters: Coverage = Coverage(rawValue: 0.750)!
+        static let full: Coverage = Coverage(rawValue: 1.0)!
+        static let half: Coverage = Coverage(rawValue: 1.0 / 2.0)!
+        static let oneThird: Coverage = Coverage(rawValue: 1.0 / 3.0)!
+        static let twoThirds: Coverage = Coverage(rawValue: 2.0 / 3.0)!
+        static let oneQuarter: Coverage = Coverage(rawValue: 1.0 / 4.0)!
+        static let threeQuarters: Coverage = Coverage(rawValue: 3.0 / 4.0)!
         
         /// The value of the coverage in 0.0...1.0 interval.
         private(set) var rawValue: Double
