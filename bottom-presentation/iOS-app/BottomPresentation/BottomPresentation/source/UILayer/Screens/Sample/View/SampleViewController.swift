@@ -44,7 +44,7 @@ class SampleViewController: BaseViewController {
     
     // MARK: - actions
     @IBAction func actionButton_touchUpInside(_ sender: UIButton) {
-        let vc: BottomMenuViewController = BottomMenuViewController()
+        let vc: ContentViewController = ContentViewController()
         self.initiatePageSheetPresentation(with: vc)
     }
     

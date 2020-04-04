@@ -19,8 +19,8 @@
 		4FAC0A7D23F7F48600B1FB76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FAC0A7C23F7F48600B1FB76 /* Assets.xcassets */; };
 		4FAC0AA923F8001600B1FB76 /* SimpleLogger in Frameworks */ = {isa = PBXBuildFile; productRef = 4FAC0AA823F8001600B1FB76 /* SimpleLogger */; };
 		4FAC0AB523F80E8200B1FB76 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FAC0AB723F80E8200B1FB76 /* Localizable.strings */; };
-		4FF867242439185E005FF395 /* BottomMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF867222439185E005FF395 /* BottomMenuViewController.swift */; };
-		4FF867252439185E005FF395 /* BottomMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FF867232439185E005FF395 /* BottomMenuViewController.xib */; };
+		4FF867242439185E005FF395 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF867222439185E005FF395 /* ContentViewController.swift */; };
+		4FF867252439185E005FF395 /* ContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FF867232439185E005FF395 /* ContentViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,8 +37,8 @@
 		4FAC0A7023F7F48200B1FB76 /* BottomPresentation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BottomPresentation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FAC0A7C23F7F48600B1FB76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4FAC0AB623F80E8200B1FB76 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		4FF867222439185E005FF395 /* BottomMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomMenuViewController.swift; sourceTree = "<group>"; };
-		4FF867232439185E005FF395 /* BottomMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomMenuViewController.xib; sourceTree = "<group>"; };
+		4FF867222439185E005FF395 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		4FF867232439185E005FF395 /* ContentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +53,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F60E15424391D7100763F33 /* _presentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = _presentation;
+			sourceTree = "<group>";
+		};
 		4F6B63022438C08000BE9B1F /* source */ = {
 			isa = PBXGroup;
 			children = (
@@ -85,7 +92,7 @@
 		4F6B63072438C08000BE9B1F /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				4FF8672024391831005FF395 /* BottomMenu */,
+				4FF8672024391831005FF395 /* Content */,
 				4F6B63242438C2EC00BE9B1F /* Sample */,
 				4F6B63082438C08000BE9B1F /* Root */,
 			);
@@ -137,6 +144,7 @@
 		4F6B63242438C2EC00BE9B1F /* Sample */ = {
 			isa = PBXGroup;
 			children = (
+				4F60E15424391D7100763F33 /* _presentation */,
 				4F6B63252438C37A00BE9B1F /* View */,
 			);
 			path = Sample;
@@ -177,19 +185,19 @@
 			path = BottomPresentation;
 			sourceTree = "<group>";
 		};
-		4FF8672024391831005FF395 /* BottomMenu */ = {
+		4FF8672024391831005FF395 /* Content */ = {
 			isa = PBXGroup;
 			children = (
 				4FF8672124391831005FF395 /* View */,
 			);
-			path = BottomMenu;
+			path = Content;
 			sourceTree = "<group>";
 		};
 		4FF8672124391831005FF395 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4FF867222439185E005FF395 /* BottomMenuViewController.swift */,
-				4FF867232439185E005FF395 /* BottomMenuViewController.xib */,
+				4FF867222439185E005FF395 /* ContentViewController.swift */,
+				4FF867232439185E005FF395 /* ContentViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -259,7 +267,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FF867252439185E005FF395 /* BottomMenuViewController.xib in Resources */,
+				4FF867252439185E005FF395 /* ContentViewController.xib in Resources */,
 				4FAC0A7D23F7F48600B1FB76 /* Assets.xcassets in Resources */,
 				4F6B631F2438C08100BE9B1F /* LaunchScreen.storyboard in Resources */,
 				4FAC0AB523F80E8200B1FB76 /* Localizable.strings in Resources */,
@@ -295,7 +303,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FF867242439185E005FF395 /* BottomMenuViewController.swift in Sources */,
+				4FF867242439185E005FF395 /* ContentViewController.swift in Sources */,
 				4F6B631B2438C08000BE9B1F /* RootViewController.swift in Sources */,
 				4F6B632F2438C45200BE9B1F /* SampleViewController.swift in Sources */,
 				4F6B63182438C08000BE9B1F /* AppDelegate.swift in Sources */,
@@ -446,7 +454,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 25;
+				CURRENT_PROJECT_VERSION = 27;
 				DEVELOPMENT_TEAM = J48Y9TAH25;
 				INFOPLIST_FILE = "$(PROJECT_NAME)/source/SupportFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -466,7 +474,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 25;
+				CURRENT_PROJECT_VERSION = 27;
 				DEVELOPMENT_TEAM = J48Y9TAH25;
 				INFOPLIST_FILE = "$(PROJECT_NAME)/source/SupportFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

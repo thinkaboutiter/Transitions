@@ -1,5 +1,5 @@
 //
-//  BottomMenuViewController.swift
+//  ContentViewController.swift
 //  BottomPresentation
 //
 //  Created by Boyan Yankov on 2020-W14-04-Apr-Sat.
@@ -9,12 +9,7 @@
 import UIKit
 import SimpleLogger
 
-/// APIs for `DependecyContainer` to expose.
-protocol BottomMenuViewControllerFactory {
-    func makeBottomMenuViewController() -> BottomMenuViewController
-}
-
-class BottomMenuViewController: BaseViewController {
+class ContentViewController: BaseViewController {
     
     // MARK: - Properties
     
@@ -30,7 +25,7 @@ class BottomMenuViewController: BaseViewController {
     }
     
     init() {
-        super.init(nibName: String(describing: BottomMenuViewController.self), bundle: nil)
+        super.init(nibName: String(describing: ContentViewController.self), bundle: nil)
         Logger.success.message()
     }
     
