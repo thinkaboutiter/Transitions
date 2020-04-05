@@ -57,14 +57,13 @@ extension TransitionAnimatorImpl: TransitionAnimator {
         let presentedFrame: CGRect = transitionContext.finalFrame(for: controller)
         var dismissedFrame: CGRect = presentedFrame
         
-        // TODO: check `dismissedFrame` setup below
         switch self.direction {
         case .left:
-            dismissedFrame.origin.x = -presentedFrame.width
+            dismissedFrame.origin.x = -transitionContext.containerView.frame.size.width
         case .right:
             dismissedFrame.origin.x = transitionContext.containerView.frame.size.width
         case .top:
-            dismissedFrame.origin.y = -presentedFrame.height
+            dismissedFrame.origin.y = -transitionContext.containerView.frame.size.height
         case .bottom:
             dismissedFrame.origin.y = transitionContext.containerView.frame.size.height
         }
