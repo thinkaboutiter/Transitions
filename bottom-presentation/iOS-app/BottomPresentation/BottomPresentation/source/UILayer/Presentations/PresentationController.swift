@@ -12,9 +12,11 @@ class PresentationController: UIPresentationController {
     
     // MARK: - Properties
     private let direction: PresentationDirection
-    private lazy var dimmingView: UIVisualEffectView = {
-        let effect: UIBlurEffect = UIBlurEffect.init(style: .dark)
-        let result: UIVisualEffectView = UIVisualEffectView(effect: effect)
+    private lazy var dimmingView: UIView = {
+//        let effect: UIBlurEffect = UIBlurEffect.init(style: .dark)
+//        let result: UIVisualEffectView = UIVisualEffectView(effect: effect)
+        let result: UIView = UIView()
+        result.backgroundColor = UIColor.darkGray.withAlphaComponent(0.5)
         result.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         let tapGestureRecognizer: UITapGestureRecognizer =
         UITapGestureRecognizer(target: self,
@@ -80,6 +82,7 @@ class PresentationController: UIPresentationController {
             assert(false, "Invalid containerView object!")
             return
         }
+        self.dimmingView.frame = containerView.bounds
         containerView.insertSubview(self.dimmingView, at: 0)
         let reveal: (UIView) -> Void = { view in
             view.alpha = 1.0
