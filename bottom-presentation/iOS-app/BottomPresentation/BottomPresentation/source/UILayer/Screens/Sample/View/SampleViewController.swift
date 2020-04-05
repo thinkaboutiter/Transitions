@@ -11,9 +11,6 @@ import SimpleLogger
 
 class SampleViewController: BaseViewController {
     
-    // MARK: - Properties
-    @IBOutlet private weak var actionButton: UIButton!
-    
     // MARK: - Initialization
     @available(*, unavailable, message: "Creating this view controller with `init(coder:)` is unsupported in favor of initializer dependency injection.")
     required init?(coder aDecoder: NSCoder) {
@@ -43,6 +40,7 @@ class SampleViewController: BaseViewController {
     }
     
     // MARK: - actions
+    /*
     @IBAction func actionButton_touchUpInside(_ sender: UIButton) {
         let vc: ContentViewController = ContentViewController()
         self.initiatePageSheetPresentation(with: vc)
@@ -52,16 +50,50 @@ class SampleViewController: BaseViewController {
         viewController.modalPresentationStyle = .pageSheet
         self.present(viewController, animated: true, completion: nil)
     }
+     */
+    
+    @IBAction func topButton_touchUpInside(_ sender: UIButton) {
+        Logger.debug.message()
+        let direction: PresentationDirection = PresentationDirection.top(.half)
+        let manager: PresentationManager = PresentationManagerFactory.manager(direction: direction)
+        let vc: ContentViewController = ContentViewController()
+        vc.transitioningDelegate = manager
+        vc.modalPresentationStyle = .custom
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    @IBAction func leftButton_touchUpInside(_ sender: UIButton) {
+        Logger.debug.message()
+        let direction: PresentationDirection = PresentationDirection.left(.half)
+        let manager: PresentationManager = PresentationManagerFactory.manager(direction: direction)
+        let vc: ContentViewController = ContentViewController()
+        vc.transitioningDelegate = manager
+        vc.modalPresentationStyle = .custom
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    @IBAction func bottomtButton_touchUpInside(_ sender: UIButton) {
+        Logger.debug.message()
+        let direction: PresentationDirection = PresentationDirection.bottom(.half)
+        let manager: PresentationManager = PresentationManagerFactory.manager(direction: direction)
+        let vc: ContentViewController = ContentViewController()
+        vc.transitioningDelegate = manager
+        vc.modalPresentationStyle = .custom
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    @IBAction func rightButton_touchUpInside(_ sender: UIButton) {
+        Logger.debug.message()
+        let direction: PresentationDirection = PresentationDirection.right(.half)
+        let manager: PresentationManager = PresentationManagerFactory.manager(direction: direction)
+        let vc: ContentViewController = ContentViewController()
+        vc.transitioningDelegate = manager
+        vc.modalPresentationStyle = .custom
+        self.present(vc, animated: true, completion: nil)
+    }
 }
 
 private extension SampleViewController {
     
-    func configure_ui() {
-        self.configure_actionButton(self.actionButton)
-    }
-    
-    func configure_actionButton(_ button: UIButton) {
-        let title: String = NSLocalizedString("SampleViewController.actionButton.title", comment: AppConstants.LocalizedStringComment.buttonTitle)
-        button.setTitle(title, for: .normal)
-    }
+    func configure_ui() {}
 }
