@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import SimpleLogger
 
 protocol PresentationManager: UIViewControllerTransitioningDelegate {
     var direction: PresentationDirection { get }
+    func setDirection(_ newValue: PresentationDirection)
 }
 
 struct PresentationManagerFactory {
@@ -21,12 +23,19 @@ struct PresentationManagerFactory {
 private class PresentationManagerImpl: NSObject {
     
     // MARK: - Properties
-    let direction: PresentationDirection
+    private(set) var direction: PresentationDirection
+    func setDirection(_ newValue: PresentationDirection) {
+        self.direction = newValue
+    }
     
     // MARK: - Initialization
     init(direction: PresentationDirection) {
         self.direction = direction
         super.init()
+    }
+    
+    deinit {
+        Logger.fatal.message()
     }
 }
 

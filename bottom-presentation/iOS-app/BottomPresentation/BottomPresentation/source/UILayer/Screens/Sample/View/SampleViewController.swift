@@ -11,6 +11,13 @@ import SimpleLogger
 
 class SampleViewController: BaseViewController {
     
+    // MARK: - Properties
+    private lazy var presentationManager: PresentationManager = {
+        let direction: PresentationDirection = .bottom(.half)
+        let result: PresentationManager = PresentationManagerFactory.manager(direction: direction)
+        return result
+    }()
+    
     // MARK: - Initialization
     @available(*, unavailable, message: "Creating this view controller with `init(coder:)` is unsupported in favor of initializer dependency injection.")
     required init?(coder aDecoder: NSCoder) {
@@ -55,9 +62,9 @@ class SampleViewController: BaseViewController {
     @IBAction func topButton_touchUpInside(_ sender: UIButton) {
         Logger.debug.message()
         let direction: PresentationDirection = PresentationDirection.top(.half)
-        let manager: PresentationManager = PresentationManagerFactory.manager(direction: direction)
+        self.presentationManager.setDirection(direction)
         let vc: ContentViewController = ContentViewController()
-        vc.transitioningDelegate = manager
+        vc.transitioningDelegate = self.presentationManager
         vc.modalPresentationStyle = .custom
         self.present(vc, animated: true, completion: nil)
     }
@@ -65,9 +72,9 @@ class SampleViewController: BaseViewController {
     @IBAction func leftButton_touchUpInside(_ sender: UIButton) {
         Logger.debug.message()
         let direction: PresentationDirection = PresentationDirection.left(.half)
-        let manager: PresentationManager = PresentationManagerFactory.manager(direction: direction)
+        self.presentationManager.setDirection(direction)
         let vc: ContentViewController = ContentViewController()
-        vc.transitioningDelegate = manager
+        vc.transitioningDelegate = self.presentationManager
         vc.modalPresentationStyle = .custom
         self.present(vc, animated: true, completion: nil)
     }
@@ -75,9 +82,9 @@ class SampleViewController: BaseViewController {
     @IBAction func bottomtButton_touchUpInside(_ sender: UIButton) {
         Logger.debug.message()
         let direction: PresentationDirection = PresentationDirection.bottom(.half)
-        let manager: PresentationManager = PresentationManagerFactory.manager(direction: direction)
+        self.presentationManager.setDirection(direction)
         let vc: ContentViewController = ContentViewController()
-        vc.transitioningDelegate = manager
+        vc.transitioningDelegate = self.presentationManager
         vc.modalPresentationStyle = .custom
         self.present(vc, animated: true, completion: nil)
     }
@@ -85,9 +92,9 @@ class SampleViewController: BaseViewController {
     @IBAction func rightButton_touchUpInside(_ sender: UIButton) {
         Logger.debug.message()
         let direction: PresentationDirection = PresentationDirection.right(.half)
-        let manager: PresentationManager = PresentationManagerFactory.manager(direction: direction)
+        self.presentationManager.setDirection(direction)
         let vc: ContentViewController = ContentViewController()
-        vc.transitioningDelegate = manager
+        vc.transitioningDelegate = self.presentationManager
         vc.modalPresentationStyle = .custom
         self.present(vc, animated: true, completion: nil)
     }
