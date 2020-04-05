@@ -38,7 +38,7 @@ class PresentationController: UIPresentationController {
         case .right(let coverage):
             result.origin.x = containerView.frame.width * (1.0 - CGFloat(coverage.rawValue))
         case .bottom(let coverage):
-            result.origin.x = containerView.frame.height * (1.0 - CGFloat(coverage.rawValue))
+            result.origin.y = containerView.frame.height * (1.0 - CGFloat(coverage.rawValue))
         default:
             break
         }
