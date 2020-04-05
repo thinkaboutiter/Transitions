@@ -61,7 +61,7 @@ class SampleViewController: BaseViewController {
     
     @IBAction func topButton_touchUpInside(_ sender: UIButton) {
         Logger.debug.message()
-        let direction: PresentationDirection = PresentationDirection.top(.half)
+        let direction: PresentationDirection = PresentationDirection.top(.oneThird)
         self.presentationManager.setDirection(direction)
         let vc: ContentViewController = ContentViewController()
         vc.transitioningDelegate = self.presentationManager
@@ -71,7 +71,7 @@ class SampleViewController: BaseViewController {
     
     @IBAction func leftButton_touchUpInside(_ sender: UIButton) {
         Logger.debug.message()
-        let direction: PresentationDirection = PresentationDirection.left(.half)
+        let direction: PresentationDirection = PresentationDirection.left(.threeQuarters)
         self.presentationManager.setDirection(direction)
         let vc: ContentViewController = ContentViewController()
         vc.transitioningDelegate = self.presentationManager
@@ -91,7 +91,7 @@ class SampleViewController: BaseViewController {
     
     @IBAction func rightButton_touchUpInside(_ sender: UIButton) {
         Logger.debug.message()
-        let direction: PresentationDirection = PresentationDirection.right(.half)
+        let direction: PresentationDirection = PresentationDirection.right(.oneThird)
         self.presentationManager.setDirection(direction)
         let vc: ContentViewController = ContentViewController()
         vc.transitioningDelegate = self.presentationManager

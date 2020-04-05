@@ -16,7 +16,7 @@ class PresentationController: UIPresentationController {
 //        let effect: UIBlurEffect = UIBlurEffect.init(style: .dark)
 //        let result: UIVisualEffectView = UIVisualEffectView(effect: effect)
         let result: UIView = UIView()
-        result.backgroundColor = UIColor.darkGray.withAlphaComponent(0.5)
+        result.backgroundColor = UIColor.darkGray.withAlphaComponent(0.75)
         result.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         let tapGestureRecognizer: UITapGestureRecognizer =
         UITapGestureRecognizer(target: self,
