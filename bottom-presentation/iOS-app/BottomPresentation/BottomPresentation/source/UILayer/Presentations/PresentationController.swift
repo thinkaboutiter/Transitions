@@ -112,6 +112,8 @@ class PresentationController: UIPresentationController {
     
     override func containerViewWillLayoutSubviews() {
         self.presentedView?.frame = self.frameOfPresentedViewInContainerView
+        self.presentedView?.layer.masksToBounds = true
+        self.presentedView?.layer.cornerRadius = Constants.presentedViewCornerRadius
     }
     
     // MARK: - Gestures
@@ -119,5 +121,12 @@ class PresentationController: UIPresentationController {
     func handleTap(recognizer: UITapGestureRecognizer) {
         self.presentingViewController.dismiss(animated: true,
                                               completion: nil)
+    }
+}
+
+// MARK: - Constants
+private extension PresentationController {
+    enum Constants {
+        static let presentedViewCornerRadius: CGFloat = 16
     }
 }
