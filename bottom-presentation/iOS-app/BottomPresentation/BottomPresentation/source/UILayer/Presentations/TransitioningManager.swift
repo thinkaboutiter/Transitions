@@ -1,5 +1,5 @@
 //
-//  PresentationManager.swift
+//  TransitioningManager.swift
 //  BottomPresentation
 //
 //  Created by Boyan Yankov on 2020-W14-05-Apr-Sun.
@@ -9,18 +9,18 @@
 import UIKit
 import SimpleLogger
 
-protocol PresentationManager: UIViewControllerTransitioningDelegate {
+protocol TransitioningManager: UIViewControllerTransitioningDelegate {
     var direction: PresentationDirection { get }
     func setDirection(_ newValue: PresentationDirection)
 }
 
-struct PresentationManagerFactory {
-    static func manager(direction: PresentationDirection) -> PresentationManager {
-        return PresentationManagerImpl(direction: direction)
+struct TransitioningManagerFactory {
+    static func manager(for direction: PresentationDirection) -> TransitioningManager {
+        return TransitioningManagerImpl(direction: direction)
     }
 }
 
-private class PresentationManagerImpl: NSObject {
+private class TransitioningManagerImpl: NSObject {
     
     // MARK: - Properties
     private(set) var direction: PresentationDirection
@@ -39,7 +39,7 @@ private class PresentationManagerImpl: NSObject {
     }
 }
 
-extension PresentationManagerImpl: PresentationManager {
+extension TransitioningManagerImpl: TransitioningManager {
     
     func presentationController(forPresented presented: UIViewController,
                                 presenting: UIViewController?,
