@@ -17,12 +17,12 @@ struct AnimatedTransitioningControllerFactory {
     static func controller(for direction: PresentationDirection,
                            isPresentation: Bool) -> AnimatedTransitioningController
     {
-        return TransitionAnimatorImpl(direction: direction,
+        return AnimatedTransitioningControllerImpl(direction: direction,
                                       isPresentation: isPresentation)
     }
 }
 
-private class TransitionAnimatorImpl: NSObject {
+private class AnimatedTransitioningControllerImpl: NSObject {
     
     // MARK: - Properties
     let direction: PresentationDirection
@@ -38,8 +38,8 @@ private class TransitionAnimatorImpl: NSObject {
     }
 }
 
-// MARK: - TransitionAnimator protocol
-extension TransitionAnimatorImpl: AnimatedTransitioningController {
+// MARK: - AnimatedTransitioningController protocol
+extension AnimatedTransitioningControllerImpl: AnimatedTransitioningController {
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return Constants.transitionDuration
@@ -88,7 +88,7 @@ extension TransitionAnimatorImpl: AnimatedTransitioningController {
 }
 
 // MARK: - Constants
-private extension TransitionAnimatorImpl {
+private extension AnimatedTransitioningControllerImpl {
     
     enum Constants {
         static let transitionDuration: TimeInterval = 0.3
