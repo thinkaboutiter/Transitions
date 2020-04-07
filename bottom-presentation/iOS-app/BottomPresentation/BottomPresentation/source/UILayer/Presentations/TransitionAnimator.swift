@@ -1,5 +1,5 @@
 //
-//  AnimatedTransitioningController.swift
+//  TransitionAnimator.swift
 //  BottomPresentation
 //
 //  Created by Boyan Yankov on 2020-W14-04-Apr-Sat.
@@ -8,21 +8,21 @@
 
 import UIKit
 
-protocol AnimatedTransitioningController: UIViewControllerAnimatedTransitioning {
+protocol TransitionAnimator: UIViewControllerAnimatedTransitioning {
     var direction: PresentationDirection { get }
     var isPresentation: Bool { get }
 }
 
-struct AnimatedTransitioningControllerFactory {
-    static func controller(for direction: PresentationDirection,
-                           isPresentation: Bool) -> AnimatedTransitioningController
+struct TransitionAnimatorFactory {
+    static func animator(for direction: PresentationDirection,
+                         isPresentation: Bool) -> TransitionAnimator
     {
-        return AnimatedTransitioningControllerImpl(direction: direction,
-                                      isPresentation: isPresentation)
+        return TransitionAnimatorImpl(direction: direction,
+                                                   isPresentation: isPresentation)
     }
 }
 
-private class AnimatedTransitioningControllerImpl: NSObject {
+private class TransitionAnimatorImpl: NSObject {
     
     // MARK: - Properties
     let direction: PresentationDirection
@@ -38,8 +38,8 @@ private class AnimatedTransitioningControllerImpl: NSObject {
     }
 }
 
-// MARK: - AnimatedTransitioningController protocol
-extension AnimatedTransitioningControllerImpl: AnimatedTransitioningController {
+// MARK: - TransitionAnimator protocol
+extension TransitionAnimatorImpl: TransitionAnimator {
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return Constants.transitionDuration
@@ -88,7 +88,7 @@ extension AnimatedTransitioningControllerImpl: AnimatedTransitioningController {
 }
 
 // MARK: - Constants
-private extension AnimatedTransitioningControllerImpl {
+private extension TransitionAnimatorImpl {
     
     enum Constants {
         static let transitionDuration: TimeInterval = 0.3

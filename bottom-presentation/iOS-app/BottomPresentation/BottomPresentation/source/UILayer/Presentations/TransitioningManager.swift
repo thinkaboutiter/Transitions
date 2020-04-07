@@ -56,16 +56,16 @@ extension TransitioningManagerImpl: TransitioningManager {
                              presenting: UIViewController,
                              source: UIViewController) -> UIViewControllerAnimatedTransitioning?
     {
-        let controller: AnimatedTransitioningController =
-            AnimatedTransitioningControllerFactory.controller(for: self.direction,
-                                                              isPresentation: true)
-        return controller
+        let animator: TransitionAnimator =
+            TransitionAnimatorFactory.animator(for: self.direction,
+                                               isPresentation: true)
+        return animator
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        let controller: AnimatedTransitioningController =
-            AnimatedTransitioningControllerFactory.controller(for: self.direction,
-                                                              isPresentation: false)
-        return controller
+        let animator: TransitionAnimator =
+            TransitionAnimatorFactory.animator(for: self.direction,
+                                               isPresentation: false)
+        return animator
     }
 }
