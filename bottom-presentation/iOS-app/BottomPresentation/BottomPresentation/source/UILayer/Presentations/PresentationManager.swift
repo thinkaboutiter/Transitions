@@ -56,16 +56,16 @@ extension PresentationManagerImpl: PresentationManager {
                              presenting: UIViewController,
                              source: UIViewController) -> UIViewControllerAnimatedTransitioning?
     {
-        let animator: TransitionAnimator =
-            TransitionAnimatorFactory.animator(direction: self.direction,
-                                               isPresentation: true)
-        return animator
+        let controller: AnimatedTransitioningController =
+            AnimatedTransitioningControllerFactory.controller(for: self.direction,
+                                                              isPresentation: true)
+        return controller
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        let animator: TransitionAnimator =
-            TransitionAnimatorFactory.animator(direction: self.direction,
-                                               isPresentation: false)
-        return animator
+        let controller: AnimatedTransitioningController =
+            AnimatedTransitioningControllerFactory.controller(for: self.direction,
+                                                              isPresentation: false)
+        return controller
     }
 }

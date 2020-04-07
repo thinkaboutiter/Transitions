@@ -1,5 +1,5 @@
 //
-//  TransitionAnimator.swift
+//  AnimatedTransitioningController.swift
 //  BottomPresentation
 //
 //  Created by Boyan Yankov on 2020-W14-04-Apr-Sat.
@@ -8,14 +8,14 @@
 
 import UIKit
 
-protocol TransitionAnimator: UIViewControllerAnimatedTransitioning {
+protocol AnimatedTransitioningController: UIViewControllerAnimatedTransitioning {
     var direction: PresentationDirection { get }
     var isPresentation: Bool { get }
 }
 
-struct TransitionAnimatorFactory {
-    static func animator(direction: PresentationDirection,
-                         isPresentation: Bool) -> TransitionAnimator
+struct AnimatedTransitioningControllerFactory {
+    static func controller(for direction: PresentationDirection,
+                           isPresentation: Bool) -> AnimatedTransitioningController
     {
         return TransitionAnimatorImpl(direction: direction,
                                       isPresentation: isPresentation)
@@ -39,7 +39,7 @@ private class TransitionAnimatorImpl: NSObject {
 }
 
 // MARK: - TransitionAnimator protocol
-extension TransitionAnimatorImpl: TransitionAnimator {
+extension TransitionAnimatorImpl: AnimatedTransitioningController {
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return Constants.transitionDuration
