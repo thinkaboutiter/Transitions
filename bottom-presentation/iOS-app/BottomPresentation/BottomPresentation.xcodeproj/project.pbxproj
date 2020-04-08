@@ -23,6 +23,7 @@
 		4FAC0A7D23F7F48600B1FB76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FAC0A7C23F7F48600B1FB76 /* Assets.xcassets */; };
 		4FAC0AA923F8001600B1FB76 /* SimpleLogger in Frameworks */ = {isa = PBXBuildFile; productRef = 4FAC0AA823F8001600B1FB76 /* SimpleLogger */; };
 		4FAC0AB523F80E8200B1FB76 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FAC0AB723F80E8200B1FB76 /* Localizable.strings */; };
+		4FDF2002243DEA3400FD96FF /* TransitionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDF2001243DEA3400FD96FF /* TransitionInteractor.swift */; };
 		4FF867242439185E005FF395 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF867222439185E005FF395 /* ContentViewController.swift */; };
 		4FF867252439185E005FF395 /* ContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FF867232439185E005FF395 /* ContentViewController.xib */; };
 /* End PBXBuildFile section */
@@ -45,6 +46,7 @@
 		4FAC0A7023F7F48200B1FB76 /* BottomPresentation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BottomPresentation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FAC0A7C23F7F48600B1FB76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4FAC0AB623F80E8200B1FB76 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4FDF2001243DEA3400FD96FF /* TransitionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionInteractor.swift; sourceTree = "<group>"; };
 		4FF867222439185E005FF395 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		4FF867232439185E005FF395 /* ContentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,6 +68,7 @@
 			children = (
 				4F60E157243925E400763F33 /* PresentationDirection.swift */,
 				4F60E1592439295100763F33 /* TransitionAnimator.swift */,
+				4FDF2001243DEA3400FD96FF /* TransitionInteractor.swift */,
 				4F60E15B2439439400763F33 /* PresentationController.swift */,
 				4F60E15D24395C3F00763F33 /* TransitioningManager.swift */,
 			);
@@ -318,6 +321,7 @@
 				4FF867242439185E005FF395 /* ContentViewController.swift in Sources */,
 				4F60E15A2439295100763F33 /* TransitionAnimator.swift in Sources */,
 				4F6B631B2438C08000BE9B1F /* RootViewController.swift in Sources */,
+				4FDF2002243DEA3400FD96FF /* TransitionInteractor.swift in Sources */,
 				4F6B632F2438C45200BE9B1F /* SampleViewController.swift in Sources */,
 				4F60E158243925E400763F33 /* PresentationDirection.swift in Sources */,
 				4F6B63182438C08000BE9B1F /* AppDelegate.swift in Sources */,
@@ -470,7 +474,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 93;
+				CURRENT_PROJECT_VERSION = 95;
 				DEVELOPMENT_TEAM = J48Y9TAH25;
 				INFOPLIST_FILE = "$(PROJECT_NAME)/source/SupportFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -490,7 +494,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 93;
+				CURRENT_PROJECT_VERSION = 95;
 				DEVELOPMENT_TEAM = J48Y9TAH25;
 				INFOPLIST_FILE = "$(PROJECT_NAME)/source/SupportFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
