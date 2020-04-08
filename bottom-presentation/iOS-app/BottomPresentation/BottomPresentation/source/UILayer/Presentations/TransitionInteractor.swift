@@ -18,8 +18,8 @@ protocol TransitionInteractor: UIViewControllerInteractiveTransitioning {
 }
 
 struct TransitionInteractorFactory {
-    static func percentDrivenInteractor(for viewController: UIViewController) -> TransitionInteractor {
-        return PercentDrivenTransitionInteractor(viewController: viewController)
+    static func percentDrivenInteractor(for direction: PresentationDirection) -> TransitionInteractor {
+        return PercentDrivenTransitionInteractor(direction: direction)
     }
 }
 
@@ -29,15 +29,17 @@ private class PercentDrivenTransitionInteractor: UIPercentDrivenInteractiveTrans
     private(set) var isInteractionInProgress: Bool = false
     private var shouldCompleteTransition: Bool = false
     private weak var viewController: UIViewController!
+    private let direction: PresentationDirection
     
     // MARK: - Initialization
-    override init() {
+    init(direction: PresentationDirection) {
+        self.direction = direction
         super.init()
-        Logger.success.message()
+        Logger.success.message("direction=\(self.direction)")
     }
     
     deinit {
-        Logger.fatal.message()
+        Logger.fatal.message("direction=\(self.direction)")
     }
     
     // MARK: - Gesture setup
