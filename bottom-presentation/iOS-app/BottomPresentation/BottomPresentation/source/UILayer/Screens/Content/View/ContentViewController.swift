@@ -12,6 +12,7 @@ import SimpleLogger
 class ContentViewController: BaseViewController {
     
     // MARK: - Properties
+    private let interactor: TransitionInteractor
     
     // MARK: - Initialization
     @available(*, unavailable, message: "Creating this view controller with `init(coder:)` is unsupported in favor of initializer dependency injection.")
@@ -39,7 +40,13 @@ class ContentViewController: BaseViewController {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
+    }
+}
+
+extension ContentViewController: TransitionInteractorProvider {
+    
+    func transitionInteractor() -> TransitionInteractor {
+        return self.interactor
     }
 }
