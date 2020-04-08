@@ -49,17 +49,32 @@ private class PercentDrivenTransitionInteractor: UIPercentDrivenInteractiveTrans
     
     // MARK: - Gesture setup
     private func prepareGestureRecognizer(in view: UIView) {
-        let recognizer = UIGestureRecognizer(target: self,
-                                             action: #selector(self.handleGesture(_:)))
+        let recognizer = UIPanGestureRecognizer()
+        recognizer.addTarget(self, action: #selector(self.handleGesture(_:)))
         recognizer.delegate = self
         view.addGestureRecognizer(recognizer)
         view.isUserInteractionEnabled = true
     }
     
-    @objc func handleGesture(_ gestureRecognizer: UIGestureRecognizer) {
-        let translation: CGPoint = gestureRecognizer.location(in: gestureRecognizer.view!)
-        var progress: CGFloat = (translation.x / Constants.progressRatio)
+    @objc func handleGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
+        let translation: CGPoint = gestureRecognizer.translation(in: gestureRecognizer.view)
+        var progress: CGFloat
+        switch self.direction {
+        case .top:
+            progress = (-translation.y / Constants.progressRatio)
+        case .left:
+            progress = (-translation.x / Constants.progressRatio)
+        case .bottom:
+            progress = (translation.y / Constants.progressRatio)
+        case .right:
+            progress = (translation.x / Constants.progressRatio)
+        }
+        
+        Logger.debug.message("translation=\(progress)")
+         
         progress = CGFloat(fminf(fmaxf(Float(progress), 0.0), 1.0))
+        
+        Logger.debug.message("progress=\(progress)")
         
         switch gestureRecognizer.state {
         case .began:
