@@ -11,6 +11,7 @@ import UIKit
 protocol TransitionAnimator: UIViewControllerAnimatedTransitioning {
     var direction: PresentationDirection { get }
     var isPresentation: Bool { get }
+    var interactor: TransitionInteractor? { get }
 }
 
 struct TransitionAnimatorFactory {
@@ -18,29 +19,38 @@ struct TransitionAnimatorFactory {
                          isPresentation: Bool) -> TransitionAnimator
     {
         return TransitionAnimatorImpl(direction: direction,
-                                                   isPresentation: isPresentation)
+                                      isPresentation: isPresentation,
+                                      interactor: nil)
+    }
+    
+    static func dismissalAnimator(for direction: PresentationDirection,
+                                  with interactor: TransitionInteractor) -> TransitionAnimator
+    {
+        return TransitionAnimatorImpl(direction: direction,
+                                      isPresentation: false,
+                                      interactor: interactor)
     }
 }
 
-private class TransitionAnimatorImpl: NSObject {
+private class TransitionAnimatorImpl: NSObject, TransitionAnimator {
     
-    // MARK: - Properties
+    // MARK: - TransitionAnimator protocol
     let direction: PresentationDirection
     let isPresentation: Bool
+    private(set) var interactor: TransitionInteractor?
     
     // MARK: - Initializers
     init(direction: PresentationDirection,
-         isPresentation: Bool)
+         isPresentation: Bool,
+         interactor: TransitionInteractor?)
     {
         self.direction = direction
         self.isPresentation = isPresentation
+        self.interactor = interactor
         super.init()
     }
-}
 
-// MARK: - TransitionAnimator protocol
-extension TransitionAnimatorImpl: TransitionAnimator {
-    
+    // MARK: - UIViewControllerAnimatedTransitioning protocol
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return Constants.transitionDuration
     }
