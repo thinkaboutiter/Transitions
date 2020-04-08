@@ -63,9 +63,36 @@ extension TransitioningManagerImpl: TransitioningManager {
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        let animator: TransitionAnimator =
-            TransitionAnimatorFactory.animator(for: self.direction,
-                                               isPresentation: false)
+        
+        let animator: TransitionAnimator
+        if let provider: TransitionInteractorProvider = dismissed as? TransitionInteractorProvider {
+            let interactor: TransitionInteractor = provider.transitionInteractor()
+            animator = TransitionAnimatorFactory.dismissalAnimator(for: self.direction,
+                                                                   with: interactor)
+        }
+        else {
+            animator = TransitionAnimatorFactory.animator(for: self.direction,
+                                                          isPresentation: false)
+        }
         return animator
+    }
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        guard let transitionAnimator: TransitionAnimator = animator as? TransitionAnimator else {
+            let message: String = "Unable to obtain valid \(String(describing: TransitionAnimator.self)) object!"
+            Logger.error.message(message)
+            return nil
+        }
+        guard let interactor: TransitionInteractor = transitionAnimator.interactor else {
+            let message: String = "Unable to obtain valid \(String(describing: TransitionInteractor.self)) object!"
+            Logger.error.message(message)
+            return nil
+        }
+        guard interactor.isInteractionInProgress else {
+            let message: String = "Interaction is not in progress!"
+            Logger.error.message(message)
+            return nil
+        }
+        return interactor
     }
 }
