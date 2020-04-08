@@ -65,7 +65,6 @@ extension TransitioningManagerImpl: TransitioningManager {
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
         let animator: TransitionAnimator
         if let provider: TransitionInteractorProvider = dismissed as? TransitionInteractorProvider {
             let interactor: TransitionInteractor = provider.transitionInteractor()

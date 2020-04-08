@@ -57,17 +57,20 @@ private class PercentDrivenTransitionInteractor: UIPercentDrivenInteractiveTrans
     }
     
     @objc func handleGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
+        guard let view: UIView = gestureRecognizer.view else {
+            return
+        }
         let translation: CGPoint = gestureRecognizer.translation(in: gestureRecognizer.view)
         var progress: CGFloat
         switch self.direction {
         case .top:
-            progress = (-translation.y / Constants.progressRatio)
+            progress = (-translation.y / view.bounds.height)
         case .left:
-            progress = (-translation.x / Constants.progressRatio)
+            progress = (-translation.x / view.bounds.width)
         case .bottom:
-            progress = (translation.y / Constants.progressRatio)
+            progress = (translation.y / view.bounds.height)
         case .right:
-            progress = (translation.x / Constants.progressRatio)
+            progress = (translation.x / view.bounds.width)
         }
         
         Logger.debug.message("translation=\(progress)")
@@ -81,7 +84,7 @@ private class PercentDrivenTransitionInteractor: UIPercentDrivenInteractiveTrans
             self.isInteractionInProgress = true
             self.viewController.dismiss(animated: true, completion: nil)
         case .changed:
-            self.shouldCompleteTransition = progress > Constants.progressThreshold
+            self.shouldCompleteTransition = (Constants.completionRange ~= progress)
             self.update(progress)
         case .cancelled:
             self.isInteractionInProgress = false
@@ -105,6 +108,6 @@ private extension PercentDrivenTransitionInteractor {
     
     enum Constants {
         static let progressRatio: CGFloat = 200
-        static let progressThreshold: CGFloat = 0.5
+        static let completionRange: ClosedRange<CGFloat> = 0.5...1.0
     }
 }
