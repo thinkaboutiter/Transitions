@@ -24,7 +24,8 @@ class ContentViewController: BaseViewController {
         fatalError("Creating this view controller with `init(nibName:bundle:)` is unsupported in favor of dependency injection initializer.")
     }
     
-    init() {
+    init(dismissalInteractor: TransitionInteractor) {
+        self.interactor = dismissalInteractor
         super.init(nibName: String(describing: ContentViewController.self), bundle: nil)
         Logger.success.message()
     }

@@ -28,14 +28,16 @@ private class TransitioningManagerImpl: NSObject {
         self.direction = newValue
     }
     
+    
     // MARK: - Initialization
     init(direction: PresentationDirection) {
         self.direction = direction
         super.init()
+        Logger.success.message("direction=\(direction)")
     }
     
     deinit {
-        Logger.fatal.message()
+        Logger.fatal.message("direction=\(self.direction)")
     }
 }
 

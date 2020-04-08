@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SimpleLogger
 
 protocol TransitionInteractorProvider: AnyObject {
     func transitionInteractor() -> TransitionInteractor
@@ -30,10 +31,13 @@ private class PercentDrivenTransitionInteractor: UIPercentDrivenInteractiveTrans
     private weak var viewController: UIViewController!
     
     // MARK: - Initialization
-    init(viewController: UIViewController) {
-        self.viewController = viewController
+    override init() {
         super.init()
-        self.prepareGestureRecognizer(in: self.viewController.view)
+        Logger.success.message()
+    }
+    
+    deinit {
+        Logger.fatal.message()
     }
     
     // MARK: - Gesture setup

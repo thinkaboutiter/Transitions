@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SimpleLogger
 
 class PresentationController: UIPresentationController {
     
@@ -53,6 +54,11 @@ class PresentationController: UIPresentationController {
         self.direction = direction
         super.init(presentedViewController: presentedViewController,
                    presenting: presentingViewController)
+        Logger.success.message("direction=\(self.direction)")
+    }
+    
+    deinit {
+        Logger.fatal.message("direction=\(self.direction)")
     }
     
     // MARK: - Customization

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SimpleLogger
 
 protocol TransitionAnimator: UIViewControllerAnimatedTransitioning {
     var direction: PresentationDirection { get }
@@ -48,6 +49,11 @@ private class TransitionAnimatorImpl: NSObject, TransitionAnimator {
         self.isPresentation = isPresentation
         self.interactor = interactor
         super.init()
+        Logger.success.message("direction=\(self.direction)")
+    }
+    
+    deinit {
+        Logger.fatal.message("direction=\(self.direction)")
     }
 
     // MARK: - UIViewControllerAnimatedTransitioning protocol
