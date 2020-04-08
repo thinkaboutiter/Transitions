@@ -24,7 +24,7 @@ struct TransitionInteractorFactory {
     }
 }
 
-private class PercentDrivenTransitionInteractor: UIPercentDrivenInteractiveTransition, TransitionInteractor {
+private class PercentDrivenTransitionInteractor: UIPercentDrivenInteractiveTransition, TransitionInteractor, UIGestureRecognizerDelegate {
     
     // MARK: - Properties
     private(set) var isInteractionInProgress: Bool = false
@@ -49,14 +49,15 @@ private class PercentDrivenTransitionInteractor: UIPercentDrivenInteractiveTrans
     
     // MARK: - Gesture setup
     private func prepareGestureRecognizer(in view: UIView) {
-        let recognizer = UIScreenEdgePanGestureRecognizer(target: self,
-                                                          action: #selector(self.handleGesture(_:)))
-        recognizer.edges = .left
+        let recognizer = UIGestureRecognizer(target: self,
+                                             action: #selector(self.handleGesture(_:)))
+        recognizer.delegate = self
         view.addGestureRecognizer(recognizer)
+        view.isUserInteractionEnabled = true
     }
     
-    @objc func handleGesture(_ gestureRecognizer: UIScreenEdgePanGestureRecognizer) {
-        let translation: CGPoint = gestureRecognizer.translation(in: gestureRecognizer.view!.superview!)
+    @objc func handleGesture(_ gestureRecognizer: UIGestureRecognizer) {
+        let translation: CGPoint = gestureRecognizer.location(in: gestureRecognizer.view!)
         var progress: CGFloat = (translation.x / Constants.progressRatio)
         progress = CGFloat(fminf(fmaxf(Float(progress), 0.0), 1.0))
         
