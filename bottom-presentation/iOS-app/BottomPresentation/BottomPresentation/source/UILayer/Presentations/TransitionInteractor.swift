@@ -15,6 +15,7 @@ protocol TransitionInteractorProvider: AnyObject {
 
 protocol TransitionInteractor: UIViewControllerInteractiveTransitioning {
     var isInteractionInProgress: Bool { get }
+    func setViewController(_ newValue: UIViewController)
 }
 
 struct TransitionInteractorFactory {
@@ -29,6 +30,10 @@ private class PercentDrivenTransitionInteractor: UIPercentDrivenInteractiveTrans
     private(set) var isInteractionInProgress: Bool = false
     private var shouldCompleteTransition: Bool = false
     private weak var viewController: UIViewController!
+    func setViewController(_ newValue: UIViewController) {
+        self.viewController = newValue
+        self.prepareGestureRecognizer(in: newValue.view)
+    }
     private let direction: PresentationDirection
     
     // MARK: - Initialization
