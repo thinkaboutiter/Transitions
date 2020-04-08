@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol TransitionInteractorProvider: AnyObject {
+    func transitionInteractor() -> TransitionInteractor
+}
+
 protocol TransitionInteractor: UIViewControllerInteractiveTransitioning {
     var isInteractionInProgress: Bool { get }
 }
