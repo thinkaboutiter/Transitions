@@ -14,8 +14,8 @@ class SampleViewController: BaseViewController {
     // MARK: - Properties
     private lazy var transitioningManager: TransitioningManager = {
         let direction: PresentationDirection = .bottom(.half)
-        let manager: TransitioningManager = TransitioningManagerFactory.manager(for: direction)
-        return manager
+        let result: TransitioningManager = TransitioningManagerFactory.manager(for: direction)
+        return result
     }()
     
     // MARK: - Initialization
@@ -62,38 +62,32 @@ class SampleViewController: BaseViewController {
     @IBAction func topButton_touchUpInside(_ sender: UIButton) {
         Logger.debug.message()
         let direction: PresentationDirection = PresentationDirection.top(.oneThird)
-        self.transitioningManager.setDirection(direction)
-        let vc: ContentViewController = ContentViewController()
-        vc.transitioningDelegate = self.transitioningManager
-        vc.modalPresentationStyle = .custom
-        self.present(vc, animated: true, completion: nil)
+        self.slide(from: direction)
     }
     
     @IBAction func leftButton_touchUpInside(_ sender: UIButton) {
         Logger.debug.message()
         let direction: PresentationDirection = PresentationDirection.left(.threeQuarters)
-        self.transitioningManager.setDirection(direction)
-        let vc: ContentViewController = ContentViewController()
-        vc.transitioningDelegate = self.transitioningManager
-        vc.modalPresentationStyle = .custom
-        self.present(vc, animated: true, completion: nil)
+        self.slide(from: direction)
     }
     
     @IBAction func bottomtButton_touchUpInside(_ sender: UIButton) {
         Logger.debug.message()
         let direction: PresentationDirection = PresentationDirection.bottom(.half)
-        self.transitioningManager.setDirection(direction)
-        let vc: ContentViewController = ContentViewController()
-        vc.transitioningDelegate = self.transitioningManager
-        vc.modalPresentationStyle = .custom
-        self.present(vc, animated: true, completion: nil)
+        self.slide(from: direction)
     }
     
     @IBAction func rightButton_touchUpInside(_ sender: UIButton) {
         Logger.debug.message()
         let direction: PresentationDirection = PresentationDirection.right(.oneThird)
+        self.slide(from: direction)
+    }
+    
+    private func slide(from direction: PresentationDirection) {
         self.transitioningManager.setDirection(direction)
-        let vc: ContentViewController = ContentViewController()
+        let interactor: TransitionInteractor = TransitionInteractorFactory.percentDrivenInteractor(for: direction)
+        let vc: ContentViewController = ContentViewController(dismissalInteractor: interactor)
+        interactor.setViewController(vc)
         vc.transitioningDelegate = self.transitioningManager
         vc.modalPresentationStyle = .custom
         self.present(vc, animated: true, completion: nil)
