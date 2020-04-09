@@ -103,10 +103,16 @@ private class TransitionAnimatorImpl: NSObject, TransitionAnimator {
         },
             completion: { finished in
                 if let interactor = self.interactor {
-                    if !self.isPresentation && interactor.shouldCompleteTransition {
+                    let shouldRemoveView: Bool = (
+                        (!self.isPresentation
+                            && interactor.shouldCompleteTransition)
+                            || !transitionContext.isInteractive
+                    )
+                    if shouldRemoveView {
                         controller.view.removeFromSuperview()
                     }
-                    transitionContext.completeTransition(interactor.shouldCompleteTransition)
+                    let shouldCompleteTransition: Bool = interactor.shouldCompleteTransition || !transitionContext.isInteractive
+                    transitionContext.completeTransition(shouldCompleteTransition)
                 }
                 else {
                     if !self.isPresentation {
