@@ -28,7 +28,6 @@ private class TransitioningManagerImpl: NSObject {
         self.direction = newValue
     }
     
-    
     // MARK: - Initialization
     init(direction: PresentationDirection) {
         self.direction = direction
