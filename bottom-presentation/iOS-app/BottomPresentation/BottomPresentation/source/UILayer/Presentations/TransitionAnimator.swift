@@ -7,42 +7,65 @@
 //
 
 import UIKit
+import SimpleLogger
 
 protocol TransitionAnimator: UIViewControllerAnimatedTransitioning {
     var direction: PresentationDirection { get }
     var isPresentation: Bool { get }
+    var interactor: TransitionInteractor? { get }
 }
 
 struct TransitionAnimatorFactory {
-    static func animator(direction: PresentationDirection,
+    static func animator(for direction: PresentationDirection,
                          isPresentation: Bool) -> TransitionAnimator
     {
         return TransitionAnimatorImpl(direction: direction,
-                                      isPresentation: isPresentation)
+                                      isPresentation: isPresentation,
+                                      interactor: nil)
+    }
+    
+    static func dismissalAnimator(for direction: PresentationDirection,
+                                  with interactor: TransitionInteractor) -> TransitionAnimator
+    {
+        return TransitionAnimatorImpl(direction: direction,
+                                      isPresentation: false,
+                                      interactor: interactor)
     }
 }
 
-private class TransitionAnimatorImpl: NSObject {
+private class TransitionAnimatorImpl: NSObject, TransitionAnimator {
     
-    // MARK: - Properties
+    // MARK: - TransitionAnimator protocol
     let direction: PresentationDirection
     let isPresentation: Bool
+    private(set) var interactor: TransitionInteractor?
     
     // MARK: - Initializers
     init(direction: PresentationDirection,
-         isPresentation: Bool)
+         isPresentation: Bool,
+         interactor: TransitionInteractor?)
     {
         self.direction = direction
         self.isPresentation = isPresentation
+        self.interactor = interactor
         super.init()
+        Logger.success.message("direction=\(self.direction)")
     }
-}
-
-// MARK: - TransitionAnimator protocol
-extension TransitionAnimatorImpl: TransitionAnimator {
     
+    deinit {
+        Logger.fatal.message("direction=\(self.direction)")
+    }
+
+    // MARK: - UIViewControllerAnimatedTransitioning protocol
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return Constants.transitionDuration
+        let result: TimeInterval
+        if self.isPresentation {
+            result = Constants.transitionDurationPresentation
+        }
+        else {
+            result = Constants.transitionDurationDismissal
+        }
+        return result
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -79,11 +102,55 @@ extension TransitionAnimatorImpl: TransitionAnimator {
                 controller.view.frame = finalFrame
         },
             completion: { finished in
-                if !self.isPresentation {
-                    controller.view.removeFromSuperview()
+                if !self.isPresentation,
+                    let interactor = self.interactor
+                {
+                    self.completeDismissalAnimation(with: interactor,
+                                                    using: transitionContext,
+                                                    for: controller)
                 }
-                transitionContext.completeTransition(finished)
+                else {
+                    self.completeNoneInteractiveAnimation(using: transitionContext,
+                                                          for: controller,
+                                                          shouldFinish: finished)
+                }
         })
+    }
+    
+    // MARK: - Animation Completion Utilites
+    private func completeDismissalAnimation(with interactor: TransitionInteractor,
+                                            using transitionContext: UIViewControllerContextTransitioning,
+                                            for controller: UIViewController)
+    {
+        guard !self.isPresentation else {
+            let message: String = "This animation is not supporting for presentation!"
+            Logger.error.message(message)
+            return
+        }
+        let shouldRemoveView: Bool
+        let shouldCompleteTransition: Bool
+        if transitionContext.transitionWasCancelled {
+            shouldRemoveView = interactor.shouldCompleteTransition
+            shouldCompleteTransition = interactor.shouldCompleteTransition
+        }
+        else {
+            shouldRemoveView = true
+            shouldCompleteTransition = true
+        }
+        if shouldRemoveView {
+            controller.view.removeFromSuperview()
+        }
+        transitionContext.completeTransition(shouldCompleteTransition)
+    }
+    
+    private func completeNoneInteractiveAnimation(using transitionContext: UIViewControllerContextTransitioning,
+                                                  for controller: UIViewController,
+                                                  shouldFinish finished: Bool)
+    {
+        if !self.isPresentation {
+            controller.view.removeFromSuperview()
+        }
+        transitionContext.completeTransition(finished)
     }
 }
 
@@ -91,6 +158,7 @@ extension TransitionAnimatorImpl: TransitionAnimator {
 private extension TransitionAnimatorImpl {
     
     enum Constants {
-        static let transitionDuration: TimeInterval = 0.3
+        static let transitionDurationPresentation: TimeInterval = 0.25
+        static let transitionDurationDismissal: TimeInterval = 0.5
     }
 }

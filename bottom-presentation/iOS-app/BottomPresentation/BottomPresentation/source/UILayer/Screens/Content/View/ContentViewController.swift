@@ -12,6 +12,8 @@ import SimpleLogger
 class ContentViewController: BaseViewController {
     
     // MARK: - Properties
+    private let interactor: TransitionInteractor
+    @IBOutlet private weak var titleLabel: UILabel!
     
     // MARK: - Initialization
     @available(*, unavailable, message: "Creating this view controller with `init(coder:)` is unsupported in favor of initializer dependency injection.")
@@ -24,8 +26,12 @@ class ContentViewController: BaseViewController {
         fatalError("Creating this view controller with `init(nibName:bundle:)` is unsupported in favor of dependency injection initializer.")
     }
     
-    init() {
+    init(dismissalInteractor: TransitionInteractor,
+         title: String)
+    {
+        self.interactor = dismissalInteractor
         super.init(nibName: String(describing: ContentViewController.self), bundle: nil)
+        self.title = title
         Logger.success.message()
     }
     
@@ -38,7 +44,14 @@ class ContentViewController: BaseViewController {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
+        self.titleLabel.text = "Content \(self.title ?? "")"
+    }
+}
+
+extension ContentViewController: TransitionInteractorProvider {
+    
+    func transitionInteractor() -> TransitionInteractor {
+        return self.interactor
     }
 }
