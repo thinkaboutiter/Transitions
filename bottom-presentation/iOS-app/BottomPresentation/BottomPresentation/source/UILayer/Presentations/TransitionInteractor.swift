@@ -62,6 +62,7 @@ private class PercentDrivenTransitionInteractor: UIPercentDrivenInteractiveTrans
             return
         }
         let translation: CGPoint = gestureRecognizer.translation(in: gestureRecognizer.view)
+        Logger.debug.message("translation=\(translation)")
         var progress: CGFloat
         switch self.direction {
         case .top:
@@ -74,11 +75,11 @@ private class PercentDrivenTransitionInteractor: UIPercentDrivenInteractiveTrans
             progress = (translation.x / view.bounds.width)
         }
         
-        Logger.debug.message("translation=\(progress)")
+        Logger.debug.message("real progress=\(progress)")
          
         progress = CGFloat(fminf(fmaxf(Float(progress), 0.0), 1.0))
         
-        Logger.debug.message("progress=\(progress)")
+        Logger.debug.message("computed progress=\(progress)")
         
         switch gestureRecognizer.state {
         case .began:
