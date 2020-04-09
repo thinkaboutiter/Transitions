@@ -12,9 +12,9 @@ import SimpleLogger
 class SampleViewController: BaseViewController {
     
     // MARK: - Properties
-    private lazy var transitioningManager: TransitioningManager = {
-        let direction: PresentationDirection = .bottom(.half)
-        let result: TransitioningManager = TransitioningManagerFactory.manager(for: direction)
+    private lazy var transitioningManager: SideTransitioningManager = {
+        let direction: SideTransitionDirection = .bottom(.half)
+        let result: SideTransitioningManager = SideTransitioningManagerFactory.manager(for: direction)
         return result
     }()
     
@@ -61,31 +61,31 @@ class SampleViewController: BaseViewController {
     
     @IBAction func topButton_touchUpInside(_ sender: UIButton) {
         Logger.debug.message()
-        let direction: PresentationDirection = PresentationDirection.top(.oneThird)
+        let direction: SideTransitionDirection = SideTransitionDirection.top(.oneThird)
         self.slide(from: direction)
     }
     
     @IBAction func leftButton_touchUpInside(_ sender: UIButton) {
         Logger.debug.message()
-        let direction: PresentationDirection = PresentationDirection.left(.threeQuarters)
+        let direction: SideTransitionDirection = SideTransitionDirection.left(.threeQuarters)
         self.slide(from: direction)
     }
     
     @IBAction func bottomtButton_touchUpInside(_ sender: UIButton) {
         Logger.debug.message()
-        let direction: PresentationDirection = PresentationDirection.bottom(.half)
+        let direction: SideTransitionDirection = SideTransitionDirection.bottom(.half)
         self.slide(from: direction)
     }
     
     @IBAction func rightButton_touchUpInside(_ sender: UIButton) {
         Logger.debug.message()
-        let direction: PresentationDirection = PresentationDirection.right(.oneThird)
+        let direction: SideTransitionDirection = SideTransitionDirection.right(.oneThird)
         self.slide(from: direction)
     }
     
-    private func slide(from direction: PresentationDirection) {
+    private func slide(from direction: SideTransitionDirection) {
         self.transitioningManager.setDirection(direction)
-        let interactor: TransitionInteractor = TransitionInteractorFactory.percentDrivenInteractor(for: direction)
+        let interactor: SideTransitionInteractor = SideTransitionInteractorFactory.percentDrivenInteractor(for: direction)
         let vc: ContentViewController = ContentViewController(dismissalInteractor: interactor,
                                                               title: "\(direction.stringValues.direction) \(direction.stringValues.coverage)")
         interactor.setViewController(vc)

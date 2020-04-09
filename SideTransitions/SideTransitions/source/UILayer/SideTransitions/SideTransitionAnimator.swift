@@ -1,5 +1,5 @@
 //
-//  TransitionAnimator.swift
+//  SideTransitionAnimator.swift
 //  SideTransitions
 //
 //  Created by Boyan Yankov on 2020-W14-04-Apr-Sat.
@@ -9,41 +9,41 @@
 import UIKit
 import SimpleLogger
 
-protocol TransitionAnimator: UIViewControllerAnimatedTransitioning {
-    var direction: PresentationDirection { get }
+protocol SideTransitionAnimator: UIViewControllerAnimatedTransitioning {
+    var direction: SideTransitionDirection { get }
     var isPresentation: Bool { get }
-    var interactor: TransitionInteractor? { get }
+    var interactor: SideTransitionInteractor? { get }
 }
 
-struct TransitionAnimatorFactory {
-    static func animator(for direction: PresentationDirection,
-                         isPresentation: Bool) -> TransitionAnimator
+struct SideTransitionAnimatorFactory {
+    static func animator(for direction: SideTransitionDirection,
+                         isPresentation: Bool) -> SideTransitionAnimator
     {
-        return TransitionAnimatorImpl(direction: direction,
+        return SideTransitionAnimatorImpl(direction: direction,
                                       isPresentation: isPresentation,
                                       interactor: nil)
     }
     
-    static func dismissalAnimator(for direction: PresentationDirection,
-                                  with interactor: TransitionInteractor) -> TransitionAnimator
+    static func dismissalAnimator(for direction: SideTransitionDirection,
+                                  with interactor: SideTransitionInteractor) -> SideTransitionAnimator
     {
-        return TransitionAnimatorImpl(direction: direction,
+        return SideTransitionAnimatorImpl(direction: direction,
                                       isPresentation: false,
                                       interactor: interactor)
     }
 }
 
-private class TransitionAnimatorImpl: NSObject, TransitionAnimator {
+private class SideTransitionAnimatorImpl: NSObject, SideTransitionAnimator {
     
-    // MARK: - TransitionAnimator protocol
-    let direction: PresentationDirection
+    // MARK: - SideTransitionAnimator protocol
+    let direction: SideTransitionDirection
     let isPresentation: Bool
-    private(set) var interactor: TransitionInteractor?
+    private(set) var interactor: SideTransitionInteractor?
     
     // MARK: - Initializers
-    init(direction: PresentationDirection,
+    init(direction: SideTransitionDirection,
          isPresentation: Bool,
-         interactor: TransitionInteractor?)
+         interactor: SideTransitionInteractor?)
     {
         self.direction = direction
         self.isPresentation = isPresentation
@@ -118,7 +118,7 @@ private class TransitionAnimatorImpl: NSObject, TransitionAnimator {
     }
     
     // MARK: - Animation Completion Utilites
-    private func completeDismissalAnimation(with interactor: TransitionInteractor,
+    private func completeDismissalAnimation(with interactor: SideTransitionInteractor,
                                             using transitionContext: UIViewControllerContextTransitioning,
                                             for controller: UIViewController)
     {
@@ -155,7 +155,7 @@ private class TransitionAnimatorImpl: NSObject, TransitionAnimator {
 }
 
 // MARK: - Constants
-private extension TransitionAnimatorImpl {
+private extension SideTransitionAnimatorImpl {
     
     enum Constants {
         static let transitionDurationPresentation: TimeInterval = 0.25

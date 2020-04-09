@@ -1,5 +1,5 @@
 //
-//  TransitionInteractor.swift
+//  SideTransitionInteractor.swift
 //  SideTransitions
 //
 //  Created by Boyan Yankov on 2020-W15-08-Apr-Wed.
@@ -9,23 +9,23 @@
 import UIKit
 import SimpleLogger
 
-protocol TransitionInteractorProvider: AnyObject {
-    func transitionInteractor() -> TransitionInteractor
+protocol SideTransitionInteractorProvider: AnyObject {
+    func sideTransitionInteractor() -> SideTransitionInteractor
 }
 
-protocol TransitionInteractor: UIViewControllerInteractiveTransitioning {
+protocol SideTransitionInteractor: UIViewControllerInteractiveTransitioning {
     var isInteractionInProgress: Bool { get }
     var shouldCompleteTransition: Bool { get }
     func setViewController(_ newValue: UIViewController)
 }
 
-struct TransitionInteractorFactory {
-    static func percentDrivenInteractor(for direction: PresentationDirection) -> TransitionInteractor {
+struct SideTransitionInteractorFactory {
+    static func percentDrivenInteractor(for direction: SideTransitionDirection) -> SideTransitionInteractor {
         return PercentDrivenTransitionInteractor(direction: direction)
     }
 }
 
-private class PercentDrivenTransitionInteractor: UIPercentDrivenInteractiveTransition, TransitionInteractor, UIGestureRecognizerDelegate {
+private class PercentDrivenTransitionInteractor: UIPercentDrivenInteractiveTransition, SideTransitionInteractor, UIGestureRecognizerDelegate {
     
     // MARK: - Properties
     private(set) var isInteractionInProgress: Bool = false
@@ -35,10 +35,10 @@ private class PercentDrivenTransitionInteractor: UIPercentDrivenInteractiveTrans
         self.viewController = newValue
         self.prepareGestureRecognizer(in: newValue.view)
     }
-    private let direction: PresentationDirection
+    private let direction: SideTransitionDirection
     
     // MARK: - Initialization
-    init(direction: PresentationDirection) {
+    init(direction: SideTransitionDirection) {
         self.direction = direction
         super.init()
         Logger.success.message("direction=\(self.direction)")

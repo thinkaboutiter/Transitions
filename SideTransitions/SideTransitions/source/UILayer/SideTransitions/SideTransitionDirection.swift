@@ -1,5 +1,5 @@
 //
-//  PresentationDirection.swift
+//  SideTransitionDirection.swift
 //  SideTransitions
 //
 //  Created by Boyan Yankov on 2020-W14-04-Apr-Sat.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-/// The direction form where the presentation is starting.
-enum PresentationDirection {
+/// The direction form where the transition is starting.
+enum SideTransitionDirection {
     case top(Coverage)
     case left(Coverage)
     case bottom(Coverage)

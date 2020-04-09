@@ -12,7 +12,7 @@ import SimpleLogger
 class ContentViewController: BaseViewController {
     
     // MARK: - Properties
-    private let interactor: TransitionInteractor
+    private let interactor: SideTransitionInteractor
     @IBOutlet private weak var titleLabel: UILabel!
     
     // MARK: - Initialization
@@ -26,7 +26,7 @@ class ContentViewController: BaseViewController {
         fatalError("Creating this view controller with `init(nibName:bundle:)` is unsupported in favor of dependency injection initializer.")
     }
     
-    init(dismissalInteractor: TransitionInteractor,
+    init(dismissalInteractor: SideTransitionInteractor,
          title: String)
     {
         self.interactor = dismissalInteractor
@@ -49,9 +49,9 @@ class ContentViewController: BaseViewController {
     }
 }
 
-extension ContentViewController: TransitionInteractorProvider {
+extension ContentViewController: SideTransitionInteractorProvider {
     
-    func transitionInteractor() -> TransitionInteractor {
+    func sideTransitionInteractor() -> SideTransitionInteractor {
         return self.interactor
     }
 }

@@ -1,5 +1,5 @@
 //
-//  PresentationController.swift
+//  SidePresentationController.swift
 //  SideTransitions
 //
 //  Created by Boyan Yankov on 2020-W14-05-Apr-Sun.
@@ -9,10 +9,10 @@
 import UIKit
 import SimpleLogger
 
-class PresentationController: UIPresentationController {
+class SidePresentationController: UIPresentationController {
     
     // MARK: - Properties
-    private let direction: PresentationDirection
+    private let direction: SideTransitionDirection
     private lazy var dimmingView: UIView = {
 //        let effect: UIBlurEffect = UIBlurEffect.init(style: .dark)
 //        let result: UIVisualEffectView = UIVisualEffectView(effect: effect)
@@ -49,7 +49,7 @@ class PresentationController: UIPresentationController {
     // MARK: - Initialization
     init(presentedViewController: UIViewController,
          presenting presentingViewController: UIViewController?,
-         direction: PresentationDirection)
+         direction: SideTransitionDirection)
     {
         self.direction = direction
         super.init(presentedViewController: presentedViewController,
@@ -143,7 +143,7 @@ class PresentationController: UIPresentationController {
 }
 
 // MARK: - Constants
-private extension PresentationController {
+private extension SidePresentationController {
     enum Constants {
         static let presentedViewCornerRadius: CGFloat = 20
     }
