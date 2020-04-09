@@ -102,10 +102,12 @@ private class TransitionAnimatorImpl: NSObject, TransitionAnimator {
                 controller.view.frame = finalFrame
         },
             completion: { finished in
-                if let interactor = self.interactor {
-                    self.completeInteractiveAnimation(with: interactor,
-                                                      using: transitionContext,
-                                                      for: controller)
+                if !self.isPresentation,
+                    let interactor = self.interactor
+                {
+                    self.completeDismissalAnimation(with: interactor,
+                                                    using: transitionContext,
+                                                    for: controller)
                 }
                 else {
                     self.completeNoneInteractiveAnimation(using: transitionContext,
@@ -116,19 +118,28 @@ private class TransitionAnimatorImpl: NSObject, TransitionAnimator {
     }
     
     // MARK: - Animation Completion Utilites
-    private func completeInteractiveAnimation(with interactor: TransitionInteractor,
-                                              using transitionContext: UIViewControllerContextTransitioning,
-                                              for controller: UIViewController)
+    private func completeDismissalAnimation(with interactor: TransitionInteractor,
+                                            using transitionContext: UIViewControllerContextTransitioning,
+                                            for controller: UIViewController)
     {
-        let shouldRemoveView: Bool = (
-            (!self.isPresentation
-                && interactor.shouldCompleteTransition)
-                || !transitionContext.isInteractive
-        )
+        guard !self.isPresentation else {
+            let message: String = "This animation is not supporting for presentation!"
+            Logger.error.message(message)
+            return
+        }
+        let shouldRemoveView: Bool
+        let shouldCompleteTransition: Bool
+        if transitionContext.transitionWasCancelled {
+            shouldRemoveView = interactor.shouldCompleteTransition
+            shouldCompleteTransition = interactor.shouldCompleteTransition
+        }
+        else {
+            shouldRemoveView = true
+            shouldCompleteTransition = true
+        }
         if shouldRemoveView {
             controller.view.removeFromSuperview()
         }
-        let shouldCompleteTransition: Bool = interactor.shouldCompleteTransition || !transitionContext.isInteractive
         transitionContext.completeTransition(shouldCompleteTransition)
     }
     
