@@ -93,13 +93,18 @@ class PresentationController: UIPresentationController {
         let reveal: (UIView) -> Void = { view in
             view.alpha = 1.0
         }
+        let round: (UIView?) -> Void = { view in
+            view?.layer.cornerRadius = Constants.presentedViewCornerRadius
+        }
         guard let coordinator: UIViewControllerTransitionCoordinator = self.presentedViewController.transitionCoordinator else {
             reveal(self.dimmingView)
+            round(self.presentedView)
             return
         }
         coordinator.animate(
             alongsideTransition: { _ in
                 reveal(self.dimmingView)
+                round(self.presentedView)
         },
             completion: nil)
     }
@@ -108,13 +113,18 @@ class PresentationController: UIPresentationController {
         let conceal: (UIView) -> Void = { view in
             view.alpha = 0.0
         }
+        let corner: (UIView?) -> Void = { view in
+             view?.layer.cornerRadius = 0
+        }
         guard let coordinator: UIViewControllerTransitionCoordinator = self.presentedViewController.transitionCoordinator else {
             conceal(self.dimmingView)
+            corner(self.presentedView)
             return
         }
         coordinator.animate(
             alongsideTransition: { _ in
                 conceal(self.dimmingView)
+                corner(self.presentedView)
         },
             completion: nil)
     }
@@ -122,7 +132,6 @@ class PresentationController: UIPresentationController {
     override func containerViewWillLayoutSubviews() {
         self.presentedView?.frame = self.frameOfPresentedViewInContainerView
         self.presentedView?.layer.masksToBounds = true
-        self.presentedView?.layer.cornerRadius = Constants.presentedViewCornerRadius
     }
     
     // MARK: - Gestures
@@ -136,6 +145,6 @@ class PresentationController: UIPresentationController {
 // MARK: - Constants
 private extension PresentationController {
     enum Constants {
-        static let presentedViewCornerRadius: CGFloat = 16
+        static let presentedViewCornerRadius: CGFloat = 20
     }
 }
