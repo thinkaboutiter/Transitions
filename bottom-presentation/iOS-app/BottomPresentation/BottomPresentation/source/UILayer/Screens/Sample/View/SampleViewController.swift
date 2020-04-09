@@ -86,7 +86,8 @@ class SampleViewController: BaseViewController {
     private func slide(from direction: PresentationDirection) {
         self.transitioningManager.setDirection(direction)
         let interactor: TransitionInteractor = TransitionInteractorFactory.percentDrivenInteractor(for: direction)
-        let vc: ContentViewController = ContentViewController(dismissalInteractor: interactor)
+        let vc: ContentViewController = ContentViewController(dismissalInteractor: interactor,
+                                                              title: "\(direction.stringValues.direction) \(direction.stringValues.coverage)")
         interactor.setViewController(vc)
         vc.transitioningDelegate = self.transitioningManager
         vc.modalPresentationStyle = .custom

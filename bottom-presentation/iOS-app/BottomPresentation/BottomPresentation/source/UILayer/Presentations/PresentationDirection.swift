@@ -15,6 +15,20 @@ enum PresentationDirection {
     case bottom(Coverage)
     case right(Coverage)
     
+    var stringValues: (direction: String, coverage: String) {
+        let result: (direction: String, coverage: String)
+        switch self {
+        case .top(let coverage):
+            result = ("top", "\(Int(coverage.rawValue * 100)) \u{25}")
+        case .left(let coverage):
+            result = ("left", "\(Int(coverage.rawValue * 100)) \u{25}")
+        case .bottom(let coverage):
+            result = ("bottom", "\(Int(coverage.rawValue * 100)) \u{25}")
+        case .right(let coverage):
+            result = ("right", "\(Int(coverage.rawValue * 100)) \u{25}")
+        }
+        return result
+    }
     
     /// Utility type holding the % coverage of the screen for presentation.
     struct Coverage {
