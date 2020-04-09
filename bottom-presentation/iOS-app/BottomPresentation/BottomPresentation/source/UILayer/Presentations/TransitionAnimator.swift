@@ -58,7 +58,14 @@ private class TransitionAnimatorImpl: NSObject, TransitionAnimator {
 
     // MARK: - UIViewControllerAnimatedTransitioning protocol
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return Constants.transitionDuration
+        let result: TimeInterval
+        if self.isPresentation {
+            result = Constants.transitionDurationPresentation
+        }
+        else {
+            result = Constants.transitionDurationDismissal
+        }
+        return result
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -115,6 +122,7 @@ private class TransitionAnimatorImpl: NSObject, TransitionAnimator {
 private extension TransitionAnimatorImpl {
     
     enum Constants {
-        static let transitionDuration: TimeInterval = 0.3
+        static let transitionDurationPresentation: TimeInterval = 0.25
+        static let transitionDurationDismissal: TimeInterval = 0.5
     }
 }

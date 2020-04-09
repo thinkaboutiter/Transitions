@@ -112,7 +112,6 @@ private class PercentDrivenTransitionInteractor: UIPercentDrivenInteractiveTrans
 private extension PercentDrivenTransitionInteractor {
     
     enum Constants {
-        static let progressRatio: CGFloat = 200
-        static let completionRange: ClosedRange<CGFloat> = 0.5...1.0
+        static let completionRange: ClosedRange<CGFloat> = 0.35...1.0
     }
 }
