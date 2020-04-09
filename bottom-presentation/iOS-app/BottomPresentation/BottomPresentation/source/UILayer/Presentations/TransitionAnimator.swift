@@ -95,10 +95,18 @@ private class TransitionAnimatorImpl: NSObject, TransitionAnimator {
                 controller.view.frame = finalFrame
         },
             completion: { finished in
-                if !self.isPresentation {
-                    controller.view.removeFromSuperview()
+                if let interactor = self.interactor {
+                    if !self.isPresentation && interactor.shouldCompleteTransition {
+                        controller.view.removeFromSuperview()
+                    }
+                    transitionContext.completeTransition(interactor.shouldCompleteTransition)
                 }
-                transitionContext.completeTransition(finished)
+                else {
+                    if !self.isPresentation {
+                        controller.view.removeFromSuperview()
+                    }
+                    transitionContext.completeTransition(finished)
+                }
         })
     }
 }

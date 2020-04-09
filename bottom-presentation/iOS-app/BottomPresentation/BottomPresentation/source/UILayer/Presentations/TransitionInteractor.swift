@@ -15,6 +15,7 @@ protocol TransitionInteractorProvider: AnyObject {
 
 protocol TransitionInteractor: UIViewControllerInteractiveTransitioning {
     var isInteractionInProgress: Bool { get }
+    var shouldCompleteTransition: Bool { get }
     func setViewController(_ newValue: UIViewController)
 }
 
@@ -28,7 +29,7 @@ private class PercentDrivenTransitionInteractor: UIPercentDrivenInteractiveTrans
     
     // MARK: - Properties
     private(set) var isInteractionInProgress: Bool = false
-    private var shouldCompleteTransition: Bool = false
+    private(set) var shouldCompleteTransition: Bool = false
     private weak var viewController: UIViewController!
     func setViewController(_ newValue: UIViewController) {
         self.viewController = newValue
