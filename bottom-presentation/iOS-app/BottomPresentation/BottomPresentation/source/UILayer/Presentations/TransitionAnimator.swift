@@ -103,24 +103,43 @@ private class TransitionAnimatorImpl: NSObject, TransitionAnimator {
         },
             completion: { finished in
                 if let interactor = self.interactor {
-                    let shouldRemoveView: Bool = (
-                        (!self.isPresentation
-                            && interactor.shouldCompleteTransition)
-                            || !transitionContext.isInteractive
-                    )
-                    if shouldRemoveView {
-                        controller.view.removeFromSuperview()
-                    }
-                    let shouldCompleteTransition: Bool = interactor.shouldCompleteTransition || !transitionContext.isInteractive
-                    transitionContext.completeTransition(shouldCompleteTransition)
+                    self.completeInteractiveAnimation(with: interactor,
+                                                      using: transitionContext,
+                                                      for: controller)
                 }
                 else {
-                    if !self.isPresentation {
-                        controller.view.removeFromSuperview()
-                    }
-                    transitionContext.completeTransition(finished)
+                    self.completeNoneInteractiveAnimation(using: transitionContext,
+                                                          for: controller,
+                                                          shouldFinish: finished)
                 }
         })
+    }
+    
+    // MARK: - Animation Completion Utilites
+    private func completeInteractiveAnimation(with interactor: TransitionInteractor,
+                                              using transitionContext: UIViewControllerContextTransitioning,
+                                              for controller: UIViewController)
+    {
+        let shouldRemoveView: Bool = (
+            (!self.isPresentation
+                && interactor.shouldCompleteTransition)
+                || !transitionContext.isInteractive
+        )
+        if shouldRemoveView {
+            controller.view.removeFromSuperview()
+        }
+        let shouldCompleteTransition: Bool = interactor.shouldCompleteTransition || !transitionContext.isInteractive
+        transitionContext.completeTransition(shouldCompleteTransition)
+    }
+    
+    private func completeNoneInteractiveAnimation(using transitionContext: UIViewControllerContextTransitioning,
+                                                  for controller: UIViewController,
+                                                  shouldFinish finished: Bool)
+    {
+        if !self.isPresentation {
+            controller.view.removeFromSuperview()
+        }
+        transitionContext.completeTransition(finished)
     }
 }
 
