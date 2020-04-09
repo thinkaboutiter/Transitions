@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SampleViewController" customModule="SideTransitions" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="3xg-BZ-bvt" id="5lu-Zp-WqU"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="3xg-BZ-bvt">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="1cu-bE-hQc" userLabel="buttons-stack-view">
+                    <rect key="frame" x="107" y="348" width="200" height="200"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" id="Mph-cU-yWB">
+                            <rect key="frame" x="0.0" y="0.0" width="200" height="66.666666666666671"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9zk-10-3Bf">
+                                    <rect key="frame" x="0.0" y="8.3333333333333144" width="66.666666666666671" height="50"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kef-gd-5LL" userLabel="top-button">
+                                    <rect key="frame" x="66.666666666666657" y="18.333333333333314" width="66.666666666666657" height="30"/>
+                                    <state key="normal" title="Top"/>
+                                    <connections>
+                                        <action selector="topButton_touchUpInside:" destination="-1" eventType="touchUpInside" id="w0F-ZH-rLh"/>
+                                    </connections>
+                                </button>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5vl-GO-r3Y">
+                                    <rect key="frame" x="133.33333333333334" y="8.3333333333333144" width="66.666666666666657" height="50"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </view>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" id="hNj-fD-Auy">
+                            <rect key="frame" x="0.0" y="66.666666666666657" width="200" height="66.666666666666657"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEW-YZ-kNW" userLabel="left-button">
+                                    <rect key="frame" x="0.0" y="18.333333333333314" width="66.666666666666671" height="30"/>
+                                    <state key="normal" title="Left"/>
+                                    <connections>
+                                        <action selector="leftButton_touchUpInside:" destination="-1" eventType="touchUpInside" id="dwo-3F-2fg"/>
+                                    </connections>
+                                </button>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q3M-Qn-Te2">
+                                    <rect key="frame" x="66.666666666666657" y="8.3333333333333144" width="66.666666666666657" height="50"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NYs-wX-Z9j" userLabel="right-button">
+                                    <rect key="frame" x="133.33333333333334" y="18.333333333333314" width="66.666666666666657" height="30"/>
+                                    <state key="normal" title="Right"/>
+                                    <connections>
+                                        <action selector="rightButton_touchUpInside:" destination="-1" eventType="touchUpInside" id="Uii-Ff-2an"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="G81-3h-yZz">
+                            <rect key="frame" x="0.0" y="133.33333333333331" width="200" height="66.666666666666686"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B5Q-cg-tf2">
+                                    <rect key="frame" x="0.0" y="0.0" width="66.666666666666671" height="66.666666666666671"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZ7-WL-bGe" userLabel="bottom-button">
+                                    <rect key="frame" x="66.666666666666657" y="18.333333333333371" width="66.666666666666657" height="30"/>
+                                    <state key="normal" title="Bottom"/>
+                                    <connections>
+                                        <action selector="bottomtButton_touchUpInside:" destination="-1" eventType="touchUpInside" id="3Lc-kS-fpi"/>
+                                    </connections>
+                                </button>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sa0-Vg-l0t">
+                                    <rect key="frame" x="133.33333333333334" y="0.0" width="66.666666666666657" height="66.666666666666671"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </view>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="1cu-bE-hQc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Gpt-H5-st2" secondAttribute="leading" constant="16" id="R5y-3L-bLi"/>
+                <constraint firstItem="1cu-bE-hQc" firstAttribute="centerX" secondItem="3xg-BZ-bvt" secondAttribute="centerX" id="S3f-2F-b1y"/>
+                <constraint firstItem="1cu-bE-hQc" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Gpt-H5-st2" secondAttribute="top" constant="16" id="UNx-af-QGD"/>
+                <constraint firstItem="1cu-bE-hQc" firstAttribute="width" secondItem="3xg-BZ-bvt" secondAttribute="width" priority="750" id="aBz-d9-K6w"/>
+                <constraint firstItem="1cu-bE-hQc" firstAttribute="centerY" secondItem="3xg-BZ-bvt" secondAttribute="centerY" id="o7W-eI-uFw"/>
+                <constraint firstItem="1cu-bE-hQc" firstAttribute="height" secondItem="3xg-BZ-bvt" secondAttribute="height" priority="750" id="oCa-gK-3cy"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Gpt-H5-st2"/>
+            <point key="canvasLocation" x="686.95652173913049" y="-213.61607142857142"/>
+        </view>
+    </objects>
+</document>
