@@ -94,7 +94,9 @@ class SidePresentationController: UIPresentationController {
             view.alpha = 1.0
         }
         let round: (UIView?) -> Void = { view in
-            view?.layer.cornerRadius = Constants.presentedViewCornerRadius
+            let corners: UIView.Corners = UIView.Corners.for(self.direction)
+            view?.round(corners,
+                        cornerRadius: Constants.presentedViewCornerRadius)
         }
         guard let coordinator: UIViewControllerTransitionCoordinator = self.presentedViewController.transitionCoordinator else {
             reveal(self.dimmingView)
@@ -114,7 +116,9 @@ class SidePresentationController: UIPresentationController {
             view.alpha = 0.0
         }
         let corner: (UIView?) -> Void = { view in
-             view?.layer.cornerRadius = 0
+             let corners: UIView.Corners = UIView.Corners.for(self.direction)
+             view?.round(corners,
+                         cornerRadius: 0)
         }
         guard let coordinator: UIViewControllerTransitionCoordinator = self.presentedViewController.transitionCoordinator else {
             conceal(self.dimmingView)
