@@ -17,7 +17,8 @@ class SidePresentationController: UIPresentationController {
 //        let effect: UIBlurEffect = UIBlurEffect.init(style: .dark)
 //        let result: UIVisualEffectView = UIVisualEffectView(effect: effect)
         let result: UIView = UIView()
-        result.backgroundColor = UIColor.darkGray.withAlphaComponent(0.75)
+        let color: UIColor = UIColor.AppColor.dimmingViewBackgroundColor
+        result.backgroundColor = color
         result.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         let tapGestureRecognizer: UITapGestureRecognizer =
         UITapGestureRecognizer(target: self,
@@ -61,6 +62,12 @@ class SidePresentationController: UIPresentationController {
         Logger.fatal.message("direction=\(self.direction)")
     }
     
+    // MARK: - Life cycle
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        let color: UIColor = UIColor.AppColor.dimmingViewBackgroundColor
+        self.dimmingView.backgroundColor = color
+    }
+    
     // MARK: - Customization
     override func size(forChildContentContainer container: UIContentContainer,
                        withParentContainerSize parentSize: CGSize) -> CGSize
@@ -94,7 +101,9 @@ class SidePresentationController: UIPresentationController {
             view.alpha = 1.0
         }
         let round: (UIView?) -> Void = { view in
-            view?.layer.cornerRadius = Constants.presentedViewCornerRadius
+            let corners: UIView.Corners = UIView.Corners.for(self.direction)
+            view?.round(corners,
+                        cornerRadius: Constants.presentedViewCornerRadius)
         }
         guard let coordinator: UIViewControllerTransitionCoordinator = self.presentedViewController.transitionCoordinator else {
             reveal(self.dimmingView)
@@ -114,7 +123,9 @@ class SidePresentationController: UIPresentationController {
             view.alpha = 0.0
         }
         let corner: (UIView?) -> Void = { view in
-             view?.layer.cornerRadius = 0
+             let corners: UIView.Corners = UIView.Corners.for(self.direction)
+             view?.round(corners,
+                         cornerRadius: 0)
         }
         guard let coordinator: UIViewControllerTransitionCoordinator = self.presentedViewController.transitionCoordinator else {
             conceal(self.dimmingView)
