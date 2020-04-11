@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F4F68392441E5F400440FA1 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4F68382441E5F400440FA1 /* UIView+Extensions.swift */; };
 		4F60E158243925E400763F33 /* SideTransitionDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F60E157243925E400763F33 /* SideTransitionDirection.swift */; };
 		4F60E15A2439295100763F33 /* SideTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F60E1592439295100763F33 /* SideTransitionAnimator.swift */; };
 		4F60E15C2439439400763F33 /* SidePresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F60E15B2439439400763F33 /* SidePresentationController.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F4F68382441E5F400440FA1 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		4F60E157243925E400763F33 /* SideTransitionDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideTransitionDirection.swift; sourceTree = "<group>"; };
 		4F60E1592439295100763F33 /* SideTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideTransitionAnimator.swift; sourceTree = "<group>"; };
 		4F60E15B2439439400763F33 /* SidePresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidePresentationController.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				4F6B63222438C20000BE9B1F /* UIViewController+Extensions.swift */,
+				4F4F68382441E5F400440FA1 /* UIView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				4F6B631B2438C08000BE9B1F /* RootViewController.swift in Sources */,
 				4FDF2002243DEA3400FD96FF /* SideTransitionInteractor.swift in Sources */,
 				4F6B632F2438C45200BE9B1F /* SampleViewController.swift in Sources */,
+				4F4F68392441E5F400440FA1 /* UIView+Extensions.swift in Sources */,
 				4F60E158243925E400763F33 /* SideTransitionDirection.swift in Sources */,
 				4F6B63182438C08000BE9B1F /* AppDelegate.swift in Sources */,
 				4F6B63172438C08000BE9B1F /* AppConstants.swift in Sources */,
@@ -474,7 +478,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 225;
+				CURRENT_PROJECT_VERSION = 233;
 				DEVELOPMENT_TEAM = J48Y9TAH25;
 				INFOPLIST_FILE = "$(PROJECT_NAME)/source/SupportFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -494,7 +498,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 225;
+				CURRENT_PROJECT_VERSION = 233;
 				DEVELOPMENT_TEAM = J48Y9TAH25;
 				INFOPLIST_FILE = "$(PROJECT_NAME)/source/SupportFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
