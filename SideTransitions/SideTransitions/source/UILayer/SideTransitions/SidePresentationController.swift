@@ -17,7 +17,8 @@ class SidePresentationController: UIPresentationController {
 //        let effect: UIBlurEffect = UIBlurEffect.init(style: .dark)
 //        let result: UIVisualEffectView = UIVisualEffectView(effect: effect)
         let result: UIView = UIView()
-        result.backgroundColor = UIColor.darkGray.withAlphaComponent(0.75)
+        let color: UIColor = UIColor.AppColor.dimmingViewBackgroundColor
+        result.backgroundColor = color
         result.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         let tapGestureRecognizer: UITapGestureRecognizer =
         UITapGestureRecognizer(target: self,
@@ -59,6 +60,12 @@ class SidePresentationController: UIPresentationController {
     
     deinit {
         Logger.fatal.message("direction=\(self.direction)")
+    }
+    
+    // MARK: - Life cycle
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        let color: UIColor = UIColor.AppColor.dimmingViewBackgroundColor
+        self.dimmingView.backgroundColor = color
     }
     
     // MARK: - Customization
