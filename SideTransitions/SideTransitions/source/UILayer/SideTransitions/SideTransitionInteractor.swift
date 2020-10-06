@@ -57,7 +57,8 @@ private class PercentDrivenTransitionInteractor: UIPercentDrivenInteractiveTrans
         view.isUserInteractionEnabled = true
     }
     
-    @objc func handleGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
+    @objc
+    func handleGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
         guard let view: UIView = gestureRecognizer.view else {
             return
         }
@@ -110,7 +111,6 @@ private class PercentDrivenTransitionInteractor: UIPercentDrivenInteractiveTrans
 
 // MARK: - Constants
 private extension PercentDrivenTransitionInteractor {
-    
     enum Constants {
         static let completionRange: ClosedRange<CGFloat> = 0.35...1.0
     }

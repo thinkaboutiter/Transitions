@@ -20,20 +20,26 @@ struct SideTransitionAnimatorFactory {
                          isPresentation: Bool) -> SideTransitionAnimator
     {
         return SideTransitionAnimatorImpl(direction: direction,
-                                      isPresentation: isPresentation,
-                                      interactor: nil)
+                                          isPresentation: isPresentation,
+                                          interactor: nil)
     }
     
     static func dismissalAnimator(for direction: SideTransitionDirection,
                                   with interactor: SideTransitionInteractor) -> SideTransitionAnimator
     {
         return SideTransitionAnimatorImpl(direction: direction,
-                                      isPresentation: false,
-                                      interactor: interactor)
+                                          isPresentation: false,
+                                          interactor: interactor)
     }
 }
 
 private class SideTransitionAnimatorImpl: NSObject, SideTransitionAnimator {
+    
+    // MARK: - Constants
+    private enum Constants {
+        static let transitionDurationPresentation: TimeInterval = 0.25
+        static let transitionDurationDismissal: TimeInterval = 0.5
+    }
     
     // MARK: - SideTransitionAnimator protocol
     let direction: SideTransitionDirection
@@ -55,7 +61,7 @@ private class SideTransitionAnimatorImpl: NSObject, SideTransitionAnimator {
     deinit {
         Logger.fatal.message("direction=\(self.direction)")
     }
-
+    
     // MARK: - UIViewControllerAnimatedTransitioning protocol
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         let result: TimeInterval
@@ -100,10 +106,10 @@ private class SideTransitionAnimatorImpl: NSObject, SideTransitionAnimator {
             withDuration: animationDuration,
             animations: {
                 controller.view.frame = finalFrame
-        },
+            },
             completion: { finished in
                 if !self.isPresentation,
-                    let interactor = self.interactor
+                   let interactor = self.interactor
                 {
                     self.completeDismissalAnimation(with: interactor,
                                                     using: transitionContext,
@@ -114,7 +120,7 @@ private class SideTransitionAnimatorImpl: NSObject, SideTransitionAnimator {
                                                           for: controller,
                                                           shouldFinish: finished)
                 }
-        })
+            })
     }
     
     // MARK: - Animation Completion Utilites
@@ -151,14 +157,5 @@ private class SideTransitionAnimatorImpl: NSObject, SideTransitionAnimator {
             controller.view.removeFromSuperview()
         }
         transitionContext.completeTransition(finished)
-    }
-}
-
-// MARK: - Constants
-private extension SideTransitionAnimatorImpl {
-    
-    enum Constants {
-        static let transitionDurationPresentation: TimeInterval = 0.25
-        static let transitionDurationDismissal: TimeInterval = 0.5
     }
 }
