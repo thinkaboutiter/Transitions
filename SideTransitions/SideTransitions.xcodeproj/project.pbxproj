@@ -233,7 +233,6 @@
 				4FAC0A6C23F7F48200B1FB76 /* Sources */,
 				4FAC0A6D23F7F48200B1FB76 /* Frameworks */,
 				4FAC0A6E23F7F48200B1FB76 /* Resources */,
-				4FAC0A8723F7F5A400B1FB76 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -299,26 +298,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		4FAC0A8723F7F5A400B1FB76 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\nagvtool next-version -all\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4FAC0A6C23F7F48200B1FB76 /* Sources */ = {
