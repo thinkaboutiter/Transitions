@@ -1,16 +1,15 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "SimpleLogger",
-        "repositoryURL": "git@github.com:thinkaboutiter/SimpleLogger.git",
-        "state": {
-          "branch": null,
-          "revision": "c5cace7eb070a424500567ed14623958d7fa5511",
-          "version": "2.4.4"
-        }
+  "originHash" : "5c2768eea49967fa2028f24da96d509adf8498cfe581b0d00d5b13c12345ca2f",
+  "pins" : [
+    {
+      "identity" : "simplelogger",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:thinkaboutiter/SimpleLogger.git",
+      "state" : {
+        "revision" : "6b6f4c6fe99df50f8605bf1bca2ee9aa12d01cfa",
+        "version" : "2.4.5"
       }
-    ]
-  },
-  "version": 1
+    }
+  ],
+  "version" : 3
 }
